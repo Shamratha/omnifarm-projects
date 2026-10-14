@@ -1,5 +1,0 @@
-Metadata-Version: 2.4
-Name: git-repo-analyzer
-Version: 0.1.0
-Summary: A deterministic, local-only Git partial-clone workflow analyzer
-Requires-Python: >=3.10
