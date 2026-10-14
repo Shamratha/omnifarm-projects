@@ -1,0 +1,488 @@
+{
+  "network_attempted": false,
+  "note": "Sparse models a path-scoped object projection; ordinary Git sparse checkout alone does not filter transfer. Costs are logical object bytes, not predicted wire/pack bytes. No fetch is performed.",
+  "paths": [
+    "src"
+  ],
+  "repo": "/tmp/omnirush/cost-summary-5jeafx3l/repo",
+  "revision": "HEAD",
+  "schema_version": 1,
+  "scope": "enumerated checkout snapshot (not a full-history clone)",
+  "statistics": {
+    "head": "ffe36b4045852ad516c4d310f170bf2468ff4658",
+    "object_format": "sha1",
+    "objects_by_type": {
+      "blob": {
+        "count": 2,
+        "disk_bytes": 36,
+        "logical_bytes": 18
+      },
+      "commit": {
+        "count": 1,
+        "disk_bytes": 127,
+        "logical_bytes": 190
+      },
+      "tag": {
+        "count": 0,
+        "disk_bytes": 0,
+        "logical_bytes": 0
+      },
+      "tree": {
+        "count": 3,
+        "disk_bytes": 161,
+        "logical_bytes": 132
+      }
+    },
+    "pack": {
+      "count_objects": {
+        "count": 0,
+        "garbage": 0,
+        "in-pack": 6,
+        "packs": 1,
+        "prune-packable": 0,
+        "size": 0,
+        "size-garbage": 0,
+        "size-pack": 1
+      },
+      "count_objects_size_unit": "KiB",
+      "loose_by_type": {
+        "blob": 0,
+        "commit": 0,
+        "tag": 0,
+        "tree": 0
+      },
+      "objects": {
+        "by_type": {
+          "blob": 2,
+          "commit": 1,
+          "tag": 0,
+          "tree": 3
+        },
+        "storage": {
+          "both": 0,
+          "loose": 0,
+          "pack": 6,
+          "unknown": 0
+        },
+        "unique": 6
+      },
+      "packed_by_type": {
+        "blob": 2,
+        "commit": 1,
+        "tag": 0,
+        "tree": 3
+      },
+      "packs": {
+        "count": 1,
+        "index_bytes": 1240,
+        "object_entries": 6,
+        "pack_bytes": 356,
+        "unique_objects": 6
+      }
+    },
+    "partial_clone": {
+      "enabled": false,
+      "extensions_partial_clone": null,
+      "promisor_remotes": []
+    },
+    "promisor_object_count": 0,
+    "reachable_object_count": 6,
+    "refs": {
+      "refs/heads/main": "ffe36b4045852ad516c4d310f170bf2468ff4658"
+    },
+    "shallow_boundaries": [],
+    "sparse_checkout": {
+      "cone": true,
+      "enabled": false,
+      "patterns": []
+    },
+    "unreachable_object_count": 0
+  },
+  "strategies": [
+    {
+      "cost": {
+        "deferred": {
+          "by_type": {
+            "blob": 0,
+            "commit": 0,
+            "tag": 0,
+            "tree": 0,
+            "unknown": 0
+          },
+          "known_logical_bytes": 0,
+          "object_count": 0,
+          "unknown_size_count": 0
+        },
+        "initial": {
+          "by_type": {
+            "blob": 2,
+            "commit": 1,
+            "tag": 0,
+            "tree": 3,
+            "unknown": 0
+          },
+          "known_logical_bytes": 340,
+          "object_count": 6,
+          "unknown_size_count": 0
+        },
+        "local_missing": {
+          "known_missing_bytes": 0,
+          "missing_blob_count": 0,
+          "missing_by_type": {
+            "blob": 0,
+            "commit": 0,
+            "tag": 0,
+            "tree": 0,
+            "unknown": 0
+          },
+          "missing_commit_count": 0,
+          "missing_object_count": 0,
+          "missing_tag_count": 0,
+          "missing_tree_count": 0,
+          "missing_unknown_count": 0,
+          "unknown_missing_size_count": 0
+        },
+        "transfer_bytes": null
+      },
+      "coverage": 1.0,
+      "diagnostics": [],
+      "history": {
+        "boundary_reached": [],
+        "scope": "full",
+        "shallow": false,
+        "status": "complete"
+      },
+      "initial_retained_objects": 6,
+      "locally_present_objects": 6,
+      "missing_objects": 0,
+      "omitted_local_objects": 0,
+      "required_by_type": {
+        "blob": 2,
+        "commit": 1,
+        "tag": 0,
+        "tree": 3,
+        "unknown": 0
+      },
+      "required_objects": 6,
+      "requirements": {
+        "by_type": {
+          "blob": 2,
+          "commit": 1,
+          "tag": 0,
+          "tree": 3,
+          "unknown": 0
+        },
+        "coverage": 1.0,
+        "enumerated": 6,
+        "missing": 0,
+        "missing_by_type": {
+          "blob": 0,
+          "commit": 0,
+          "tag": 0,
+          "tree": 0,
+          "unknown": 0
+        },
+        "present": 6,
+        "present_by_type": {
+          "blob": 2,
+          "commit": 1,
+          "tag": 0,
+          "tree": 3,
+          "unknown": 0
+        },
+        "unknown_frontier": 0
+      },
+      "status": "complete",
+      "strategy": "full"
+    },
+    {
+      "cost": {
+        "deferred": {
+          "by_type": {
+            "blob": 0,
+            "commit": 0,
+            "tag": 0,
+            "tree": 0,
+            "unknown": 0
+          },
+          "known_logical_bytes": 0,
+          "object_count": 0,
+          "unknown_size_count": 0
+        },
+        "initial": {
+          "by_type": {
+            "blob": 1,
+            "commit": 1,
+            "tag": 0,
+            "tree": 2,
+            "unknown": 0
+          },
+          "known_logical_bytes": 298,
+          "object_count": 4,
+          "unknown_size_count": 0
+        },
+        "local_missing": {
+          "known_missing_bytes": 0,
+          "missing_blob_count": 0,
+          "missing_by_type": {
+            "blob": 0,
+            "commit": 0,
+            "tag": 0,
+            "tree": 0,
+            "unknown": 0
+          },
+          "missing_commit_count": 0,
+          "missing_object_count": 0,
+          "missing_tag_count": 0,
+          "missing_tree_count": 0,
+          "missing_unknown_count": 0,
+          "unknown_missing_size_count": 0
+        },
+        "transfer_bytes": null
+      },
+      "coverage": 1.0,
+      "diagnostics": [],
+      "history": {
+        "boundary_reached": [],
+        "scope": "full",
+        "shallow": false,
+        "status": "complete"
+      },
+      "initial_retained_objects": 4,
+      "locally_present_objects": 4,
+      "missing_objects": 0,
+      "omitted_local_objects": 0,
+      "required_by_type": {
+        "blob": 1,
+        "commit": 1,
+        "tag": 0,
+        "tree": 2,
+        "unknown": 0
+      },
+      "required_objects": 4,
+      "requirements": {
+        "by_type": {
+          "blob": 1,
+          "commit": 1,
+          "tag": 0,
+          "tree": 2,
+          "unknown": 0
+        },
+        "coverage": 1.0,
+        "enumerated": 4,
+        "missing": 0,
+        "missing_by_type": {
+          "blob": 0,
+          "commit": 0,
+          "tag": 0,
+          "tree": 0,
+          "unknown": 0
+        },
+        "present": 4,
+        "present_by_type": {
+          "blob": 1,
+          "commit": 1,
+          "tag": 0,
+          "tree": 2,
+          "unknown": 0
+        },
+        "unknown_frontier": 0
+      },
+      "status": "complete",
+      "strategy": "sparse"
+    },
+    {
+      "cost": {
+        "deferred": {
+          "by_type": {
+            "blob": 2,
+            "commit": 0,
+            "tag": 0,
+            "tree": 0,
+            "unknown": 0
+          },
+          "known_logical_bytes": 18,
+          "object_count": 2,
+          "unknown_size_count": 0
+        },
+        "initial": {
+          "by_type": {
+            "blob": 0,
+            "commit": 1,
+            "tag": 0,
+            "tree": 3,
+            "unknown": 0
+          },
+          "known_logical_bytes": 322,
+          "object_count": 4,
+          "unknown_size_count": 0
+        },
+        "local_missing": {
+          "known_missing_bytes": 0,
+          "missing_blob_count": 0,
+          "missing_by_type": {
+            "blob": 0,
+            "commit": 0,
+            "tag": 0,
+            "tree": 0,
+            "unknown": 0
+          },
+          "missing_commit_count": 0,
+          "missing_object_count": 0,
+          "missing_tag_count": 0,
+          "missing_tree_count": 0,
+          "missing_unknown_count": 0,
+          "unknown_missing_size_count": 0
+        },
+        "transfer_bytes": null
+      },
+      "coverage": 1.0,
+      "diagnostics": [],
+      "history": {
+        "boundary_reached": [],
+        "scope": "full",
+        "shallow": false,
+        "status": "complete"
+      },
+      "initial_retained_objects": 4,
+      "locally_present_objects": 6,
+      "missing_objects": 0,
+      "omitted_local_objects": 2,
+      "required_by_type": {
+        "blob": 2,
+        "commit": 1,
+        "tag": 0,
+        "tree": 3,
+        "unknown": 0
+      },
+      "required_objects": 6,
+      "requirements": {
+        "by_type": {
+          "blob": 2,
+          "commit": 1,
+          "tag": 0,
+          "tree": 3,
+          "unknown": 0
+        },
+        "coverage": 1.0,
+        "enumerated": 6,
+        "missing": 0,
+        "missing_by_type": {
+          "blob": 0,
+          "commit": 0,
+          "tag": 0,
+          "tree": 0,
+          "unknown": 0
+        },
+        "present": 6,
+        "present_by_type": {
+          "blob": 2,
+          "commit": 1,
+          "tag": 0,
+          "tree": 3,
+          "unknown": 0
+        },
+        "unknown_frontier": 0
+      },
+      "status": "complete",
+      "strategy": "blobless"
+    },
+    {
+      "cost": {
+        "deferred": {
+          "by_type": {
+            "blob": 2,
+            "commit": 0,
+            "tag": 0,
+            "tree": 3,
+            "unknown": 0
+          },
+          "known_logical_bytes": 150,
+          "object_count": 5,
+          "unknown_size_count": 0
+        },
+        "initial": {
+          "by_type": {
+            "blob": 0,
+            "commit": 1,
+            "tag": 0,
+            "tree": 0,
+            "unknown": 0
+          },
+          "known_logical_bytes": 190,
+          "object_count": 1,
+          "unknown_size_count": 0
+        },
+        "local_missing": {
+          "known_missing_bytes": 0,
+          "missing_blob_count": 0,
+          "missing_by_type": {
+            "blob": 0,
+            "commit": 0,
+            "tag": 0,
+            "tree": 0,
+            "unknown": 0
+          },
+          "missing_commit_count": 0,
+          "missing_object_count": 0,
+          "missing_tag_count": 0,
+          "missing_tree_count": 0,
+          "missing_unknown_count": 0,
+          "unknown_missing_size_count": 0
+        },
+        "transfer_bytes": null
+      },
+      "coverage": 1.0,
+      "diagnostics": [],
+      "history": {
+        "boundary_reached": [],
+        "scope": "full",
+        "shallow": false,
+        "status": "complete"
+      },
+      "initial_retained_objects": 1,
+      "locally_present_objects": 6,
+      "missing_objects": 0,
+      "omitted_local_objects": 5,
+      "required_by_type": {
+        "blob": 2,
+        "commit": 1,
+        "tag": 0,
+        "tree": 3,
+        "unknown": 0
+      },
+      "required_objects": 6,
+      "requirements": {
+        "by_type": {
+          "blob": 2,
+          "commit": 1,
+          "tag": 0,
+          "tree": 3,
+          "unknown": 0
+        },
+        "coverage": 1.0,
+        "enumerated": 6,
+        "missing": 0,
+        "missing_by_type": {
+          "blob": 0,
+          "commit": 0,
+          "tag": 0,
+          "tree": 0,
+          "unknown": 0
+        },
+        "present": 6,
+        "present_by_type": {
+          "blob": 2,
+          "commit": 1,
+          "tag": 0,
+          "tree": 3,
+          "unknown": 0
+        },
+        "unknown_frontier": 0
+      },
+      "status": "complete",
+      "strategy": "treeless"
+    }
+  ],
+  "workflow": "compare"
+}

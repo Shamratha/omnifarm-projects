@@ -1,0 +1,15 @@
+{
+  "name": "module-triage-workbench",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/triage.test.js",
+    "test:ui": "playwright test",
+    "check": "node --check app.js && node --check triage.js && node --check data.js",
+    "dev": "python3 -m http.server 4173 --bind 127.0.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1"
+  }
+}

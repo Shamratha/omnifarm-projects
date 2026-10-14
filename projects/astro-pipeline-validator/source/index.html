@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A local, standards-aware dashboard for inspecting astronomy observation pipelines."
+    />
+    <title>Astro Pipeline Validator</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="app-background" aria-hidden="true">
+      <span class="star star-one"></span>
+      <span class="star star-two"></span>
+      <span class="star star-three"></span>
+      <span class="star star-four"></span>
+      <span class="star star-five"></span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#dashboard" aria-label="Astro Pipeline Validator home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" role="img">
+            <path d="M16 3.5 18.8 12l8.7 1.3-6.3 5.9 1.6 8.7-7.8-4.2-7.8 4.2 1.6-8.7-6.3-5.9L13.2 12 16 3.5Z" />
+            <circle cx="16" cy="16" r="3.2" />
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-eyebrow">Observatory tools</span>
+          <span class="brand-name">Astro Pipeline Validator</span>
+        </span>
+      </a>
+      <div class="header-status" aria-label="Application status">
+        <span class="status-dot"></span>
+        <span>Local / offline</span>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro-grid" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="section-kicker">Observation run / quality review</p>
+          <h1 id="page-title">Make every frame<br /><em>count.</em></h1>
+          <p class="intro-lede">
+            A focused, standards-aware view of the bundled observation run. Review provenance,
+            calibration coverage, time scales, and normalized values before your science pipeline
+            continues.
+          </p>
+          <div class="intro-pills" aria-label="Application capabilities">
+            <span class="soft-pill"><span class="pill-dot"></span>Runs in your browser</span>
+            <span class="soft-pill">FITS-aware</span>
+            <span class="soft-pill">Deterministic checks</span>
+          </div>
+        </div>
+
+        <aside class="run-selector-card" aria-labelledby="run-selector-title">
+          <div class="card-topline">
+            <span class="section-kicker">Active run</span>
+              <span class="run-index">01 / 02</span>
+          </div>
+          <label id="run-selector-title" class="field-label" for="run-selector">Select observation run</label>
+          <div class="select-wrap">
+            <select id="run-selector" aria-describedby="run-selector-help">
+              <option value="sample">Bundled sample · M31 / 2016-12-31</option>
+              <option value="boundary">Regression · leap-second boundary / missing bias</option>
+            </select>
+          </div>
+          <p id="run-selector-help" class="field-help">
+              These local runs are intentionally useful-but-imperfect so the dashboard has findings to inspect.
+          </p>
+          <div class="run-mini-stats">
+            <div>
+              <span class="mini-label">Source</span>
+              <strong>sampleBundle</strong>
+            </div>
+            <div>
+              <span class="mini-label">Mode</span>
+              <strong>Read-only</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="metadata-strip" aria-label="Run metadata">
+        <div class="metadata-item">
+          <span class="metadata-icon" aria-hidden="true">◌</span>
+          <div><span class="mini-label">Target</span><strong id="meta-target">—</strong></div>
+        </div>
+        <div class="metadata-item">
+          <span class="metadata-icon" aria-hidden="true">⌖</span>
+          <div><span class="mini-label">Observatory</span><strong id="meta-observatory">—</strong></div>
+        </div>
+        <div class="metadata-item">
+          <span class="metadata-icon" aria-hidden="true">◷</span>
+          <div><span class="mini-label">Observation date</span><strong id="meta-date">—</strong></div>
+        </div>
+        <div class="metadata-item">
+          <span class="metadata-icon" aria-hidden="true">▦</span>
+          <div><span class="mini-label">Science exposures</span><strong id="meta-exposures">—</strong></div>
+        </div>
+        <div class="metadata-item metadata-item-end">
+          <span class="metadata-icon" aria-hidden="true">◇</span>
+          <div><span class="mini-label">Calibration frames</span><strong id="meta-calibrations">—</strong></div>
+        </div>
+      </section>
+
+      <section id="dashboard" class="dashboard-section" aria-labelledby="dashboard-title">
+        <div class="section-heading-row">
+          <div>
+            <p class="section-kicker">Run quality</p>
+            <h2 id="dashboard-title">Validation dashboard</h2>
+          </div>
+          <div class="heading-actions">
+            <span id="export-status" class="export-status" role="status" aria-live="polite"></span>
+            <button id="export-report" class="button button-primary" type="button">
+              <span>Export Markdown + JSON</span>
+              <span class="button-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="quality-overview">
+          <article class="score-card panel" aria-labelledby="score-title">
+            <div class="score-orbit" aria-hidden="true">
+              <div class="score-orbit-ring"></div>
+              <div class="score-orbit-core"><span id="score-value">—</span><small>/ 100</small></div>
+            </div>
+            <div class="score-copy">
+              <p class="section-kicker">Run quality score</p>
+              <h3 id="score-title"><span id="status-word">—</span> review needed</h3>
+              <p id="score-summary">Evaluating the local observation bundle…</p>
+              <div class="score-meter" aria-hidden="true"><span id="score-meter-fill"></span></div>
+              <div class="score-footnote"><span id="score-footnote">Derived from validator findings</span><span>0 — 100</span></div>
+            </div>
+          </article>
+
+          <div class="severity-grid" aria-label="Finding severity counts">
+            <article class="severity-card panel severity-error">
+              <div class="severity-card-header"><span class="severity-symbol">!</span><span>Errors</span></div>
+              <strong id="error-count">—</strong>
+              <span>Blocking findings</span>
+            </article>
+            <article class="severity-card panel severity-warning">
+              <div class="severity-card-header"><span class="severity-symbol">△</span><span>Warnings</span></div>
+              <strong id="warning-count">—</strong>
+              <span>Review recommended</span>
+            </article>
+            <article class="severity-card panel severity-info">
+              <div class="severity-card-header"><span class="severity-symbol">i</span><span>Informational</span></div>
+              <strong id="info-count">—</strong>
+              <span>Helpful context</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="checks-heading section-heading-row">
+          <div>
+            <p class="section-kicker">Five validation lenses</p>
+            <h3>Checks at a glance</h3>
+          </div>
+          <span id="checks-summary" class="muted-summary">—</span>
+        </div>
+        <div id="checks-grid" class="checks-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="findings-section" aria-labelledby="findings-title">
+        <div class="section-heading-row">
+          <div>
+            <p class="section-kicker">Inspector</p>
+            <h2 id="findings-title">Findings &amp; remediation</h2>
+          </div>
+          <span id="findings-summary" class="muted-summary">—</span>
+        </div>
+        <p class="section-description">
+          Expand a finding to see the validator’s evidence, the corrective action, and the standards that frame the check.
+        </p>
+        <div id="findings-list" class="findings-list" aria-live="polite"></div>
+      </section>
+
+      <section class="normalized-section" aria-labelledby="normalized-title">
+        <div class="section-heading-row">
+          <div>
+            <p class="section-kicker">Canonical view</p>
+            <h2 id="normalized-title">Normalized observations</h2>
+          </div>
+          <span class="normalization-badge"><span class="status-dot"></span>Ready for inspection</span>
+        </div>
+        <p class="section-description">
+          Values below are the deterministic representations produced by the validator. Source units and time scales remain visible for provenance.
+        </p>
+
+        <div class="normalized-top-grid">
+          <article class="data-card target-card panel" aria-labelledby="target-title">
+            <div class="data-card-heading">
+              <div><p class="section-kicker">Sky position</p><h3 id="target-title">Target</h3></div>
+              <span class="data-card-mark" aria-hidden="true">✦</span>
+            </div>
+            <div class="target-name" id="target-name">—</div>
+            <dl class="detail-list target-coordinates">
+              <div><dt>RA</dt><dd id="target-ra">—</dd></div>
+              <div><dt>DEC</dt><dd id="target-dec">—</dd></div>
+              <div><dt>Frame</dt><dd id="target-frame">—</dd></div>
+            </dl>
+            <div class="alias-line"><span class="mini-label">Aliases</span><span id="target-aliases">—</span></div>
+          </article>
+
+          <article class="data-card panel" aria-labelledby="metadata-title">
+            <div class="data-card-heading">
+              <div><p class="section-kicker">Canonical header</p><h3 id="metadata-title">Normalized metadata</h3></div>
+              <span class="data-card-mark" aria-hidden="true">⌘</span>
+            </div>
+            <dl id="normalized-metadata" class="detail-list metadata-details"></dl>
+          </article>
+        </div>
+
+        <article class="table-card panel" aria-labelledby="observations-title">
+          <div class="table-card-heading">
+            <div><p class="section-kicker">Science sequence</p><h3 id="observations-title">Exposure observations</h3></div>
+            <span id="observation-count" class="count-badge">—</span>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr><th scope="col">Observation</th><th scope="col">UTC start</th><th scope="col">Exposure</th><th scope="col">Filter</th><th scope="col">Airmass</th><th scope="col">Altitude</th><th scope="col">Source scale</th>
+                </tr>
+              </thead>
+              <tbody id="observations-body"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <div class="normalized-bottom-grid">
+          <article class="table-card panel" aria-labelledby="calibrations-title">
+            <div class="table-card-heading">
+              <div><p class="section-kicker">Reduction inventory</p><h3 id="calibrations-title">Calibration frames</h3></div>
+              <span id="calibration-count" class="count-badge">—</span>
+            </div>
+            <div class="table-scroll">
+              <table class="compact-table">
+                <thead><tr><th scope="col">Frame</th><th scope="col">Type</th><th scope="col">Exposure</th><th scope="col">Filter</th><th scope="col">Temp.</th></tr></thead>
+                <tbody id="calibrations-body"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="data-card panel weather-card" aria-labelledby="weather-title">
+            <div class="table-card-heading">
+              <div><p class="section-kicker">Conditions</p><h3 id="weather-title">Weather records</h3></div>
+              <span id="weather-count" class="count-badge">—</span>
+            </div>
+            <div id="weather-list" class="weather-list"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Astro Pipeline Validator</span>
+      <span>All checks run locally in this browser · No network required</span>
+    </footer>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

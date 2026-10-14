@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec440a2c9ffemhTutKQQSHCz9E/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "qubes-isolation-audit",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec440a2c9ffemhTutKQQSHCz9E",
+  "source_package": "manual-c15fea20",
+  "source_policy": "final workspace source published"
+}

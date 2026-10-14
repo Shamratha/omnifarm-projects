@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07111f" />
+    <title>SignalForge · Timing Closure Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
+            <div class="brand-name">SIGNAL<span>FORGE</span></div>
+            <div class="brand-subtitle">TIMING CLOSURE EXPLORER</div>
+          </div>
+        </div>
+        <div class="run-context">
+          <div class="context-item"><span class="context-label">DESIGN</span><strong id="design-name">Orion DSP</strong></div>
+          <div class="context-divider"></div>
+          <div class="context-item"><span class="context-label">RUN</span><strong id="run-name">route_042</strong></div>
+          <div class="context-divider"></div>
+          <div class="context-item"><span class="context-label">SNAPSHOT</span><strong class="mono" id="snapshot-id">SNAP-7F3A</strong></div>
+        </div>
+        <div class="top-actions">
+          <span class="freshness-pill"><span class="pulse-dot"></span><span id="freshness-label">REPORTS FRESH</span></span>
+          <button class="icon-button" id="export-top" title="Export sign-off report" aria-label="Export sign-off report"><span>↗</span></button>
+          <div class="avatar">BW</div>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="sidebar">
+          <div class="side-section-label">WORKSPACE</div>
+          <nav class="primary-nav" aria-label="Primary navigation">
+            <button class="nav-item active" data-view="overview"><span class="nav-icon">◈</span><span>Overview</span><span class="nav-shortcut">01</span></button>
+            <button class="nav-item" data-view="timing"><span class="nav-icon">⌁</span><span>Timing explorer</span><span class="nav-shortcut">02</span></button>
+            <button class="nav-item" data-view="physical"><span class="nav-icon">▦</span><span>Physical view</span><span class="nav-shortcut">03</span></button>
+            <button class="nav-item" data-view="candidates"><span class="nav-icon">✦</span><span>What-if lab</span><span class="nav-shortcut">04</span></button>
+            <button class="nav-item" data-view="signoff"><span class="nav-icon">✓</span><span>Sign-off report</span><span class="nav-shortcut">05</span></button>
+          </nav>
+          <div class="side-divider"></div>
+          <div class="side-section-label">RUN CONTEXT</div>
+          <div class="context-controls">
+            <label class="select-label" for="stage-select">STAGE<span class="help-dot" title="The bundled snapshot contains representative reports from each implementation stage.">?</span></label>
+            <select id="stage-select">
+              <option value="signoff">Sign-off · route_042</option>
+              <option value="cts">CTS · cts_038</option>
+              <option value="placement">Placement · place_031</option>
+            </select>
+            <label class="select-label" for="corner-select">CORNER</label>
+            <select id="corner-select">
+              <option value="slow">SS · 0.72 V · 125 °C</option>
+              <option value="fast">FF · 0.88 V · -40 °C</option>
+            </select>
+            <label class="select-label" for="mode-select">MODE</label>
+            <select id="mode-select">
+              <option value="functional">functional</option>
+              <option value="scan">scan_shift</option>
+            </select>
+          </div>
+          <div class="sidebar-footer">
+            <div class="source-card">
+              <div class="source-card-top"><span class="status-check">✓</span><span>Bundle loaded</span></div>
+              <div class="source-meta">8 reports · 2 corners · 14:32:09</div>
+              <button class="text-button" id="source-details">View provenance <span>→</span></button>
+            </div>
+            <div class="engine-note"><span class="spark-icon">✳</span><span>Local analysis prototype<br /><b>OpenROAD-inspired</b></span></div>
+          </div>
+        </aside>
+
+        <main class="main-content">
+          <div class="main-scroll">
+            <div class="page-heading">
+              <div>
+                <div class="eyebrow"><span id="page-eyebrow">RUN OVERVIEW</span><span class="eyebrow-slash">/</span><span id="analysis-badge">SETUP ANALYSIS</span></div>
+                <h1 id="page-title">Closure at a glance</h1>
+                <p id="page-description">Find the next 10 ps hiding in your design.</p>
+              </div>
+              <div class="heading-actions">
+                <div class="segmented-control" aria-label="Analysis type">
+                  <button class="segment active" data-analysis="setup">Setup</button>
+                  <button class="segment" data-analysis="hold">Hold</button>
+                </div>
+                <button class="button secondary" id="refresh-button"><span class="button-icon">↻</span> Refresh reports</button>
+              </div>
+            </div>
+
+            <div id="view-root"></div>
+          </div>
+          <footer class="statusbar">
+            <div><span class="status-indicator"></span> <span id="status-message">All bundled reports indexed</span></div>
+            <div class="statusbar-right"><span>UNITS <b>ns</b> · µm · %</span><span class="status-divider"></span><span>LAST CHECK <b>14:32:09</b></span></div>
+          </footer>
+        </main>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>

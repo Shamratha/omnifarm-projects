@@ -1,0 +1,18 @@
+{
+  "specimens": [
+    {"specimen_id": "SP-001", "subject_id": "SUBJ-001", "specimen_type": "blood", "collection_date": "2026-01-10", "consent_status": "approved"},
+    {"specimen_id": "SP-002", "subject_id": "SUBJ-002", "specimen_type": "fluid", "collection_date": "2026-01-10", "consent_status": "withdrawn", "participant_name": "Synthetic Withdrawn Person", "email": "withdrawn@example.invalid"},
+    {"specimen_id": "SP-004", "subject_id": "SUBJ-002", "specimen_type": "blood", "collection_date": "2026-01-11", "consent_status": "approved"},
+    {"specimen_id": "SP-003", "subject_id": "SUBJ-001", "specimen_type": "blood", "collection_date": "2026-01-10", "consent_status": "approved"}
+  ],
+  "samples": [
+    {"sample_id": "SAM-001", "specimen_id": "SP-001", "run_id": "RUN-001", "sample_type": "DNA", "status": "complete"},
+    {"sample_id": "SAM-002", "specimen_id": "SP-404", "run_id": "RUN-MISSING", "sample_type": "DNA", "status": "complete"}
+  ],
+  "sequencing_runs": [
+    {"run_id": "RUN-001", "platform": "illumina", "assay": "WGS", "run_date": "2026-01-11", "provenance": {"pipeline": "unknown", "pipeline_version": "1.0.0"}}
+  ],
+  "consent_scopes": [],
+  "phenotypes": [],
+  "file_manifests": []
+}

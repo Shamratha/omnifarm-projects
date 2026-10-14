@@ -1,0 +1,12 @@
+{
+  "name": "map-conflation-workbench",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 4173",
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "smoke": "npm run build && node scripts/smoke.mjs"
+  }
+}

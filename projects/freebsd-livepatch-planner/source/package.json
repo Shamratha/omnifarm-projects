@@ -1,0 +1,10 @@
+{
+  "name": "freebsd-livepatch-planner",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A deterministic, standalone FreeBSD live-patch rollout planner for synthetic hosts.",
+  "scripts": {
+    "test": "node --test"
+  }
+}

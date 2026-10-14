@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec4412894ffe9p6PXHGm5rliI4/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "git-repo-analyzer",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec4412894ffe9p6PXHGm5rliI4",
+  "source_package": "manual-12288d95",
+  "source_policy": "final workspace source published"
+}

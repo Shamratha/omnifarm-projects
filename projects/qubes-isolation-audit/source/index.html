@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A standalone local Qubes-style compartment isolation audit workbench">
+    <title>Isolation Audit Workbench</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="src/audit-model.js" defer></script>
+    <script src="src/fixtures.js" defer></script>
+    <script src="src/audit-view.js" defer></script>
+    <script src="src/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
+            <div class="eyebrow">LOCAL SECURITY TOOL</div>
+            <h1>Isolation <span>Audit</span></h1>
+          </div>
+        </div>
+        <div class="header-note"><span class="status-dot"></span> Offline fixture mode <span class="slash">/</span> no host access</div>
+        <div class="top-actions">
+          <label class="fixture-picker">
+            <span>SCENARIO</span>
+            <select id="fixture-select" aria-label="Choose audit scenario"></select>
+          </label>
+          <button class="button button-primary" id="export-json" type="button"><span class="download-icon">↓</span> Export JSON</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro-row">
+          <div>
+            <div class="eyebrow accent">COMPARTMENT GRAPH / STATIC ANALYSIS</div>
+            <h2>See what can talk to what.</h2>
+            <p class="intro-copy">Trace trust boundaries, inherited templates, and firewall decisions across a deterministic local fixture.</p>
+          </div>
+          <div class="fixture-meta" id="fixture-meta"></div>
+        </section>
+
+        <section class="summary-grid" id="summary-grid" aria-label="Audit summary"></section>
+
+        <section class="workspace-grid">
+          <article class="panel graph-panel">
+            <div class="panel-heading">
+              <div>
+                <div class="panel-kicker">01 / RELATIONSHIPS</div>
+                <h3>Trust domain map</h3>
+              </div>
+              <div class="legend" aria-label="Graph legend">
+                <span><i class="legend-node app"></i> AppVM</span>
+                <span><i class="legend-node template"></i> Template</span>
+                <span><i class="legend-node net"></i> NetVM</span>
+              </div>
+            </div>
+            <div class="graph-key"><span><i class="line-swatch template-line"></i> inheritance</span><span><i class="line-swatch network-line"></i> route only</span><span><i class="line-swatch allowed-line"></i> request allowed</span><span><i class="line-swatch violation-line"></i> blocked / invalid</span></div>
+            <div class="graph-context" id="graph-context" aria-live="polite"></div>
+            <div class="graph-wrap" id="graph-wrap">
+              <svg id="graph" role="group" aria-label="Qube relationship graph"></svg>
+            </div>
+            <div class="graph-footnote"><span class="pulse-mark"></span> Click a node to inspect its effective policy <span class="footnote-right">Layout is deterministic</span></div>
+          </article>
+
+          <aside class="panel detail-panel" id="detail-panel" aria-live="polite"></aside>
+        </section>
+
+        <section class="panel inventory-panel">
+          <div class="inventory-heading">
+            <div>
+              <div class="panel-kicker">02 / INVENTORY</div>
+              <h3>Isolation inventory</h3>
+            </div>
+            <div class="inventory-actions">
+              <button class="button button-quiet" id="export-csv" type="button">Export visible CSV <span>↗</span></button>
+              <span class="result-count" id="result-count"></span>
+            </div>
+          </div>
+          <div class="filter-row">
+            <label class="search-box"><span class="search-icon">⌕</span><input id="search-input" type="search" placeholder="Search qubes, domains, labels..." aria-label="Search qubes"></label>
+            <label class="select-filter"><span>TYPE</span><select id="type-filter"><option value="all">All types</option><option value="AppVM">AppVM</option><option value="TemplateVM">TemplateVM</option><option value="NetVM">NetVM</option><option value="StandaloneVM">StandaloneVM</option></select></label>
+            <label class="select-filter"><span>SAMPLE RESULT</span><select id="firewall-filter"><option value="all">All sample results</option><option value="allow">Has allowed sample</option><option value="deny">Has denied sample</option><option value="none">Has inconclusive sample</option><option value="untested">Not evaluated</option></select></label>
+            <label class="select-filter"><span>STATE</span><select id="issue-filter"><option value="all">All states</option><option value="issue">Violations only</option><option value="clean">Clean only</option></select></label>
+            <button class="clear-filters" id="clear-filters" type="button">Clear filters <span>×</span></button>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th scope="col">QUBE</th><th scope="col">TYPE</th><th scope="col">TRUST DOMAIN</th><th scope="col">TEMPLATE INHERITANCE</th><th scope="col">NETWORK ROUTE</th><th scope="col">SAMPLES / DEFAULT</th><th scope="col">POSTURE</th></tr></thead>
+              <tbody id="inventory-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer class="page-footer"><span>ISOLATION AUDIT / LOCAL PROTOTYPE</span><span>Fixture <strong id="footer-fixture">—</strong> · deterministic snapshot</span><span>Not a Qubes replacement</span></footer>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

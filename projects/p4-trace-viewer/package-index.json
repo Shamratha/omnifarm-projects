@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec43fe5a1ffemtJff8jhc2OXZQ/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "p4-trace-viewer",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec43fe5a1ffemtJff8jhc2OXZQ",
+  "source_package": "manual-45c4d107",
+  "source_policy": "final workspace source published"
+}

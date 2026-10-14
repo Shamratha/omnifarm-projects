@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec442fb10ffeOnVOyRbMnXEk4h/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "map-conflation-workbench",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec442fb10ffeOnVOyRbMnXEk4h",
+  "source_package": "manual-28ac738c",
+  "source_policy": "final workspace source published"
+}

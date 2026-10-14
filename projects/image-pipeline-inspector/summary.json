@@ -1,0 +1,69 @@
+{
+  "funnel": {
+    "error": 0,
+    "platform_locked": 0,
+    "rejected": 0,
+    "review": 0,
+    "shipped": 1
+  },
+  "project": "image-pipeline-inspector",
+  "qc_static_preflight": {
+    "checks_complete": false,
+    "environments": 6,
+    "findings": {},
+    "note": "Static QC passed with incomplete harness coverage; missing task checks are reported by the package preflight.",
+    "qc_passed": 1,
+    "runnable": false,
+    "tasks": 1
+  },
+  "replay_quality": {
+    "agreeing_replays": 2,
+    "env_failures": {
+      "missing-file": 10
+    },
+    "fails_here": 14,
+    "grades": {
+      "diff": 58,
+      "match": 113,
+      "n/a": 41
+    },
+    "level": "S",
+    "why_not_R": [
+      "14 calls passed for the user and fail here, e.g. turn-02 diverge: passed for the user, fails here; turn-02 diverge: file not in the package; turn-02 diverge: file not in the package"
+    ],
+    "why_not_S": null,
+    "why_not_strict": null
+  },
+  "review_notes": "Standalone local prototype inspired by a GSoC-style project. It is not an upstream GSoC implementation. Raw traces, debug logs, credentials, and temporary workspaces are not published. Replay verifier notes: 14 calls passed for the user and fail here, e.g. turn-02 diverge: passed for the user, fails here; turn-02 diverge: file not in the package; turn-02 diverge: file not in the package",
+  "schema_version": 1,
+  "session_id": "ses_ec4420c9effekvUf0WSJ8G9zTv",
+  "source_package": "manual-7a893d71",
+  "status": "shipped",
+  "verification": {
+    "builds": {
+      "failed": 0,
+      "harness_error": 0,
+      "ok": 6,
+      "refused": 0
+    },
+    "coverage_rate": 0.835,
+    "environments": 6,
+    "errors": 0,
+    "output_varies": 31,
+    "replay_pass_rate": 0.4,
+    "replay_verdicts": {
+      "DIFFERS": 3,
+      "UNVERIFIED": 0,
+      "VERIFIED": 0,
+      "VERIFIED_TOOLS_RAN": 0,
+      "VERIFIED_WITH_SOFT_DIFFS": 2
+    },
+    "verifier_version": "1.5.0"
+  },
+  "work": {
+    "real_edits_in_reproducible_turns": 34,
+    "reproducible_turns": 5,
+    "shipped_turns": 5,
+    "turns": 5
+  }
+}

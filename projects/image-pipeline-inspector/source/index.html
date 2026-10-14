@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pipeline Inspector</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand"><span class="brand-mark">✣</span><span>PIPELINE <b>INSPECTOR</b></span><span class="version">LOCAL / v1.4.2</span></div>
+        <div class="document-title"><span class="status-dot"></span><span id="docName">Aurora study / poster-07</span><span class="slash">/</span><span id="revisionLabel">rev. 014</span><span class="saved">● SAVED LOCALLY</span></div>
+        <div class="top-actions"><button class="icon-button" title="Undo">↶</button><button class="icon-button disabled" title="Redo">↷</button><button class="icon-button" id="exportButton" title="Export manifest">⇩</button><button class="avatar">BW</button></div>
+      </header>
+      <main class="workspace">
+        <aside class="sidebar left-panel">
+          <div class="panel-heading"><span>PIPELINE</span><span class="count" id="layerCount">06 LAYERS</span></div>
+          <div class="layer-toolbar"><button id="addLayerButton">＋ ADD LAYER</button><button class="more-button">•••</button></div>
+          <div class="layer-table-head"><span>VIS</span><span>PIPELINE LAYER</span><span>STATE</span></div>
+          <div class="layer-list" id="layerList"></div>
+          <div class="left-footer"><div id="referenceSummary"><span class="mini-dot green"></span> ALL REFERENCES OK <span class="ref-count" id="refCount">04 / 05</span></div><div class="pipeline-size">PIPELINE SIZE <b>42.8 MB</b></div></div>
+        </aside>
+        <section class="canvas-panel">
+          <div class="canvas-toolbar"><div class="toolbar-group"><button class="tool active">↖</button><button class="tool">✥</button><button class="tool">⌗</button><span class="toolbar-divider"></span><button class="tool">◒</button><button class="tool">⊙</button></div><div class="canvas-meta"><span id="canvasProfile">DISPLAY P3</span><span class="toolbar-divider"></span><span>1600 × 1000 PX</span><span class="toolbar-divider"></span><button class="zoom">100%⌄</button></div></div>
+          <div class="canvas-stage"><div class="ruler top-ruler"><span>0</span><span>400</span><span>800</span><span>1200</span><span>1600</span></div><div class="ruler side-ruler"><span>0</span><span>250</span><span>500</span><span>750</span><span>1000</span></div><div class="artboard" id="artboard"><canvas id="pipelinePreview" aria-label="Synthetic layer composite preview"></canvas><div class="scanline"></div><div class="selection-box"><span class="handle tl"></span><span class="handle tr"></span><span class="handle bl"></span><span class="handle br"></span></div><div class="art-caption">FIND<br /><span>THE LIGHT</span></div></div><div class="canvas-caption"><span><i class="live-dot"></i> LIVE PREVIEW</span><span id="previewStatus">Rendering pipeline…</span></div></div>
+          <div class="canvas-bottom"><span>◐ RGB / 8-bit</span><span>⌗ 1:1</span><span>⌁ 0°</span><span>▧ 42.8 MB</span><span class="bottom-right">GPU ACCELERATED <i class="green-dot"></i></span></div>
+        </section>
+        <aside class="sidebar right-panel">
+          <div class="tabs"><button class="tab active" data-tab="inspector">INSPECTOR</button><button class="tab" data-tab="compare">COMPARE</button></div>
+          <div id="inspectorTab">
+            <div class="selected-card"><div class="selected-thumb thumb-mountain"></div><div><div class="eyebrow">SELECTED LAYER</div><h2 id="selectedLayerName">Mountain cutout</h2><div class="selected-type" id="selectedLayerType">VECTOR OBJECT <span>•</span> NON-DESTRUCTIVE</div></div><button class="more-button">•••</button></div>
+            <div class="section"><div class="section-title">APPEARANCE <span>⌃</span></div><div class="control-row"><label>OPACITY</label><strong id="opacityValue">100%</strong></div><input id="opacityRange" class="range" type="range" min="0" max="100" value="100" /><div class="control-row"><label>BLEND MODE</label><select id="blendMode"><option>Normal</option><option>Soft light</option><option>Overlay</option><option>Multiply</option></select></div></div>
+            <div class="section" id="maskSection"></div>
+            <div class="section" id="parametersSection"></div>
+            <div class="section" id="sourceSection"></div>
+          </div>
+          <div id="compareTab" class="hidden"><div class="compare-header"><div><span class="eyebrow">REVISION DIFF</span><h2>rev. 013 <span>→</span> rev. 014</h2></div><span class="pill amber-pill">3 CHANGES</span></div><div class="diff-list"><div class="diff-item"><span class="diff-icon cyan">✣</span><div><b>Color grade adjusted</b><span>Temperature -8 · Tint +14</span></div><em>NON-DESTRUCTIVE</em></div><div class="diff-item"><span class="diff-icon violet">◌</span><div><b>Mask enabled</b><span>mountain-mask.svg</span></div><em>NON-DESTRUCTIVE</em></div><div class="diff-item"><span class="diff-icon orange">↕</span><div><b>Layer reordered</b><span>Caption moved above grain</span></div><em>NON-DESTRUCTIVE</em></div></div><div class="compare-summary"><span>DESTRUCTIVE CHANGES</span><strong>0</strong><p>No pixels were flattened or baked in this revision.</p></div></div>
+          <div class="right-footer"><div class="validation-title"><span>VALIDATION</span><span class="pill green-pill" id="validationPill">PASSING</span></div><div class="summary-grid"><div class="summary-stat" id="destructiveSummary"></div><div class="summary-stat warning" id="brokenSummary"></div></div><div class="validation-row"><span class="green-dot"></span><span>No destructive edits recorded</span><b>OK</b></div><div class="validation-row warning"><span class="amber-dot"></span><span id="brokenRefLabel">1 broken reference</span><b>FIX</b></div><div id="summaryFindings" aria-live="polite"></div><button class="manifest-button" id="manifestButton">⇩ &nbsp; EXPORT EDIT MANIFEST <span>JSON</span></button></div>
+        </aside>
+      </main>
+      <div class="toast" id="toast"></div>
+    </div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

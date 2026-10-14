@@ -1,0 +1,133 @@
+{
+  "traceA": {
+    "schemaVersion": 1,
+    "traceId": "trace-a",
+    "device": "bmv2-simple_switch",
+    "clockUnit": "ns",
+    "packets": [
+      {
+        "id": "p-forward",
+        "ingressPort": 1,
+        "length": 64,
+        "outcome": "forwarded",
+        "outputPorts": [2],
+        "events": [
+          { "t": 1000, "pass": 0, "kind": "parser", "state": "start → parse_ipv4", "header": "ipv4", "ttl": 64 },
+          { "t": 1010, "pass": 0, "kind": "table", "table": "ipv4_lpm", "result": "hit", "key": "10.0.0.2/32", "action": "set_nhop", "params": { "port": 2, "nextHop": "00:00:00:00:00:02" } },
+          { "t": 1020, "pass": 0, "kind": "rewrite", "field": "ipv4.ttl", "before": 64, "after": 63 },
+          { "t": 1021, "pass": 0, "kind": "rewrite", "field": "ethernet.dst", "before": "00:00:00:00:00:ff", "after": "00:00:00:00:00:02" },
+          { "t": 1100, "pass": 0, "kind": "queue_enqueue", "queue": 0 },
+          { "t": 1250, "pass": 0, "kind": "queue_dequeue", "queue": 0 },
+          { "t": 1300, "pass": 0, "kind": "tx", "port": 2 }
+        ]
+      },
+      {
+        "id": "p-miss",
+        "ingressPort": 1,
+        "length": 64,
+        "outcome": "dropped",
+        "outputPorts": [],
+        "events": [
+          { "t": 2000, "pass": 0, "kind": "parser", "state": "start → parse_ipv4", "header": "ipv4", "ttl": 64 },
+          { "t": 2010, "pass": 0, "kind": "table", "table": "ipv4_lpm", "result": "miss", "key": "10.0.0.99/32" },
+          { "t": 2020, "pass": 0, "kind": "drop", "reason": "table_miss" }
+        ]
+      },
+      {
+        "id": "p-ttl",
+        "ingressPort": 1,
+        "length": 64,
+        "outcome": "dropped",
+        "outputPorts": [],
+        "events": [
+          { "t": 3000, "pass": 0, "kind": "parser", "state": "start → parse_ipv4", "header": "ipv4", "ttl": 1 },
+          { "t": 3010, "pass": 0, "kind": "table", "table": "ipv4_lpm", "result": "hit", "key": "10.0.0.3/32", "action": "decrement_ttl" },
+          { "t": 3020, "pass": 0, "kind": "rewrite", "field": "ipv4.ttl", "before": 1, "after": 0 },
+          { "t": 3030, "pass": 0, "kind": "drop", "reason": "ttl_expired" }
+        ]
+      },
+      {
+        "id": "p-recirculated",
+        "ingressPort": 1,
+        "length": 128,
+        "outcome": "forwarded",
+        "outputPorts": [4],
+        "events": [
+          { "t": 4000, "pass": 0, "kind": "parser", "state": "start → parse_ipv4", "header": "ipv4", "ttl": 8 },
+          { "t": 4010, "pass": 0, "kind": "table", "table": "recirc_control", "result": "hit", "key": "metadata.needs_second_pass=true", "action": "recirculate", "params": { "target": "ingress" } },
+          { "t": 4020, "pass": 0, "kind": "recirculate" },
+          { "t": 4050, "pass": 1, "kind": "parser", "state": "recirculate → parse_ipv4", "header": "ipv4", "ttl": 8 },
+          { "t": 4060, "pass": 1, "kind": "table", "table": "ipv4_lpm", "result": "hit", "key": "10.0.0.4/32", "action": "set_nhop", "params": { "port": 4, "nextHop": "00:00:00:00:00:04" } },
+          { "t": 4070, "pass": 1, "kind": "rewrite", "field": "ipv4.ttl", "before": 8, "after": 7 },
+          { "t": 4080, "pass": 1, "kind": "tx", "port": 4 }
+        ]
+      }
+    ]
+  },
+  "traceB": {
+    "schemaVersion": 1,
+    "traceId": "trace-b",
+    "device": "bmv2-simple_switch",
+    "clockUnit": "ns",
+    "packets": [
+      {
+        "id": "p-forward",
+        "ingressPort": 1,
+        "length": 64,
+        "outcome": "forwarded",
+        "outputPorts": [2],
+        "events": [
+          { "t": 1000, "pass": 0, "kind": "parser", "state": "start → parse_ipv4", "header": "ipv4", "ttl": 64 },
+          { "t": 1010, "pass": 0, "kind": "table", "table": "ipv4_lpm", "result": "hit", "key": "10.0.0.2/32", "action": "set_nhop", "params": { "port": 2, "nextHop": "00:00:00:00:00:02" } },
+          { "t": 1020, "pass": 0, "kind": "rewrite", "field": "ipv4.ttl", "before": 64, "after": 63 },
+          { "t": 1021, "pass": 0, "kind": "rewrite", "field": "ethernet.dst", "before": "00:00:00:00:00:ff", "after": "00:00:00:00:00:02" },
+          { "t": 1100, "pass": 0, "kind": "queue_enqueue", "queue": 0 },
+          { "t": 1150, "pass": 0, "kind": "queue_dequeue", "queue": 0 },
+          { "t": 1200, "pass": 0, "kind": "tx", "port": 2 }
+        ]
+      },
+      {
+        "id": "p-miss",
+        "ingressPort": 1,
+        "length": 64,
+        "outcome": "forwarded",
+        "outputPorts": [3],
+        "events": [
+          { "t": 2000, "pass": 0, "kind": "parser", "state": "start → parse_ipv4", "header": "ipv4", "ttl": 64 },
+          { "t": 2010, "pass": 0, "kind": "table", "table": "ipv4_lpm", "result": "hit", "key": "10.0.0.99/32", "action": "set_nhop", "params": { "port": 3, "nextHop": "00:00:00:00:00:03" } },
+          { "t": 2020, "pass": 0, "kind": "rewrite", "field": "ethernet.dst", "before": "00:00:00:00:00:ff", "after": "00:00:00:00:00:03" },
+          { "t": 2030, "pass": 0, "kind": "tx", "port": 3 }
+        ]
+      },
+      {
+        "id": "p-ttl",
+        "ingressPort": 1,
+        "length": 64,
+        "outcome": "dropped",
+        "outputPorts": [],
+        "events": [
+          { "t": 3000, "pass": 0, "kind": "parser", "state": "start → parse_ipv4", "header": "ipv4", "ttl": 1 },
+          { "t": 3010, "pass": 0, "kind": "table", "table": "ipv4_lpm", "result": "hit", "key": "10.0.0.3/32", "action": "decrement_ttl" },
+          { "t": 3020, "pass": 0, "kind": "rewrite", "field": "ipv4.ttl", "before": 1, "after": 0 },
+          { "t": 3030, "pass": 0, "kind": "drop", "reason": "ttl_expired" }
+        ]
+      },
+      {
+        "id": "p-recirculated",
+        "ingressPort": 1,
+        "length": 128,
+        "outcome": "forwarded",
+        "outputPorts": [4],
+        "events": [
+          { "t": 4000, "pass": 0, "kind": "parser", "state": "start → parse_ipv4", "header": "ipv4", "ttl": 8 },
+          { "t": 4010, "pass": 0, "kind": "table", "table": "recirc_control", "result": "hit", "key": "metadata.needs_second_pass=true", "action": "recirculate", "params": { "target": "ingress" } },
+          { "t": 4020, "pass": 0, "kind": "recirculate" },
+          { "t": 4050, "pass": 1, "kind": "parser", "state": "recirculate → parse_ipv4", "header": "ipv4", "ttl": 8 },
+          { "t": 4060, "pass": 1, "kind": "table", "table": "ipv4_lpm", "result": "hit", "key": "10.0.0.4/32", "action": "set_nhop", "params": { "port": 4, "nextHop": "00:00:00:00:00:04" } },
+          { "t": 4070, "pass": 1, "kind": "rewrite", "field": "ipv4.ttl", "before": 8, "after": 7 },
+          { "t": 4080, "pass": 1, "kind": "tx", "port": 4 }
+        ]
+      }
+    ]
+  }
+}

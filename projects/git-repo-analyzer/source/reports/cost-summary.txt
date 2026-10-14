@@ -1,0 +1,28 @@
+Git repository analyzer: /tmp/omnirush/cost-summary-5jeafx3l/repo
+workflow: compare
+status: ok
+network attempted: False
+scope: enumerated checkout snapshot (not a full-history clone)
+strategy costs:
+  full: initial 6 objects/340 known logical bytes, deferred 0 objects/0 known logical bytes, local missing 0 objects; status: complete
+    initial: blob=2, commit=1, tag=0, tree=3, unknown=0; unknown sizes=0
+    deferred: blob=0, commit=0, tag=0, tree=0, unknown=0; unknown sizes=0
+    local missing: 0 known bytes; unknown sizes=0
+  sparse: initial 4 objects/298 known logical bytes, deferred 0 objects/0 known logical bytes, local missing 0 objects; status: complete
+    initial: blob=1, commit=1, tag=0, tree=2, unknown=0; unknown sizes=0
+    deferred: blob=0, commit=0, tag=0, tree=0, unknown=0; unknown sizes=0
+    local missing: 0 known bytes; unknown sizes=0
+  blobless: initial 4 objects/322 known logical bytes, deferred 2 objects/18 known logical bytes, local missing 0 objects; status: complete
+    initial: blob=0, commit=1, tag=0, tree=3, unknown=0; unknown sizes=0
+    deferred: blob=2, commit=0, tag=0, tree=0, unknown=0; unknown sizes=0
+    local missing: 0 known bytes; unknown sizes=0
+  treeless: initial 1 objects/190 known logical bytes, deferred 5 objects/150 known logical bytes, local missing 0 objects; status: complete
+    initial: blob=0, commit=1, tag=0, tree=0, unknown=0; unknown sizes=0
+    deferred: blob=2, commit=0, tag=0, tree=3, unknown=0; unknown sizes=0
+    local missing: 0 known bytes; unknown sizes=0
+Transfer/pack bytes cannot be predicted; costs above are logical object bytes.
+HEAD: ffe36b4045852ad516c4d310f170bf2468ff4658
+object format: sha1
+reachable/unreachable: 6/0
+shallow boundaries: 0
+local packs: 1; entries=6; unique objects=6; pack bytes=356; index bytes=1240

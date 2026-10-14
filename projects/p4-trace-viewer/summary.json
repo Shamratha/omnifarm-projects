@@ -1,0 +1,69 @@
+{
+  "funnel": {
+    "error": 0,
+    "platform_locked": 0,
+    "rejected": 0,
+    "review": 0,
+    "shipped": 1
+  },
+  "project": "p4-trace-viewer",
+  "qc_static_preflight": {
+    "checks_complete": false,
+    "environments": 6,
+    "findings": {},
+    "note": "Static QC passed with incomplete harness coverage; missing task checks are reported by the package preflight.",
+    "qc_passed": 1,
+    "runnable": false,
+    "tasks": 1
+  },
+  "replay_quality": {
+    "agreeing_replays": 2,
+    "env_failures": {
+      "missing-module": 3
+    },
+    "fails_here": 3,
+    "grades": {
+      "diff": 27,
+      "match": 117,
+      "n/a": 36
+    },
+    "level": "none",
+    "why_not_R": null,
+    "why_not_S": [
+      "final: task hook app failed"
+    ],
+    "why_not_strict": null
+  },
+  "review_notes": "Standalone local prototype inspired by a GSoC-style project. It is not an upstream GSoC implementation. Raw traces, debug logs, credentials, and temporary workspaces are not published. Replay verifier did not award S: final: task hook app failed",
+  "schema_version": 1,
+  "session_id": "ses_ec43fe5a1ffemtJff8jhc2OXZQ",
+  "source_package": "manual-45c4d107",
+  "status": "shipped",
+  "verification": {
+    "builds": {
+      "failed": 0,
+      "harness_error": 0,
+      "ok": 6,
+      "refused": 0
+    },
+    "coverage_rate": 0.822,
+    "environments": 6,
+    "errors": 0,
+    "output_varies": 13,
+    "replay_pass_rate": 0.6,
+    "replay_verdicts": {
+      "DIFFERS": 2,
+      "UNVERIFIED": 0,
+      "VERIFIED": 0,
+      "VERIFIED_TOOLS_RAN": 0,
+      "VERIFIED_WITH_SOFT_DIFFS": 3
+    },
+    "verifier_version": "1.5.0"
+  },
+  "work": {
+    "real_edits_in_reproducible_turns": 34,
+    "reproducible_turns": 5,
+    "shipped_turns": 5,
+    "turns": 5
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "specimens": [
+    {
+      "specimen_id": "SP-001",
+      "subject_id": "SUBJ-001",
+      "specimen_type": "blood",
+      "collection_date": "2026-01-10",
+      "consent_status": "approved",
+      "participant_name": "Synthetic Person",
+      "email": "synthetic@example.invalid"
+    }
+  ],
+  "samples": [
+    {
+      "sample_id": "SAM-001",
+      "specimen_id": "SP-001",
+      "run_id": "RUN-001",
+      "sample_type": "DNA",
+      "status": "complete"
+    }
+  ],
+  "sequencing_runs": [
+    {
+      "run_id": "RUN-001",
+      "platform": "illumina",
+      "assay": "WGS",
+      "run_date": "2026-01-11",
+      "provenance": {
+        "pipeline": "synthetic-pipeline",
+        "pipeline_version": "1.0.0",
+        "reference_genome": "GRCh38"
+      }
+    }
+  ],
+  "consent_scopes": [
+    {"consent_id": "CON-001", "subject_id": "SUBJ-001", "scope": "genomics", "status": "approved"}
+  ],
+  "phenotypes": [
+    {"phenotype_id": "PH-001", "subject_id": "SUBJ-001", "term": "HP:0000001", "source": "HPO"}
+  ],
+  "file_manifests": [
+    {"file_id": "FILE-001", "sample_id": "SAM-001", "uri": "file:///synthetic/SAM-001.cram", "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "file_type": "CRAM"}
+  ]
+}

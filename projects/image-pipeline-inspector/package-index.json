@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec4420c9effekvUf0WSJ8G9zTv/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "image-pipeline-inspector",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec4420c9effekvUf0WSJ8G9zTv",
+  "source_package": "manual-7a893d71",
+  "source_policy": "final workspace source published"
+}

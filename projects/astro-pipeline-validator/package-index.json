@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec4422e57ffeSYo1Azfi105w1u/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "astro-pipeline-validator",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec4422e57ffeSYo1Azfi105w1u",
+  "source_package": "manual-5e2e8287",
+  "source_policy": "final workspace source published"
+}

@@ -1,0 +1,36 @@
+.path { --rail-x:79px; }
+.path-legend { display:flex; flex-wrap:wrap; gap:10px 18px; margin:0 0 20px; }
+.path-legend-item { display:inline-flex; gap:6px; align-items:center; font-size:12px; }
+.legend-symbol { display:inline-grid; place-items:center; width:22px; height:22px; border:1px solid currentColor; border-radius:5px; font-weight:700; }
+.pipeline-pass { margin-bottom:15px; }
+.pass-boundary { font:600 13px monospace; margin:0 0 13px; padding:9px 12px; background:#f0f5f2; border-left:3px solid var(--teal); }
+.pass-boundary span { margin-left:12px; font:11px sans-serif; color:#59686f; }
+.timeline { margin:0; padding:0; list-style:none; }
+.timeline::before { left:var(--rail-x); top:12px; bottom:24px; background:#acbbb5; }
+.event { grid-template-columns:51px 28px minmax(0,1fr); gap:0 14px; }
+.event-dot { display:grid; place-items:center; width:26px; height:26px; margin:0 auto; border:2px solid currentColor; border-radius:50%; font:700 16px monospace; background:var(--panel); }
+.event-time { padding-top:7px; font-size:10px; }
+.event-content { padding:0 0 21px; min-width:0; overflow-wrap:anywhere; }
+.event-main { font-weight:600; }
+.event-detail { color:#59686f; font-size:12px; line-height:1.5; }
+.event-drop .event-dot { border-radius:4px; }
+.event-rewrite .event-dot { border-radius:5px; }
+.event-recirculate .event-dot { border-width:3px; }
+.event-queue .event-dot { border-style:dashed; }
+.event-drop .event-content { border-left:3px solid #a93434; background:#fff1ef; padding:8px 12px; margin-bottom:16px; }
+.event-recirculate .event-content { border-left:3px solid #7152aa; padding-left:12px; }
+.event-queue .event-detail { font-family:monospace; color:#785613; }
+.marker-drop { color:#a93434; background:#fff1ef; }
+.marker-rewrite { color:#a54b29; background:#fff3eb; }
+.marker-recirculate { color:#7152aa; background:#f3edff; }
+.marker-queue { color:#785613; background:#fff8df; }
+.marker-parser, .marker-tx { color:var(--teal-dark); background:#edf8f4; }
+.marker-table { color:#325ba0; background:#edf3ff; }
+.outcome-badge { display:inline-block; font:11px sans-serif; padding:4px 7px; border:1px solid currentColor; border-radius:3px; margin-left:8px; }
+@media (max-width:600px) {
+  .path { padding:16px; --rail-x:68px; }
+  .event { grid-template-columns:46px 28px minmax(0,1fr); gap:0 8px; }
+  .event-time { font-size:9px; }
+  .detail-head { flex-wrap:wrap; gap:16px; }
+  .detail-summary { text-align:left; flex-wrap:wrap; }
+}

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Patchline / FreeBSD rollout planner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">⌁</span><span>PATCHLINE</span><small>FREEBSD ROLLOUT PLANNER</small></div>
+      <div class="top-actions"><span class="local-badge"><i></i> LOCAL / SYNTHETIC DATA</span><button id="resetBtn" class="button quiet">Reset demo</button><button id="exportBtn" class="button primary">Export plan <span>↓</span></button></div>
+    </header>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="eyebrow">CONTROL ROOM</div>
+        <nav>
+          <a class="nav-item active" href="#overview"><span class="nav-icon">▦</span>Overview</a>
+          <a class="nav-item" href="#fleet"><span class="nav-icon">◉</span>Fleet <b id="navFleetCount">04</b></a>
+          <a class="nav-item" href="#patches"><span class="nav-icon">✣</span>Patch set <b id="navPatchCount">03</b></a>
+          <a class="nav-item" href="#conflicts"><span class="nav-icon">◇</span>What-if conflicts <b id="navConflictCount">01</b></a>
+          <a class="nav-item" href="#rollback"><span class="nav-icon">↶</span>Rollback paths</a>
+        </nav>
+        <div class="sidebar-note"><span class="pulse"></span><div><strong>Planner mode</strong><br /><small>No host connections</small></div></div>
+        <div class="sidebar-footer">v1.0 · local only<br /><span>Deterministic fixture / no kernel changes</span></div>
+      </aside>
+      <section class="content" id="overview">
+         <div class="page-heading"><div><div class="eyebrow">WED 14 OCT 2026 · CHANGE WINDOW 02</div><h1>Rollout control room</h1><p>Plan, gate, and rehearse a FreeBSD kernel patch across synthetic hosts.</p></div><div class="window-chip"><span class="dot orange"></span><div><small>WINDOW</small><strong id="windowSummary">02:00 — 04:00 UTC</strong></div></div></div>
+        <div class="notice"><span class="notice-icon">i</span><div><strong>Simulation boundary</strong><span>This planner models compatibility, ordering, risk, and recovery. It never connects to or modifies a real FreeBSD host.</span></div><button class="notice-close" aria-label="Dismiss">×</button></div>
+        <div class="metric-grid" id="metrics"></div>
+
+        <div class="workspace-grid">
+          <section class="panel plan-panel" id="plan">
+            <div class="panel-header"><div><div class="eyebrow">EXECUTION GRAPH</div><h2>Ordered rollout plan</h2></div><div class="plan-state" id="planState"><span class="state-dot"></span>Plan ready</div></div>
+             <div class="plan-legend"><span><i class="legend-line"></i> dependency path</span><span><i class="legend-canary"></i> canary gate</span><span><i class="legend-lock">⌑</i> locked until healthy</span></div>
+             <div id="waves" class="waves"></div>
+             <div id="canaryGates" class="canary-gates"></div>
+              <section id="blockerList" class="blocker-list hidden" aria-label="All plan blockers"></section>
+             <div class="empty-state hidden" id="emptyPlan">No eligible operations. Resolve the blockers or choose another what-if.</div>
+          </section>
+          <aside class="side-stack">
+            <section class="panel" id="conflicts"><div class="panel-header compact"><div><div class="eyebrow">WHAT-IF SELECTOR</div><h2>Patch conflicts</h2></div><span class="count-pill" id="conflictPill">01</span></div><p class="panel-copy">Choose one provider. Every choice recalculates the execution graph without changing the fixture.</p><div id="conflictChoices"></div></section>
+            <section class="panel" id="rollback"><div class="panel-header compact"><div><div class="eyebrow">RECOVERY DESIGN</div><h2>Rollback paths</h2></div><span class="count-pill cyan">↶</span></div><p class="panel-copy">Potential recovery for scheduled operations, numbered in reverse order. Rehearsal lists only the changed operations selected for rollback.</p><div id="rollbackPaths"></div></section>
+          </aside>
+        </div>
+
+        <div class="lower-grid">
+           <section class="panel" id="fleet"><div class="panel-header compact"><div><div class="eyebrow">HOST INVENTORY</div><h2>Fleet readiness</h2></div><div class="panel-actions"><span id="importStatus" class="import-status" aria-live="polite"></span><button class="text-button" id="importBtn">Import JSON ↑</button><input type="file" id="fileInput" accept="application/json" hidden /></div></div><div class="table-wrap"><table><thead><tr><th>HOST</th><th>ROLE</th><th>ABI / KERNEL</th><th>RISK</th><th>STATUS</th></tr></thead><tbody id="fleetRows"></tbody></table></div></section>
+          <section class="panel" id="patches"><div class="panel-header compact"><div><div class="eyebrow">PATCH SET</div><h2>Selected changes</h2></div><span class="count-pill" id="selectedPatchPill">03</span></div><div id="patchRows"></div></section>
+        </div>
+
+         <section class="panel rehearsal"><div class="panel-header compact"><div><div class="eyebrow">FAILURE REHEARSAL</div><h2>Simulate a partial rollout</h2></div><div class="rehearsal-status" id="rehearsalStatus" aria-live="polite">Not run</div></div><div class="rehearsal-controls"><label>Inject outcome <select id="failureHost"></select></label><label>Outcome <select id="failureOutcome"><option value="healthy">Healthy</option><option value="health-check-failed">Health check failed</option><option value="failed-after-apply">Failed after apply</option><option value="failed-before-apply">Failed before apply</option></select></label><label>Recovery <select id="rollbackPolicy"><option value="rollback-failed-wave">Rollback failed wave</option><option value="rollback-failed-host">Rollback failed host</option><option value="rollback-all-successful">Rollback all started</option></select></label><button id="simulateBtn" class="button dark">Run rehearsal</button></div><div class="window-controls"><div><div class="eyebrow">LOCAL WINDOW</div><p>Recalculate placement against a practical same-day UTC window.</p></div><label>Start <input type="time" id="windowStart" step="60" required aria-describedby="windowValidation" /></label><label>End <input type="time" id="windowEnd" step="60" required aria-describedby="windowValidation" /></label></div><p id="windowValidation" class="window-validation" role="status"></p><div id="simulationResult" class="simulation-result hidden"></div></section>
+        <footer>PATCHLINE is a local planning aid. Synthetic data is deterministic and intentionally non-operational.</footer>
+      </section>
+    </main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

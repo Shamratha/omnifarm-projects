@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "git-repo-analyzer"
+version = "0.1.0"
+description = "A deterministic, local-only Git partial-clone workflow analyzer"
+requires-python = ">=3.10"
+
+[project.scripts]
+git-repo-analyzer = "git_repo_analyzer.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

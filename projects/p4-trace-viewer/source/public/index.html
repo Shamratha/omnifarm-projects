@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Traceyard · P4 packet explorer</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/pipeline.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✦</span><span>TRACEYARD</span><small>LOCAL PACKET LAB</small></div>
+      <div class="top-actions"><span class="local-badge"><i></i> LOCAL FIXTURES ONLY</span><button id="import-button" class="button ghost">Import JSON</button><input id="file-input" type="file" accept="application/json,.json" hidden><button id="export-button" class="button accent">Export report</button></div>
+    </header>
+    <main>
+      <section class="hero">
+        <div><p class="eyebrow">P4 / BMv2 TRACE EXPLORER</p><h1>See every decision<br><em>in the pipeline.</em></h1><p class="lede">A deterministic, fixture-driven view of packet paths, table decisions, rewrites, recirculation, and queue time.</p></div>
+        <div class="hero-note"><span>NO LIVE DEVICE</span><strong>Everything here runs<br>from bundled trace events.</strong></div>
+      </section>
+
+      <section class="toolbar panel">
+        <div class="trace-picker"><label for="trace-select">TRACE</label><select id="trace-select"><option value="traceA">trace-a · baseline</option><option value="traceB">trace-b · alternate</option></select></div>
+        <div class="compare-picker"><label for="compare-select">COMPARE WITH</label><select id="compare-select"><option value="none">No comparison</option><option value="traceA">trace-a · baseline</option><option value="traceB">trace-b · alternate</option></select></div>
+        <div class="toolbar-spacer"></div><div><span id="trace-meta" class="muted"></span><p id="export-scope" class="muted" aria-live="polite"></p></div>
+      </section>
+
+      <section id="summary" class="summary-grid"></section>
+
+      <section class="workspace">
+        <aside class="packet-sidebar panel">
+          <div class="sidebar-heading"><div><p class="eyebrow">PACKETS</p><h2 id="packet-count">0 packets</h2></div><span class="filter-count" id="filter-count"></span></div>
+          <div class="filters">
+            <div class="quick-filters" aria-label="Quick isolation filters"><span class="quick-label">ISOLATE</span><button class="quick-filter" type="button" data-quick-filter="recirculated">↻ Recirculation</button><button class="quick-filter" type="button" data-quick-filter="table-miss">⊘ Table miss</button><button class="quick-filter" type="button" data-quick-filter="ttl-expiry">⌁ TTL expiry</button><button class="quick-filter" type="button" data-quick-filter="queue-delay">◷ Queue delay</button></div>
+            <p class="filter-help">Shortcuts narrow the filters below. Click again to remove.</p><button id="clear-filters" class="quick-filter" type="button">Clear all filters</button>
+            <label class="search"><span>⌕</span><input id="query" placeholder="Search packets, tables, keys…"></label>
+            <div class="filter-row"><select id="outcome-filter"><option value="">All outcomes</option><option value="forwarded">Forwarded</option><option value="dropped">Dropped</option></select><select id="result-filter"><option value="">Table result</option><option value="hit">Hit</option><option value="miss">Miss</option></select></div>
+            <div class="filter-row"><select id="table-filter"><option value="">All tables</option></select><select id="action-filter"><option value="">All actions</option></select></div>
+            <div class="filter-row"><input id="delay-filter" type="number" min="0" placeholder="Min queue ns"><select id="reason-filter"><option value="">Any drop reason</option></select></div>
+          </div>
+          <div id="packet-list" class="packet-list"></div>
+        </aside>
+        <section class="details">
+          <div id="empty-detail" class="panel empty-detail"><div class="empty-icon">◌</div><h2>Select a packet</h2><p>Choose a packet to inspect its parser path, table decisions, rewrites, and queue timing.</p></div>
+          <div id="packet-detail" hidden></div>
+          <div id="comparison-detail" hidden></div>
+        </section>
+      </section>
+    </main>
+    <footer><span>TRACEYARD / STANDALONE PROTOTYPE</span><span>SCHEMA 1.0 · DETERMINISTIC EXPORTS</span></footer>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

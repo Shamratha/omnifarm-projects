@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec441b283ffeYF8hAOO0eWPb4u/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "freebsd-livepatch-planner",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec441b283ffeYF8hAOO0eWPb4u",
+  "source_package": "manual-c975c0fc",
+  "source_policy": "final workspace source published"
+}

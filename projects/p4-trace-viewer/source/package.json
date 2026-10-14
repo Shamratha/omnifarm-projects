@@ -1,0 +1,14 @@
+{
+  "name": "p4-trace-explorer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A local, fixture-driven P4/BMv2 packet trace explorer.",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "test": "node --test",
+    "check": "node scripts/check-syntax.mjs",
+    "test:browser": "node scripts/browser-smoke.mjs"
+  }
+}

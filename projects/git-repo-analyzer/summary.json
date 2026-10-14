@@ -1,0 +1,73 @@
+{
+  "funnel": {
+    "error": 0,
+    "platform_locked": 0,
+    "rejected": 0,
+    "review": 0,
+    "shipped": 1
+  },
+  "project": "git-repo-analyzer",
+  "qc_static_preflight": {
+    "checks_complete": false,
+    "environments": 6,
+    "findings": {},
+    "note": "Static QC passed with incomplete harness coverage; missing task checks are reported by the package preflight.",
+    "qc_passed": 1,
+    "runnable": false,
+    "tasks": 1
+  },
+  "replay_quality": {
+    "agreeing_replays": 2,
+    "env_failures": {
+      "command-not-found": 3
+    },
+    "fails_here": 1,
+    "grades": {
+      "diff": 24,
+      "match": 108,
+      "n/a": 18
+    },
+    "level": "none",
+    "why_not_R": null,
+    "why_not_S": [
+      "final: installs failed",
+      "final: task hook egress failed",
+      "turn-03: installs failed",
+      "turn-04: installs failed",
+      "turn-05: installs failed"
+    ],
+    "why_not_strict": null
+  },
+  "review_notes": "Standalone local prototype inspired by a GSoC-style project. It is not an upstream GSoC implementation. Raw traces, debug logs, credentials, and temporary workspaces are not published. Replay verifier did not award S: final: installs failed; final: task hook egress failed; turn-03: installs failed; turn-04: installs failed; turn-05: installs failed",
+  "schema_version": 1,
+  "session_id": "ses_ec4412894ffe9p6PXHGm5rliI4",
+  "source_package": "manual-12288d95",
+  "status": "shipped",
+  "verification": {
+    "builds": {
+      "failed": 0,
+      "harness_error": 0,
+      "ok": 6,
+      "refused": 0
+    },
+    "coverage_rate": 0.9,
+    "environments": 6,
+    "errors": 0,
+    "output_varies": 23,
+    "replay_pass_rate": 0.8,
+    "replay_verdicts": {
+      "DIFFERS": 1,
+      "UNVERIFIED": 0,
+      "VERIFIED": 1,
+      "VERIFIED_TOOLS_RAN": 0,
+      "VERIFIED_WITH_SOFT_DIFFS": 3
+    },
+    "verifier_version": "1.5.0"
+  },
+  "work": {
+    "real_edits_in_reproducible_turns": 28,
+    "reproducible_turns": 5,
+    "shipped_turns": 5,
+    "turns": 5
+  }
+}
