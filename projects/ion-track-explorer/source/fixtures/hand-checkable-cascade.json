@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "name": "Hand-checkable cascade",
+    "description": "Small fixture for cascade links, zero-length paths, and profile boundary checks.",
+    "source": "Repository test fixture",
+    "ion": "Argon (Ar)",
+    "material": "Silicon (Si)",
+    "incidentEnergyKeV": 1,
+    "targetSizeNm": [10, 10, 160]
+  },
+  "tracks": [
+    {
+      "ionId": 10,
+      "parentId": null,
+      "species": "Ar",
+      "kind": "primary",
+      "events": [
+        {"timeFs": 0, "positionNm": [0, 0, 0], "depositedEnergyEv": 10},
+        {"timeFs": 10, "positionNm": [0, 0, 20], "depositedEnergyEv": 20}
+      ]
+    },
+    {
+      "ionId": 11,
+      "parentId": 10,
+      "species": "Si",
+      "kind": "recoil",
+      "events": [
+        {"timeFs": 10, "positionNm": [1, 0, 20], "depositedEnergyEv": 30}
+      ]
+    },
+    {
+      "ionId": 12,
+      "parentId": 11,
+      "species": "Si",
+      "kind": "recoil",
+      "events": [
+        {"timeFs": 20, "positionNm": [2, 0, 40], "depositedEnergyEv": 40},
+        {"timeFs": 30, "positionNm": [2, 0, 40], "depositedEnergyEv": 50}
+      ]
+    },
+    {
+      "ionId": 13,
+      "parentId": 10,
+      "species": "Si",
+      "kind": "recoil",
+      "events": [
+        {"timeFs": 10, "positionNm": [0, 1, 160], "depositedEnergyEv": 60}
+      ]
+    }
+  ]
+}

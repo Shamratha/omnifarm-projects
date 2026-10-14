@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec5c3a81bffeJRq6DVjO9rA2UK/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "md-progress-monitor",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec5c3a81bffeJRq6DVjO9rA2UK",
+  "source_package": "manual-6e00493b",
+  "source_policy": "final workspace source published"
+}

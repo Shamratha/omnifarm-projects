@@ -1,0 +1,26 @@
+{
+  "name": "webpack-api-workbench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run docs:generate && vite --host 127.0.0.1",
+    "docs:generate": "tsx scripts/generate.ts",
+    "docs:check": "tsx scripts/generate.ts --check",
+    "docs:export": "npm run docs:generate && vite build",
+    "docs:verify-versions": "tsx scripts/verify-versions.ts",
+    "browser:smoke": "npm run docs:export && tsx scripts/browser-smoke.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && npm run docs:generate && vite build"
+  },
+  "dependencies": {
+    "typescript": "5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "playwright": "^1.51.1",
+    "tsx": "4.19.2",
+    "vite": "6.0.5"
+  }
+}

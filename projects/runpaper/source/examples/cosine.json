@@ -1,0 +1,25 @@
+{
+  "id": "cosine",
+  "name": "Cosine decay",
+  "description": "Synthetic illustrative cosine-decay schedule for CIFAR-10; not a real scientific finding.",
+  "seed": 202,
+  "dataset": "CIFAR-10",
+  "model": "ResNet-18",
+  "metrics": {
+    "val_loss": {
+      "label": "Validation loss",
+      "unit": "nats",
+      "direction": "min"
+    },
+    "accuracy": {
+      "label": "Accuracy",
+      "unit": "%",
+      "direction": "max"
+    },
+    "step_time": {
+      "label": "Step time",
+      "unit": "ms",
+      "direction": "min"
+    }
+  }
+}

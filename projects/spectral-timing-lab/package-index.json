@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec5c60a0cffe4aF8rOGtacM45j/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "spectral-timing-lab",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec5c60a0cffe4aF8rOGtacM45j",
+  "source_package": "manual-eee1d92e",
+  "source_policy": "final workspace source published"
+}

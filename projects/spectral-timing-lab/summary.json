@@ -1,0 +1,70 @@
+{
+  "funnel": {
+    "error": 0,
+    "platform_locked": 0,
+    "rejected": 0,
+    "review": 0,
+    "shipped": 1
+  },
+  "project": "spectral-timing-lab",
+  "qc_static_preflight": {
+    "checks_complete": false,
+    "environments": 6,
+    "findings": {},
+    "note": "Static QC passed with incomplete harness coverage; missing task checks are reported by the package preflight.",
+    "qc_passed": 1,
+    "runnable": false,
+    "tasks": 1
+  },
+  "replay_quality": {
+    "agreeing_replays": 2,
+    "env_failures": {
+      "command-not-found": 2,
+      "missing-module": 5
+    },
+    "fails_here": 36,
+    "grades": {
+      "diff": 120,
+      "match": 251,
+      "n/a": 61
+    },
+    "level": "none",
+    "why_not_R": null,
+    "why_not_S": [
+      "final: task hook app failed"
+    ],
+    "why_not_strict": null
+  },
+  "review_notes": "Standalone local prototype inspired by the linked GSoC-style project. Raw traces, debug logs, credentials, and temporary workspaces are not published. Replay verifier did not award S: final: task hook app failed",
+  "schema_version": 1,
+  "session_id": "ses_ec5c60a0cffe4aF8rOGtacM45j",
+  "source_package": "manual-eee1d92e",
+  "status": "shipped",
+  "verification": {
+    "builds": {
+      "failed": 0,
+      "harness_error": 0,
+      "ok": 6,
+      "refused": 0
+    },
+    "coverage_rate": 0.801,
+    "environments": 6,
+    "errors": 0,
+    "output_varies": 19,
+    "replay_pass_rate": 0.2,
+    "replay_verdicts": {
+      "DIFFERS": 4,
+      "UNVERIFIED": 0,
+      "VERIFIED": 0,
+      "VERIFIED_TOOLS_RAN": 0,
+      "VERIFIED_WITH_SOFT_DIFFS": 1
+    },
+    "verifier_version": "1.5.0"
+  },
+  "work": {
+    "real_edits_in_reproducible_turns": 36,
+    "reproducible_turns": 6,
+    "shipped_turns": 5,
+    "turns": 6
+  }
+}

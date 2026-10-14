@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "name": "Invalid missing-parent fixture",
+    "description": "Expected to fail cascade validation.",
+    "source": "Repository test fixture",
+    "ion": "Ar",
+    "material": "Si",
+    "incidentEnergyKeV": 1,
+    "targetSizeNm": [10, 10, 160]
+  },
+  "tracks": [
+    {
+      "ionId": 2,
+      "parentId": 999,
+      "species": "Si",
+      "kind": "recoil",
+      "events": [{"timeFs": 0, "positionNm": [0, 0, 0], "depositedEnergyEv": 1}]
+    }
+  ]
+}

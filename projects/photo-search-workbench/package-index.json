@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec5c1d5c7ffe72LzDhRfez9nPd/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "photo-search-workbench",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec5c1d5c7ffe72LzDhRfez9nPd",
+  "source_package": "manual-92ec75ea",
+  "source_policy": "final workspace source published"
+}

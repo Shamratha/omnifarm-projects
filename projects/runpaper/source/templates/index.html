@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Runpaper · Experiment publication workbench</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">R</div>
+    <div><div class="brand">Runpaper</div><div class="eyebrow">EXPERIMENT PUBLICATION WORKBENCH</div></div>
+    <div class="top-note">Local-first · reproducible by design</div>
+  </header>
+  <main class="shell">
+    <aside class="sidebar">
+      <section>
+        <div class="section-label">01 · RUNS</div>
+        <div id="run-list" class="run-list"></div>
+      </section>
+      <section class="import-card">
+        <div class="section-label">IMPORT A RUN</div>
+        <p class="muted">Upload one metrics CSV and its JSON sidecar. Imports stay in memory.</p>
+        <form id="import-form">
+          <label>Metrics CSV<input type="file" name="csv" accept=".csv,text/csv" required></label>
+          <label>Metadata JSON<input type="file" name="metadata" accept=".json,application/json" required></label>
+          <label>Duplicate steps<select name="duplicate_steps" class="alignment-select"><option value="error">Reject duplicates</option><option value="last">Keep last entire row</option></select></label>
+          <button class="button secondary" type="submit">＋ Import run</button>
+        </form>
+        <div id="import-message" class="form-message"></div>
+      </section>
+    </aside>
+    <section class="workspace">
+      <div class="workspace-heading">
+        <div><div class="section-label">PUBLICATION VIEW</div><h1>Compare recorded runs</h1><p class="lede">Select compatible metrics, inspect the actual logged values, and export a figure package with its source manifest.</p></div>
+        <div class="badge"><span class="live-dot"></span> Browser session</div>
+      </div>
+      <div class="controls panel">
+        <div class="control-block runs-control"><div class="control-title">Runs <span id="run-count" class="count" aria-live="polite"></span></div><div id="run-pills" class="pill-grid"></div></div>
+        <div class="control-block metrics-control"><div class="control-title">Metrics <span id="metric-count" class="count" aria-live="polite"></span><span class="hint">units stay separate</span></div><div id="metric-list" class="metric-list"></div></div>
+        <div class="control-block alignment-control"><label class="control-title" for="alignment">Step alignment</label><select id="alignment" class="alignment-select" aria-describedby="alignment-help"><option value="independent">Independent (each run's recorded steps)</option><option value="intersection">Intersection (exact common steps only)</option><option value="union">Union (all steps; gaps stay missing)</option></select><p id="alignment-help" class="control-help">Independent uses each run's recorded steps. Intersection keeps exact common steps only. Union includes all steps and leaves gaps missing.</p></div>
+         <div class="actions"><label class="title-label">Figure title<input id="figure-title" value="Experiment comparison" maxlength="300"></label><button id="refresh-button" class="button primary">↻ Update figure</button><button id="export-button" class="button export">⌕ Preview export</button></div>
+      </div>
+      <div id="notice" class="notice hidden" role="status" aria-live="polite"></div>
+       <section class="plot-card panel"><div class="card-heading"><div><div class="section-label">FIGURE PREVIEW</div><h2 id="plot-heading">Experiment comparison</h2></div><span id="panel-count" class="muted"></span></div><p id="alignment-assumption" class="alignment-assumption"></p><div id="plot-empty" class="empty-state"><div class="empty-icon">✦</div><strong>Choose a run and metric to begin</strong><span>The chart is rendered from imported rows on the server.</span></div><div id="plot-wrap" class="plot-wrap hidden"><img id="plot-image" alt="Experiment comparison plot"></div></section>
+       <section class="summary-card panel"><div class="card-heading"><div><div class="section-label">PER-METRIC SUMMARIES</div><h2>Selected run results</h2></div><span class="muted">direction-aware best</span></div><div id="summary-wrap" class="summary-wrap"></div></section>
+     </section>
+   </main>
+   <div id="export-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="export-modal-title">
+     <div class="modal-backdrop" data-close-export></div>
+     <section class="export-panel" role="document">
+       <div class="modal-heading"><div><div class="section-label">EXPORT REVIEW</div><h2 id="export-modal-title">Preview export</h2></div><button id="close-export" class="modal-close" type="button" aria-label="Close export preview">×</button></div>
+       <div id="export-loading" class="export-state" role="status"><div class="spinner" aria-hidden="true"></div><strong>Building a deterministic preview…</strong><span>Validating selection and inspecting the ZIP in memory.</span></div>
+       <div id="export-error" class="export-state hidden" role="alert"><strong>Could not preview export</strong><span id="export-error-message"></span><button id="retry-export" class="button secondary" type="button">Try again</button></div>
+       <div id="export-content" class="hidden">
+         <div class="export-summary" id="export-summary"></div>
+         <div class="preview-figure"><img id="export-svg" alt="Preview of exported figure"></div>
+          <div class="export-columns"><section><div class="export-section-title">Bundle contents</div><div id="export-entries" class="entry-groups"></div></section><section><div class="export-section-title">Assumptions</div><ul id="export-assumptions" class="assumptions"></ul></section></div>
+          <details class="export-detail"><summary>Inspect plotted data and selected metadata</summary><pre id="export-data-text"></pre></details>
+          <details class="export-detail"><summary>Inspect LaTeX snippet</summary><pre id="export-latex-text"></pre></details>
+          <details class="export-detail"><summary>Inspect reproducibility manifest</summary><pre id="export-manifest-text"></pre></details>
+         <div class="modal-actions"><span id="export-alignment" class="modal-alignment"></span><button id="save-export" class="button export" type="button">↓ Save ZIP</button></div>
+         <p id="export-save-message" class="export-save-message" role="status" aria-live="polite"></p>
+       </div>
+     </section>
+   </div>
+   <footer>Runpaper is a local experiment aid · bundled values are synthetic illustrations · no data leaves this process</footer>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

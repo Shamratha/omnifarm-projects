@@ -1,0 +1,20 @@
+{
+  "name": "ion-track-explorer",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test:logic": "node --experimental-strip-types --test src/trackLogic.test.mjs"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.180.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.11"
+  }
+}

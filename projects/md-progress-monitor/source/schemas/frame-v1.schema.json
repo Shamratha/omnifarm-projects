@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "md-progress-frame/v1",
+  "title": "MD progress monitor frame v1",
+  "description": "Static validation for one MD progress frame. Stream sequence/order, index/sequence equality, and the expected atom count are validated by the loader or validate_frame.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "sequence",
+    "index",
+    "step",
+    "timestamp",
+    "time_fs",
+    "temperature_K",
+    "potential_energy_kj_mol",
+    "units",
+    "positions"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "index": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991,
+      "description": "Must equal sequence; this cross-field constraint is checked by validate_frame."
+    },
+    "step": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$"
+    },
+    "time_fs": {
+      "type": "number",
+      "minimum": 0
+    },
+    "temperature_K": {
+      "type": "number",
+      "minimum": 0
+    },
+    "potential_energy_kj_mol": {
+      "type": "number"
+    },
+    "units": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "position",
+        "time",
+        "temperature",
+        "potential_energy"
+      ],
+      "properties": {
+        "position": {
+          "const": "angstrom"
+        },
+        "time": {
+          "const": "femtosecond"
+        },
+        "temperature": {
+          "const": "kelvin"
+        },
+        "potential_energy": {
+          "const": "kilojoule_per_mole"
+        }
+      }
+    },
+    "positions": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          }
+        ],
+        "items": false,
+        "minItems": 3,
+        "maxItems": 3
+      },
+      "description": "The loader requires exactly one coordinate triple for every declared atom."
+    }
+  }
+}

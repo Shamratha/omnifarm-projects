@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec5c16dd8ffe339VHkfNZCxe8o/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "ion-track-explorer",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec5c16dd8ffe339VHkfNZCxe8o",
+  "source_package": "manual-f51f2365",
+  "source_policy": "final workspace source published"
+}

@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec5c512e6ffeGBOo4WABf91U0Z/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "tour-storyboard",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec5c512e6ffeGBOo4WABf91U0Z",
+  "source_package": "manual-547bb6df",
+  "source_policy": "final workspace source published"
+}

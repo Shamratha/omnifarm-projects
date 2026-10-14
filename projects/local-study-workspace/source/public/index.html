@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <title>Study Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="app-shell">
+      <aside class="sidebar" id="workspace-sidebar">
+        <a class="brand" href="#dashboard" aria-label="Study Workspace home">
+          <span class="brand-mark"><span></span><span></span><span></span></span>
+          <span>study<span class="brand-dot">.</span>space</span>
+        </a>
+        <p class="sidebar-label">Workspace</p>
+        <nav class="primary-nav" aria-label="Main navigation">
+          <button class="nav-item active" data-view="dashboard"><span class="nav-icon">⌂</span>Overview</button>
+          <button class="nav-item" data-view="courses"><span class="nav-icon">▣</span>Courses</button>
+          <button class="nav-item" data-view="calendar"><span class="nav-icon">▦</span>Calendar</button>
+          <button class="nav-item" data-view="groups"><span class="nav-icon">◎</span>Study groups</button>
+        </nav>
+        <div class="sidebar-spacer"></div>
+         <div class="source-card">
+           <span class="eyebrow">LOCAL MODE</span>
+           <strong>Your learning, on your machine.</strong>
+           <p>Changes save to a local SQLite file. No cloud account needed.</p>
+           <span class="local-status"><i></i> SQLite connected</span>
+           <button class="text-button source-settings" data-open-settings>Local settings <span>→</span></button>
+         </div>
+        <div class="profile-mini">
+          <div class="avatar avatar-purple">AM</div>
+          <div>
+            <strong id="sidebar-learner">Alex Morgan</strong>
+            <span>Local learner</span>
+          </div>
+          <span class="more-dots">•••</span>
+        </div>
+      </aside>
+
+      <main class="main-content" id="main-content" tabindex="-1">
+        <header class="topbar">
+          <button class="mobile-menu" id="mobile-menu" aria-label="Open navigation" aria-controls="workspace-sidebar" aria-expanded="false">☰</button>
+           <div class="breadcrumbs"><span>My workspace</span><b>/</b><strong id="breadcrumb-current">Overview</strong></div>
+           <div class="top-actions">
+             <button class="icon-button" id="refresh-button" title="Refresh data" aria-label="Refresh data">↻</button>
+             <button class="button button-light utility-button" data-open-export>Export</button>
+             <button class="button button-dark top-create" data-open-course-editor><span>＋</span> New course</button>
+           </div>
+        </header>
+        <div class="refresh-status" id="refresh-status" role="status" aria-live="polite" hidden>
+          <span id="refresh-status-message"></span>
+          <button type="button" class="button button-light" id="refresh-retry" hidden>Retry refresh</button>
+        </div>
+
+        <section class="page-view active" id="view-dashboard" data-page="dashboard">
+          <div class="welcome-row">
+            <div>
+              <p class="eyebrow coral"><span id="today-weekday">WEDNESDAY</span>, <span id="today-label">OCT 14</span></p>
+              <h1 tabindex="-1">Good morning, <span id="welcome-name">Alex</span><span class="wave">✦</span></h1>
+              <p class="lede">Small steps, shared openly. Keep your learning rhythm going.</p>
+            </div>
+             <div class="welcome-actions"><button class="button button-light" data-open-progress-summary>Progress summary <span>→</span></button><button class="text-button" data-open-settings>Local settings <span>→</span></button><div class="week-chip"><span class="sun-dot"></span><span id="week-summary">Your week at a glance</span></div></div>
+          </div>
+
+          <div class="stat-grid">
+            <article class="stat-card stat-primary">
+              <div class="stat-top"><span class="stat-icon">↗</span><span>OVERALL PROGRESS</span></div>
+              <div class="stat-value" id="stat-progress">0%</div>
+              <div class="progress-track"><span id="stat-progress-bar"></span></div>
+              <p id="stat-progress-note">Start a course to build momentum.</p>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-icon green">✓</span><span>LESSONS FINISHED</span></div>
+              <div class="stat-value" id="stat-lessons">0</div>
+              <p>Across your enrolled courses</p>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-icon orange">▣</span><span>ENROLLED COURSES</span></div>
+              <div class="stat-value" id="stat-courses">0</div>
+              <p>Your enrolled learning paths</p>
+            </article>
+            <article class="stat-card">
+              <div class="stat-top"><span class="stat-icon purple">◷</span><span>UPCOMING SESSIONS</span></div>
+              <div class="stat-value" id="stat-sessions">0</div>
+              <p>Make time to learn together</p>
+            </article>
+          </div>
+
+          <div class="section-heading first-heading">
+             <div><span class="section-kicker">KEEP GOING</span><h2>Continue learning</h2></div>
+             <button class="text-button" data-navigate="courses">View all courses <span>→</span></button>
+          </div>
+          <div class="course-grid" id="dashboard-courses"></div>
+
+          <div class="lower-grid">
+            <section class="panel upcoming-panel">
+              <div class="panel-heading"><div><span class="section-kicker">ON THE HORIZON</span><h2>Upcoming sessions</h2></div><button class="round-arrow" data-navigate="calendar" aria-label="View calendar">→</button></div>
+              <div id="dashboard-sessions" class="session-list"></div>
+            </section>
+            <section class="panel groups-panel">
+              <div class="panel-heading"><div><span class="section-kicker">LEARN TOGETHER</span><h2>Your groups</h2></div><button class="round-arrow" data-navigate="groups" aria-label="View study groups">→</button></div>
+              <div id="dashboard-groups" class="group-list compact"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="page-view" id="view-courses" data-page="courses">
+          <div class="page-intro">
+            <div><span class="section-kicker">YOUR LIBRARY</span><h1 tabindex="-1">Courses & lessons</h1><p>Follow a path, or shape one for your study group.</p></div>
+            <button class="button button-dark" data-open-course-editor><span>＋</span> Create course</button>
+          </div>
+          <div class="filter-row"><div class="filter-tabs"><button class="filter-tab active" data-filter="all">All courses</button><button class="filter-tab" data-filter="enrolled">Enrolled</button><button class="filter-tab" data-filter="available">Not enrolled</button></div><span class="result-count" id="course-count"></span></div>
+          <div class="course-grid library-grid" id="library-courses"></div>
+        </section>
+
+        <section class="page-view" id="view-calendar" data-page="calendar">
+          <div class="page-intro calendar-intro">
+             <div><span class="section-kicker">PLAN TOGETHER</span><h1 tabindex="-1">Weekly calendar</h1><p>Sessions are placed by their entered date and time; each event shows its IANA zone. Cancel a session to free its time while keeping the local record.</p></div>
+            <button class="button button-coral" data-open-session-editor><span>＋</span> Plan a session</button>
+          </div>
+          <div class="calendar-toolbar">
+             <div class="week-switcher"><button type="button" id="previous-week" class="week-arrow" aria-label="Previous week">←</button><strong id="calendar-week-label" aria-live="polite">Week date range</strong><button type="button" id="next-week" class="week-arrow" aria-label="Next week">→</button></div>
+            <button type="button" id="today-button" class="button button-light">Today</button>
+            <label class="calendar-control" for="calendar-jump-date">Jump to week<input type="date" id="calendar-jump-date" /></label>
+             <label class="calendar-control" for="calendar-learner-filter">Learner view<select id="calendar-learner-filter"><option value="all">All learners / workspace</option><option value="mine">My groups</option></select></label>
+            <label class="calendar-control" for="calendar-course-filter">Course<select id="calendar-course-filter"><option value="all">All courses</option><option value="none">No related course</option></select></label>
+          </div>
+          <p class="calendar-status" id="calendar-status" role="status" aria-live="polite"></p>
+           <div class="calendar-empty" id="calendar-empty" hidden></div>
+          <p class="calendar-help" id="calendar-help">Scroll to see the full week and day. With the schedule focused, use <kbd>PageUp</kbd>/<kbd>PageDown</kbd> for the previous/next week and <kbd>Home</kbd> for this week.</p>
+          <div class="calendar-wrap" id="calendar-wrap" tabindex="0" role="region" aria-label="Weekly schedule" aria-describedby="calendar-help"><div class="calendar-head" id="calendar-head"></div><div class="calendar-body" id="calendar-body"></div></div>
+          <div class="calendar-legend"><span><i class="legend-dot purple-dot"></i> Open source</span><span><i class="legend-dot mint-dot"></i> Community science</span><span><i class="legend-dot gold-dot"></i> Group session</span></div>
+          <details class="calendar-agenda" id="calendar-agenda">
+            <summary>Week agenda (list view)</summary>
+            <ul class="calendar-agenda-list" id="calendar-agenda-list" role="list"></ul>
+          </details>
+        </section>
+
+        <section class="page-view" id="view-groups" data-page="groups">
+          <div class="page-intro"><div><span class="section-kicker">LEARN IN PUBLIC</span><h1 tabindex="-1">Study groups</h1><p>Find your people, make a plan, and keep showing up.</p></div><button class="button button-dark" data-open-group-editor><span>＋</span> New group</button></div>
+          <div class="groups-layout"><div class="groups-directory" id="groups-directory"></div><aside class="group-aside"><div class="aside-illustration">✺</div><span class="section-kicker">A LITTLE ACCOUNTABILITY</span><h2>Learning sticks when it's shared.</h2><p>Schedule a focused session with a group and give your next step a place on the calendar.</p><button class="button button-coral full-width" data-open-session-editor>Plan a group session <span>→</span></button></aside></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+    <section class="modal" id="course-editor-modal" role="dialog" aria-modal="true" aria-labelledby="course-editor-title" hidden>
+      <div class="modal-header"><div><span class="section-kicker">COURSE EDITOR</span><h2 id="course-editor-title">Create a course</h2></div><button class="close-modal" data-close-modal aria-label="Close">×</button></div>
+      <form id="course-form" class="modal-form">
+        <div class="form-grid"><label>Course title<input name="title" placeholder="e.g. Intro to community mapping" required maxlength="120" /></label><label>Category<input name="category" placeholder="e.g. Design, Python, Community" maxlength="60" /></label></div>
+        <div class="form-grid"><label>Level<select name="level"><option>Beginner</option><option>Mixed</option><option>Intermediate</option><option>Advanced</option></select></label><label>Accent color<select name="accent"><option value="#7c5cff">Violet</option><option value="#19c3a3">Mint</option><option value="#ff735c">Coral</option><option value="#ffb547">Gold</option></select></label></div>
+        <label>Description<textarea name="description" rows="3" placeholder="What will learners be able to explore?" maxlength="1000"></textarea></label>
+        <div class="lesson-editor-heading"><div><span class="section-kicker">LEARNING PATH</span><h3>Lessons</h3></div><button type="button" class="text-button" id="add-lesson">＋ Add lesson</button></div>
+        <div id="lesson-fields" class="lesson-fields"></div>
+        <p class="form-hint">Keep lessons small and focused. Prerequisites must form an acyclic course path. A course is complete when all of its lessons are complete. Courses can have up to 20 lessons.</p>
+        <p class="form-error" id="course-error" role="alert" tabindex="-1" hidden></p>
+        <div class="modal-actions"><button type="button" class="button button-light" data-close-modal>Cancel</button><button type="submit" class="button button-dark">Save course <span>→</span></button></div>
+      </form>
+    </section>
+
+    <section class="modal narrow-modal" id="session-editor-modal" role="dialog" aria-modal="true" aria-labelledby="session-editor-title" hidden>
+      <div class="modal-header"><div><span class="section-kicker">CALENDAR</span><h2 id="session-editor-title">Plan a group session</h2></div><button class="close-modal" data-close-modal aria-label="Close">×</button></div>
+      <form id="session-form" class="modal-form">
+        <label>Session title<input name="title" placeholder="e.g. Co-working and check-in" required maxlength="120" /></label>
+        <div class="form-grid"><label>Study group<select name="group_id" id="session-group" required aria-describedby="session-group-hint"></select><span class="field-hint" id="session-group-hint">Only groups you have joined can be scheduled.</span></label><label>Related course<select name="course_id" id="session-course"><option value="">No specific course</option></select></label></div>
+         <div class="form-grid"><label>Date<input name="session_date" id="session-date" type="date" required aria-describedby="session-date-hint" /><span class="field-hint" id="session-date-hint">Date in the entered time zone.</span></label><label>Start time<input name="start_time" type="time" value="18:00" step="60" required aria-describedby="session-time-hint" /><span class="field-hint" id="session-time-hint">Fixed wall-clock time; no browser conversion.</span></label></div>
+         <label>Time zone<input name="timezone" list="timezone-options" value="UTC" required maxlength="255" aria-describedby="timezone-hint" /><span class="field-hint" id="timezone-hint">Use an IANA zone such as UTC or America/New_York. The entered clock belongs to this zone.</span></label>
+         <datalist id="timezone-options"><option value="UTC"></option><option value="America/New_York"></option><option value="America/Los_Angeles"></option><option value="Europe/London"></option><option value="Europe/Berlin"></option><option value="Asia/Tokyo"></option><option value="Australia/Sydney"></option></datalist>
+         <label>Repeated DST time<select name="fold" aria-describedby="session-fold-hint"><option value="0" selected>First occurrence (fold 0)</option><option value="1">Second occurrence (fold 1)</option></select><span class="field-hint" id="session-fold-hint">For an ambiguous daylight-saving clock time, choose which occurrence to schedule. Fold 0 is the first occurrence.</span></label>
+          <label>Duration (minutes)<input name="duration_minutes" type="number" min="15" max="480" step="1" value="60" required aria-describedby="session-duration-hint" /><span class="field-hint" id="session-duration-hint">15–480 whole minutes. The service validates the complete interval.</span></label>
+        <p class="schedule-rules">Avoid overlapping sessions for your group or your joined groups. Back-to-back sessions are okay. The service checks conflicts when you save; if a time is taken, choose another date or time.</p>
+        <p class="form-error" id="session-validation" role="status" aria-live="polite" tabindex="-1" hidden></p>
+        <label>Notes <span class="optional">optional</span><textarea name="notes" rows="3" maxlength="1000" placeholder="What should people bring or prepare?"></textarea></label>
+        <div class="modal-actions"><button type="button" class="button button-light" data-close-modal>Cancel</button><button type="submit" class="button button-coral">Add to calendar <span>→</span></button></div>
+      </form>
+    </section>
+
+    <section class="modal narrow-modal" id="session-details-modal" role="dialog" aria-modal="true" aria-labelledby="session-details-title" hidden>
+      <div class="modal-header"><div><span class="section-kicker">SESSION DETAILS</span><h2 id="session-details-title">Session details</h2></div><button type="button" class="close-modal" data-close-modal aria-label="Close session details">×</button></div>
+      <div id="session-details-content"></div>
+      <div class="modal-actions"><button type="button" class="button button-light" data-close-modal>Close</button><button type="button" class="button button-coral" id="session-details-cancel">Cancel session</button></div>
+    </section>
+
+     <section class="modal narrow-modal" id="group-editor-modal" role="dialog" aria-modal="true" aria-labelledby="group-editor-title" hidden>
+      <div class="modal-header"><div><span class="section-kicker">STUDY GROUPS</span><h2 id="group-editor-title">Start a new group</h2></div><button class="close-modal" data-close-modal aria-label="Close">×</button></div>
+      <form id="group-form" class="modal-form">
+        <label>Group name<input name="name" placeholder="e.g. Wednesday makers" required maxlength="100" /></label>
+        <label>What is this group about?<textarea name="description" rows="3" maxlength="600" placeholder="A shared intention makes it easier to return."></textarea></label>
+        <p class="form-error" id="group-error" role="alert" tabindex="-1" hidden></p>
+        <div class="modal-actions"><button type="button" class="button button-light" data-close-modal>Cancel</button><button type="submit" class="button button-dark">Create group <span>→</span></button></div>
+      </form>
+     </section>
+
+     <section class="modal discussion-modal" id="discussion-modal" role="dialog" aria-modal="true" aria-labelledby="discussion-title" hidden>
+       <div class="modal-header"><div><span class="section-kicker">STUDY GROUP</span><h2 id="discussion-title">Discussion</h2><p class="modal-subtitle" id="discussion-group-label"></p></div><div class="modal-header-actions"><button class="text-button" id="reload-discussion">Refresh posts</button><button class="close-modal" data-close-modal aria-label="Close">×</button></div></div>
+       <p class="form-error" id="discussion-error" role="status" aria-live="polite" hidden></p>
+       <div class="discussion-posts" id="discussion-posts" aria-live="polite"></div>
+       <form id="discussion-form" class="modal-form" hidden>
+          <label>Share with the group<textarea name="body" rows="3" maxlength="4000" placeholder="Ask a question, share a useful discovery, or name what you are working through." required></textarea></label>
+         <p class="form-hint" id="discussion-composer-note">Share plain text with your study group.</p>
+          <div class="modal-actions"><button type="button" class="button button-light" data-close-modal>Close</button><button type="submit" class="button button-coral">Post to discussion <span>→</span></button></div>
+       </form>
+        <div class="discussion-join-note" id="discussion-join-note" hidden><p>Join this group to post in its discussion.</p><button class="button button-dark" id="discussion-join-button" data-action="join-discussion-group">Join group <span>→</span></button></div>
+     </section>
+
+     <section class="modal narrow-modal" id="progress-summary-modal" role="dialog" aria-modal="true" aria-labelledby="progress-summary-title" hidden>
+       <div class="modal-header"><div><span class="section-kicker">YOUR MOMENTUM</span><h2 id="progress-summary-title">Progress summary</h2></div><div class="modal-header-actions"><button class="text-button" id="reload-progress-summary">Refresh summary</button><button class="close-modal" data-close-modal aria-label="Close">×</button></div></div>
+        <p class="form-error" id="progress-summary-error" role="status" aria-live="polite" hidden></p>
+        <div class="progress-summary-grid" id="progress-summary-stats"></div>
+        <div id="progress-summary-next"></div>
+         <div class="recent-completions"><span class="section-kicker">RECENTLY COMPLETED</span><div id="progress-summary-recent"></div></div>
+       <div class="modal-actions"><button type="button" class="button button-light" data-close-modal>Close</button></div>
+     </section>
+
+     <section class="modal narrow-modal" id="export-modal" role="dialog" aria-modal="true" aria-labelledby="export-title" hidden>
+       <div class="modal-header"><div><span class="section-kicker">TAKE YOUR DATA WITH YOU</span><h2 id="export-title">Export workspace</h2></div><button class="close-modal" data-close-modal aria-label="Close">×</button></div>
+       <form id="export-form" class="modal-form">
+          <div class="form-grid"><label>Format<select name="format"><option value="json">JSON</option><option value="csv">CSV</option></select></label><label>Scope<select name="scope"><option value="workspace">Workspace</option><option value="progress">Progress</option><option value="sessions">Sessions</option><option value="groups">Groups</option></select></label></div>
+         <p class="form-hint">Download from this local workspace to this device. No cloud upload is involved.</p>
+         <p class="form-error" id="export-error" role="status" aria-live="polite" hidden></p>
+         <div class="modal-actions"><button type="button" class="button button-light" data-close-modal>Cancel</button><button type="submit" class="button button-dark">Download export <span>↓</span></button></div>
+       </form>
+     </section>
+
+     <section class="modal narrow-modal" id="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title" hidden>
+       <div class="modal-header"><div><span class="section-kicker">LOCAL MODE</span><h2 id="settings-title">Backup & restore</h2></div><button class="close-modal" data-close-modal aria-label="Close">×</button></div>
+          <div class="settings-section"><span class="section-kicker">BACKUP</span><p>Download a copy of the current SQLite workspace for safekeeping or moving to another local setup.</p><button type="button" class="button button-light" id="download-backup">Download backup <span>↓</span></button><p class="form-error" id="backup-error" role="status" aria-live="polite" hidden></p></div>
+          <div class="settings-section restore-section"><span class="section-kicker">RESTORE</span><p class="restore-warning"><strong>Warning:</strong> restoring replaces all local state in this workspace. Choose a SQLite file you trust. The service validates the file before replacing anything.</p><form id="restore-form" class="modal-form"><label>SQLite backup file<input id="restore-file" name="backup" type="file" accept=".sqlite,.sqlite3,.db,application/x-sqlite3" required /><span class="field-hint">Use a .sqlite, .sqlite3, or .db file. Maximum client-side size: 50 MB; the backend remains authoritative.</span></label><p class="form-error" id="restore-error" role="status" aria-live="polite" hidden></p><p class="form-hint" id="restore-counts" hidden></p><p class="restore-confirmation" id="restore-confirmation" hidden></p><div class="modal-actions"><button type="button" class="button button-light" data-close-modal>Cancel</button><button type="submit" class="button button-coral" id="restore-confirm">Validate and restore <span>↗</span></button></div></form></div>
+     </section>
+
+    <section class="modal lesson-modal" id="lesson-modal" role="dialog" aria-modal="true" aria-labelledby="lesson-modal-title" hidden>
+      <div class="modal-header"><div><span class="section-kicker" id="lesson-course-label">LESSON</span><h2 id="lesson-modal-title">Lesson title</h2></div><button class="close-modal" data-close-modal aria-label="Close">×</button></div>
+      <div class="lesson-reading"><div class="lesson-meta" id="lesson-modal-meta"></div><div class="lesson-prerequisite-note" id="lesson-modal-prerequisites" hidden></div><p id="lesson-modal-content"></p><div class="lesson-reflection"><span>✦</span><div><strong>Take a moment</strong><p>What is one small thing you can try or share after this lesson?</p></div></div></div>
+      <div class="modal-actions"><button class="button button-light" data-close-modal>Close</button><button class="button button-coral" id="complete-lesson-button">Mark lesson complete <span>✓</span></button></div>
+    </section>
+
+
+    <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-icon">✓</span><span id="toast-message">Saved</span></div>
+  </body>
+</html>

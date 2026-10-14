@@ -1,0 +1,67 @@
+{
+  "funnel": {
+    "error": 0,
+    "platform_locked": 0,
+    "rejected": 0,
+    "review": 0,
+    "shipped": 1
+  },
+  "project": "local-study-workspace",
+  "qc_static_preflight": {
+    "checks_complete": false,
+    "environments": 8,
+    "findings": {},
+    "note": "Static QC passed with incomplete harness coverage; missing task checks are reported by the package preflight.",
+    "qc_passed": 1,
+    "runnable": false,
+    "tasks": 1
+  },
+  "replay_quality": {
+    "agreeing_replays": 2,
+    "env_failures": {},
+    "fails_here": 0,
+    "grades": {
+      "diff": 46,
+      "match": 411,
+      "n/a": 37
+    },
+    "level": "R",
+    "why_not_R": [],
+    "why_not_S": null,
+    "why_not_strict": [
+      "46 calls diff"
+    ]
+  },
+  "review_notes": "Standalone local prototype inspired by the linked GSoC-style project. Raw traces, debug logs, credentials, and temporary workspaces are not published. Not strict replay: 46 calls diff",
+  "schema_version": 1,
+  "session_id": "ses_ec5c71048ffe00N1IPyHw2BchH",
+  "source_package": "manual-458819d4",
+  "status": "shipped",
+  "verification": {
+    "builds": {
+      "failed": 0,
+      "harness_error": 0,
+      "ok": 8,
+      "refused": 0
+    },
+    "coverage_rate": 0.939,
+    "environments": 8,
+    "errors": 0,
+    "output_varies": 46,
+    "replay_pass_rate": 1.0,
+    "replay_verdicts": {
+      "DIFFERS": 0,
+      "UNVERIFIED": 0,
+      "VERIFIED": 0,
+      "VERIFIED_TOOLS_RAN": 0,
+      "VERIFIED_WITH_SOFT_DIFFS": 7
+    },
+    "verifier_version": "1.5.0"
+  },
+  "work": {
+    "real_edits_in_reproducible_turns": 23,
+    "reproducible_turns": 11,
+    "shipped_turns": 7,
+    "turns": 11
+  }
+}

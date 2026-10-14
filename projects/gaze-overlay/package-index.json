@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec5c5f059ffeHmcmyi4ptvDIiv/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "gaze-overlay",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec5c5f059ffeHmcmyi4ptvDIiv",
+  "source_package": "manual-99829d60",
+  "source_policy": "final workspace source published"
+}

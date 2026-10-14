@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "packageName": "webpack",
+  "versions": [
+    {
+      "version": "5.99.0",
+      "label": "Latest",
+      "sourcePath": "samples/v2/webpack.d.ts",
+      "diagnostics": []
+    },
+    {
+      "version": "5.98.0",
+      "label": "Previous",
+      "sourcePath": "samples/v1/webpack.d.ts",
+      "diagnostics": []
+    }
+  ],
+  "hasErrors": false
+}

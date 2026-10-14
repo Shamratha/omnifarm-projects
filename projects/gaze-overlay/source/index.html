@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A focused gaze playback tool for usability-session observers."
+    />
+    <title>Gaze Overlay · Session observer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Gaze Overlay home">
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span>gaze<span class="brand-muted">/</span>overlay</span>
+        </a>
+        <div class="topbar-actions">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span class="session-label" id="sessionLabel">Demo recording</span>
+           <button class="button button-secondary button-small" id="importButton" type="button">
+             <span aria-hidden="true">↑</span> Import JSON
+           </button>
+           <button class="button button-secondary button-small" id="exportButton" type="button" data-action="export" disabled>
+             <span aria-hidden="true">↓</span> Export
+           </button>
+           <button class="button button-quiet button-small" id="summaryButton" type="button" data-action="export-summary" disabled>
+             JSON summary
+           </button>
+          <input id="fileInput" type="file" accept=".json,application/json" hidden />
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="intro" aria-labelledby="pageTitle">
+          <div>
+            <p class="eyebrow">Usability session observer</p>
+            <h1 id="pageTitle">See where attention goes.</h1>
+            <p class="intro-copy">
+              Replay normalized gaze data on the page your participant saw. Use the timeline to pause on a moment, inspect confidence, and spot when attention leaves the viewport.
+            </p>
+          </div>
+          <div class="intro-meta" aria-label="Recording summary">
+            <div class="meta-item">
+              <span class="meta-label">Samples</span>
+              <strong id="sampleCount">—</strong>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Duration</span>
+              <strong id="durationValue">—</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="observer-card" aria-label="Gaze playback observer">
+          <div class="card-toolbar">
+            <div class="toolbar-title">
+              <span class="status-icon" aria-hidden="true"></span>
+              <div>
+                <p class="toolbar-kicker">Now observing</p>
+                <h2 id="recordingTitle">Demo session · Product page</h2>
+              </div>
+            </div>
+            <div class="toolbar-actions">
+              <button class="button button-quiet button-small" id="loadDemoButton" type="button">↺ Load demo</button>
+              <button class="button button-secondary button-small" id="resetButton" type="button">Reset view</button>
+            </div>
+          </div>
+
+          <section class="processing-controls" aria-label="Gaze processing controls">
+            <div class="processing-control confidence-control">
+              <div class="control-label"><label for="confidenceThreshold">Minimum confidence</label><output id="confidenceThresholdValue" for="confidenceThreshold">0.70</output></div>
+              <input id="confidenceThreshold" type="range" min="0" max="1" step="0.01" value="0.70" />
+            </div>
+            <div class="processing-control smoothing-control">
+              <div class="control-label"><label class="toggle-label" for="smoothingToggle"><input id="smoothingToggle" type="checkbox" /><span class="toggle-track" aria-hidden="true"><span></span></span><span>EMA smoothing · alpha 0–1</span></label><output id="alphaValue" for="alphaSlider">0.35</output></div>
+              <input id="alphaSlider" type="range" min="0" max="1" step="0.01" value="0.35" aria-label="EMA smoothing alpha, from 0 to 1" disabled />
+            </div>
+            <div class="processing-control gap-control">
+              <label for="maxGap">Max gap</label>
+              <div class="unit-input"><input id="maxGap" type="number" min="0" step="50" value="1000" /><span>ms</span></div>
+            </div>
+            <div class="processing-control mode-control">
+              <span class="control-label-text">Coordinates</span>
+              <div class="mode-switch" role="group" aria-label="Coordinate mode">
+                <button class="mode-button is-active" id="rawModeButton" type="button" data-mode="raw" aria-pressed="true">Raw</button>
+                <button class="mode-button" id="smoothedModeButton" type="button" data-mode="smoothed" aria-pressed="false" disabled>Smoothed</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="analysis-controls" aria-label="Fixation and overlay controls">
+            <div class="analysis-control">
+              <label for="fixationRadius">Fixation radius</label>
+              <div class="unit-input"><input id="fixationRadius" type="number" min="0" max="1" step="0.01" value="0.06" inputmode="decimal" /><span>normalized</span></div>
+            </div>
+            <div class="analysis-control">
+              <label for="fixationMinDuration">Minimum fixation duration</label>
+              <div class="unit-input"><input id="fixationMinDuration" type="number" min="0" step="10" value="100" inputmode="numeric" /><span>ms</span></div>
+            </div>
+            <div class="analysis-control view-control">
+              <span class="control-label-text">Overlay view</span>
+             <div class="mode-switch" role="group" aria-label="Overlay view">
+                <button class="mode-button is-active" id="pathViewButton" type="button" data-view="path" aria-pressed="true">Path</button>
+                <button class="mode-button" id="heatmapViewButton" type="button" data-view="heatmap" aria-pressed="false">Heatmap</button>
+               <button class="mode-button" id="fixationViewButton" type="button" data-view="fixations" aria-pressed="false">Fixations</button>
+             </div>
+           </div>
+           <button class="button button-quiet button-small overlay-toggle" id="overlayToggle" type="button" aria-pressed="false" data-action="toggle-overlays">Hide overlays</button>
+           <div class="analysis-note" id="analyticsStatus">Raw coordinates · analysis updates at the current playback time</div>
+           <div class="heatmap-legend" id="heatmapLegend" aria-label="Heatmap intensity legend"><span>Heatmap: completed fixation duration</span><i class="heatmap-low"></i><span>0 ms</span><i class="heatmap-high"></i><span>≥1000 ms</span></div>
+          </section>
+
+          <div class="observer-grid">
+            <div class="stage-column">
+              <div class="sample-frame" id="sampleFrame">
+                <div class="sample-browser-bar" aria-hidden="true">
+                  <div class="browser-dots"><i></i><i></i><i></i></div>
+                  <div class="browser-address"><span class="lock">⌁</span> northstar.design / overview</div>
+                  <div class="browser-more">•••</div>
+                </div>
+                <div class="sample-page" id="samplePage">
+                  <nav class="sample-nav" aria-label="Sample page navigation">
+                    <a class="sample-logo" href="#sampleHome">northstar<span>®</span></a>
+                    <div class="sample-nav-links">
+                      <a href="#platform">Platform</a>
+                      <a href="#customers">Customers</a>
+                      <a href="#resources">Resources</a>
+                    </div>
+                    <a class="sample-nav-cta" href="#demo">Book a demo <span aria-hidden="true">↗</span></a>
+                  </nav>
+                  <div class="sample-hero" id="sampleHome">
+                    <div class="hero-copy">
+                      <p class="sample-overline">The calm inside complexity</p>
+                      <h3>Make work feel<br /><em>lighter.</em></h3>
+                      <p class="hero-description">Northstar gives growing teams one clear view of the work that moves their business forward.</p>
+                      <div class="hero-actions">
+                        <a class="hero-primary" href="#demo">See how it works <span aria-hidden="true">↗</span></a>
+                        <a class="hero-secondary" href="#story">Watch the story <span aria-hidden="true">▷</span></a>
+                      </div>
+                    </div>
+                    <div class="hero-art" aria-label="Abstract illustration of connected work">
+                      <div class="orbit orbit-one"></div>
+                      <div class="orbit orbit-two"></div>
+                      <div class="orbit orbit-three"></div>
+                      <div class="art-core"><span>n</span></div>
+                      <div class="art-chip chip-one">focus <b>86%</b></div>
+                      <div class="art-chip chip-two">in sync <b>12</b></div>
+                      <div class="art-chip chip-three">↑ momentum</div>
+                    </div>
+                  </div>
+                  <div class="sample-proof" id="customers">
+                    <p>Trusted by teams building what’s next</p>
+                    <div class="logo-row" aria-label="Customer logos"><span>arc<span class="logo-symbol">+</span></span><span>kinetic</span><span>FOLIO</span><span class="logo-serif">morrow</span><span>beam.</span></div>
+                  </div>
+                  <div class="sample-lower" id="platform">
+                    <div><span class="lower-number">01</span><h4>One view of the moving parts.</h4></div>
+                    <p>Align projects, conversations, and decisions in a workspace designed for momentum.</p>
+                  </div>
+                   <div class="gaze-layer" id="gazeLayer" aria-hidden="true">
+                    <div class="aoi-layer" id="aoiLayer"></div>
+                    <svg class="gaze-path" id="gazePath" viewBox="0 0 1 1" preserveAspectRatio="none" focusable="false">
+                     <g id="rawPathLayer"></g>
+                     <g id="smoothPathLayer"></g>
+                    </svg>
+                    <div class="heatmap-layer" id="heatmapLayer"></div>
+                    <div class="fixation-layer" id="fixationLayer"></div>
+                    <div class="gaze-cursor" id="gazeCursor"><span class="cursor-core"></span><span class="cursor-ring"></span></div>
+                    <div class="overlay-empty" id="overlayEmptyState"></div>
+                     <div class="outside-tag" id="outsideTag">Outside viewport</div>
+                   </div>
+                 </div>
+              </div>
+
+              <div class="playback" aria-label="Playback controls">
+                <button class="play-button" id="playButton" type="button" aria-label="Play recording">▶ <span>Play</span></button>
+                <div class="timeline-wrap">
+                  <input id="timeline" class="timeline" type="range" min="0" max="1" step="1" value="0" aria-label="Seek through recording" />
+                  <div class="timeline-labels"><span id="currentTime">00:00.0</span><span id="totalTime">00:00.0</span></div>
+                </div>
+                <label class="speed-control" for="speedSelect">Speed
+                  <select id="speedSelect" aria-label="Playback speed">
+                    <option value="0.5">0.5×</option>
+                    <option value="1" selected>1×</option>
+                    <option value="1.5">1.5×</option>
+                    <option value="2">2×</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <aside class="inspector" aria-label="Current gaze details">
+              <div class="inspector-heading">
+                <p class="eyebrow">Live readout</p>
+                <span class="inspector-time" id="inspectorTime">00:00.0</span>
+              </div>
+               <div class="focus-status" id="focusStatus">
+                <span class="focus-dot" aria-hidden="true"></span>
+                 <div><strong id="focusLabel">In viewport</strong><span id="focusSubtext">Tracking page coordinates</span></div>
+               </div>
+               <div class="processing-status" aria-live="polite">
+                 <strong id="processingStatus">Ready to process gaze</strong>
+                 <span id="processingStatusDetail">Choose a mode and play the recording.</span>
+               </div>
+               <div class="readout-list">
+                 <div class="readout-row"><span>Confidence</span><strong id="confidenceValue">—</strong></div>
+                 <div class="readout-row"><span id="xReadoutLabel">Raw X</span><strong id="xValue">—</strong></div>
+                 <div class="readout-row"><span id="yReadoutLabel">Raw Y</span><strong id="yValue">—</strong></div>
+                 <div class="readout-row"><span>Active mode</span><strong id="modeValue">Raw</strong></div>
+               </div>
+               <div class="confidence-meter" aria-label="Confidence meter"><div id="confidenceBar"></div></div>
+               <div class="processing-stats" aria-label="Processing statistics">
+                 <p class="stats-title">Processing stats</p>
+                 <div><span>Accepted</span><strong id="acceptedValue">—</strong></div>
+                 <div><span>Segments</span><strong id="segmentsValue">—</strong></div>
+                 <div><span>Invalid coordinates</span><strong id="invalidCoordinatesValue">—</strong></div>
+                 <div><span>Invalid confidence</span><strong id="invalidConfidenceValue">—</strong></div>
+                 <div><span>Below threshold</span><strong id="lowConfidenceValue">—</strong></div>
+                 <div><span>Invalid timestamps</span><strong id="invalidTimeValue">—</strong></div>
+               </div>
+               <details class="assumptions-panel" id="assumptionsPanel" open>
+                 <summary>Calibration &amp; analysis assumptions</summary>
+                 <div class="assumptions-content">
+                    <p>Coordinates are normalized to the sample page content box (top-left origin). The browser chrome is excluded; overlay layers and cursor use the same <code>.sample-page</code> box.</p>
+                    <p>No tracker calibration is performed here. Source calibration is assumed; confidence is supplied by the recording, not an accuracy measurement. Resizing preserves normalized position, not the identity of reflowed page elements. Source screen dimensions, scroll history, and device-pixel ratio are not reconstructed.</p>
+                   <dl>
+                     <div><dt>Mapping policy</dt><dd id="mappingPolicyValue">Coordinate-preserving normalized x/y</dd></div>
+                     <div><dt>Rendered page</dt><dd id="viewportSizeValue">—</dd></div>
+                     <div><dt>Remapping status</dt><dd id="mappingStatusValue">—</dd></div>
+                     <div><dt>Confidence threshold</dt><dd id="panelConfidenceValue">—</dd></div>
+                     <div><dt>Gap</dt><dd id="panelGapValue">—</dd></div>
+                     <div><dt>Fixation radius</dt><dd id="panelRadiusValue">—</dd></div>
+                     <div><dt>Fixation duration</dt><dd id="panelDurationValue">—</dd></div>
+                     <div><dt>Display coordinates</dt><dd id="panelModeValue">—</dd></div>
+                     <div><dt>Heatmap scale</dt><dd>0–1000 ms, fixed</dd></div>
+                      <div><dt>AOI coordinates</dt><dd>Normalized sample-page x/y</dd></div>
+                      <div><dt>Fixation method</dt><dd>Raw samples · running-centroid Euclidean radius · duration last minus first timestamp</dd></div>
+                      <div><dt>Dwell policy</dt><dd>Raw linear path / inclusive rectangle intersection · no endpoint holds · overlaps counted independently</dd></div>
+                      <div><dt>Filter policy</dt><dd>Invalid coordinates/confidence and below-threshold rows break segments. Missing confidence defaults to 1.</dd></div>
+                      <div><dt>Time policy</dt><dd>Milliseconds relative to earliest valid timestamp · duplicate timestamps use last input row</dd></div>
+                   </dl>
+                 </div>
+               </details>
+               <div class="legend" id="overlayLegend">
+                <p class="legend-title">Reading the overlay</p>
+                <div class="legend-item"><span class="legend-swatch"></span><span>Gaze position</span></div>
+                <div class="legend-item"><span class="legend-swatch legend-swatch-low"></span><span>Lower confidence ring</span></div>
+                <div class="legend-item"><span class="legend-swatch legend-swatch-out"></span><span>Outside viewport</span></div>
+              </div>
+              <div class="import-hint"><span aria-hidden="true">⌘</span><p><strong>Bring your own session</strong><br />Import a JSON file with <code>t</code>, <code>x</code>, <code>y</code>, and <code>confidence</code> fields.</p></div>
+            </aside>
+          </div>
+        </section>
+         <section class="aoi-panel" aria-labelledby="aoiHeading">
+           <div class="aoi-heading">
+             <div><p class="eyebrow">Areas of interest</p><h2 id="aoiHeading">Dwell by region</h2><p class="aoi-help">Rectangles use normalized page coordinates. Dwell is recomputed through the current time; overlapping regions count independently.</p></div>
+             <div class="aoi-total"><span>Completed fixations</span><strong id="fixationCount">0</strong></div>
+           </div>
+           <form class="aoi-form" id="aoiForm">
+             <label>Label<input id="aoiLabel" name="label" type="text" required maxlength="40" placeholder="Pricing CTA" /></label>
+             <label>X<input id="aoiX" name="x" type="number" min="0" max="1" step="0.01" required value="0.05" /></label>
+             <label>Y<input id="aoiY" name="y" type="number" min="0" max="1" step="0.01" required value="0.12" /></label>
+             <label>Width<input id="aoiWidth" name="width" type="number" min="0" max="1" step="0.01" required value="0.4" /></label>
+             <label>Height<input id="aoiHeight" name="height" type="number" min="0" max="1" step="0.01" required value="0.2" /></label>
+             <button class="button button-secondary button-small" id="aoiSubmit" type="submit">Add AOI</button>
+             <button class="button button-quiet button-small" id="aoiCancel" type="button" hidden>Cancel edit</button>
+           </form>
+           <div class="aoi-table-wrap">
+             <table class="aoi-table"><caption class="sr-only">AOI dwell summary in milliseconds</caption><thead><tr><th scope="col">Region</th><th scope="col">X, Y · width × height (normalized)</th><th scope="col">Dwell (ms)</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead><tbody id="aoiRows"></tbody></table>
+             <p class="aoi-empty" id="aoiEmpty">Add a normalized rectangle to measure dwell.</p>
+           </div>
+         </section>
+          <p class="keyboard-note" id="keyboardHelp"><kbd>Space</kbd> play / pause <span>·</span> <kbd>←</kbd> <kbd>→</kbd> seek 500 ms <span>·</span> <kbd>Shift</kbd> + arrows seek 100 ms <span>·</span> <kbd>Home</kbd>/<kbd>End</kbd> jump <span>·</span> <kbd>1</kbd> path <kbd>2</kbd> heatmap <kbd>3</kbd> fixations <kbd>0</kbd> hide overlays <kbd>R</kbd> reset</p>
+      </main>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

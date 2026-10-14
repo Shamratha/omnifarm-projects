@@ -1,0 +1,24 @@
+/* Session UI is deliberately scoped to its own controls and report. */
+.session-tools { display: grid; gap: .3rem; max-width: 28rem; }
+.header-tools { flex-wrap: wrap; justify-content: flex-end; gap: 12px; padding: 12px 0; }
+.header-tools .local-chip { display: none; }
+.session-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+.session-tools small, .session-status { font-size: .72rem; line-height: 1.5; color: #53657b; }
+.session-status { margin: 0; overflow-wrap: anywhere; }
+.session-status[data-kind="error"] { color: #a13232; font-weight: 600; }
+.session-file-input { display: none; }
+.session-report { margin-top: 1.5rem; }
+.assumptions-content { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; }
+.assumptions-block { min-width: 0; padding: 1rem; border: 1px solid #dfe6ec; border-radius: .65rem; background: #f8fafc; }
+.assumptions-block h3 { margin: 0 0 .65rem; font-size: .9rem; color: #25364c; }
+.assumptions-block p, .assumptions-block li, .session-reference { font-size: .8rem; line-height: 1.65; color: #53657b; overflow-wrap: anywhere; }
+.assumptions-block p { margin: .4rem 0; white-space: pre-wrap; }
+.session-reference { margin: 1rem 0 0; }
+.session-reference a { color: #32638e; text-decoration: underline; }
+@media (max-width: 720px) {
+  .site-header { flex-wrap: wrap; gap: 12px; padding-top: 14px; }
+  .header-tools { width: 100%; justify-content: flex-start; }
+  .assumptions-content { grid-template-columns: 1fr; }
+  .session-tools { width: 100%; }
+  .session-report .section-heading { align-items: flex-start; flex-direction: column; gap: .5rem; }
+}

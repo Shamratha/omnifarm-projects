@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "packageName": "webpack",
+  "generatedFrom": {
+    "generatorPath": "scripts/generate.ts",
+    "sources": [
+      {
+        "version": "5.99.0",
+        "label": "Latest",
+        "sourcePath": "samples/v2/webpack.d.ts"
+      },
+      {
+        "version": "5.98.0",
+        "label": "Previous",
+        "sourcePath": "samples/v1/webpack.d.ts"
+      }
+    ]
+  },
+  "versions": [
+    {
+      "version": "5.99.0",
+      "label": "Latest",
+      "apiPath": "/generated/api.json",
+      "sourcePath": "samples/v2/webpack.d.ts",
+      "symbolCount": 39,
+      "memberCount": 112,
+      "symbolCounts": {
+        "class": 9,
+        "interface": 16,
+        "function": 8,
+        "namespace": 4,
+        "type": 2,
+        "variable": 0
+      }
+    },
+    {
+      "version": "5.98.0",
+      "label": "Previous",
+      "apiPath": "/generated/api.json",
+      "sourcePath": "samples/v1/webpack.d.ts",
+      "symbolCount": 36,
+      "memberCount": 89,
+      "symbolCounts": {
+        "class": 8,
+        "interface": 15,
+        "function": 7,
+        "namespace": 4,
+        "type": 2,
+        "variable": 0
+      }
+    }
+  ],
+  "urls": {
+    "api": "/generated/api.json",
+    "manifest": "/generated/manifest.json",
+    "version": "/?version={version}",
+    "symbol": "/?version={version}&symbol={symbolId}#symbol-{stableSymbolId}",
+    "source": "/?version={version}&source={sourcePath}#L{line}",
+    "compare": "/?version={version}&compare=true#compare",
+    "diagnostics": "/?diagnostics=true"
+  },
+  "anchors": {
+    "symbol": "symbol-{stableSymbolId}",
+    "member": "member-{stableMemberId}",
+    "overload": "overload-{stableOwnerId}-{index}",
+    "diff": "diff-{stableSymbolId}",
+    "sourceLine": "L{line}"
+  }
+}

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b2d">
+  <title>Spectral Timing Lab · Browser Workbench</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="plots.css">
+  <link rel="stylesheet" href="session.css">
+  <link rel="stylesheet" href="session.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div>
+          <p class="overline">Spectral timing lab</p>
+          <p class="brand-name">Browser workbench <span class="status-dot"></span></p>
+        </div>
+      </div>
+      <div class="header-tools">
+        <span class="local-chip"><span class="lock-icon" aria-hidden="true">⌁</span> Runs locally in your browser</span>
+        <div class="session-tools" aria-label="Session controls">
+          <div class="session-actions">
+            <button class="button button-quiet" id="saveSession" type="button" disabled>Save session</button>
+            <button class="button button-quiet" id="restoreSession" type="button">Restore session</button>
+            <input class="session-file-input" id="sessionFile" type="file" accept="application/json,.json">
+          </div>
+          <small>Local JSON includes inputs, settings, and stored arrays.</small>
+          <p class="session-status" id="sessionStatus" role="status" aria-live="polite">Sessions stay in this browser; nothing is uploaded.</p>
+        </div>
+        <button class="button button-quiet" id="loadDemo" type="button">Load deterministic demo</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Two-channel review · no upload required</p>
+          <h1 id="page-title">See what your signals<br><em>are saying.</em></h1>
+          <p class="hero-summary">Import a pair of uniformly sampled CSV time series and inspect their timing relationship across time and frequency.</p>
+        </div>
+        <aside class="independence-note">
+          <span class="note-kicker">Independent analysis workbench</span>
+          <p>This browser tool is a lightweight companion for quick review. It is <strong>not a replacement for Stingray.jl</strong> or a production timing pipeline.</p>
+        </aside>
+      </section>
+
+      <section class="workbench-card import-card" aria-labelledby="import-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 · Bring in your data</p>
+            <h2 id="import-heading">Choose two signals</h2>
+          </div>
+          <p class="section-help">CSV files need <code>time</code>, <code>value</code>, and <code>units</code> columns.</p>
+        </div>
+        <div class="signal-grid">
+          <label class="file-drop" for="fileFirst">
+            <input id="fileFirst" type="file" accept=".csv,text/csv">
+            <span class="channel-label"><span class="channel-swatch swatch-a"></span>Signal A <span class="channel-role">reference</span></span>
+            <span class="upload-icon" aria-hidden="true">↑</span>
+            <span class="file-title" id="fileFirstName">Drop CSV here or browse</span>
+            <span class="file-meta" id="fileFirstMeta">time · value · units</span>
+          </label>
+          <label class="file-drop" for="fileSecond">
+            <input id="fileSecond" type="file" accept=".csv,text/csv">
+            <span class="channel-label"><span class="channel-swatch swatch-b"></span>Signal B <span class="channel-role">comparison</span></span>
+            <span class="upload-icon" aria-hidden="true">↑</span>
+            <span class="file-title" id="fileSecondName">Drop CSV here or browse</span>
+            <span class="file-meta" id="fileSecondMeta">time · value · units</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="workbench-card controls-card" aria-labelledby="controls-heading">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="eyebrow">02 · Tune the estimate</p>
+            <h2 id="controls-heading">Analysis settings</h2>
+          </div>
+          <button class="button button-primary" id="runAnalysis" type="button"><span>Run analysis</span><span aria-hidden="true">→</span></button>
+        </div>
+        <div class="controls-grid">
+          <label class="control-field">
+            <span>Time start (s)</span>
+            <input id="timeStart" type="number" step="any" inputmode="decimal" value="">
+            <small id="timeRangeHint">Aligned range · —</small>
+          </label>
+          <label class="control-field">
+            <span>Time end (s)</span>
+            <input id="timeEnd" type="number" step="any" inputmode="decimal" value="">
+            <small>Inclusive sample selection</small>
+          </label>
+          <label class="control-field">
+            <span>Frequency low (Hz)</span>
+            <input id="frequencyLow" type="number" min="0" step="any" inputmode="decimal" value="">
+            <small id="frequencyRangeHint">Available bins · —</small>
+          </label>
+          <label class="control-field">
+            <span>Frequency high (Hz)</span>
+            <input id="frequencyHigh" type="number" min="0" step="any" inputmode="decimal" value="">
+             <small>Must include at least one available bin</small>
+          </label>
+          <label class="control-field">
+            <span>Segment length <span class="info-dot" title="Welch segment length in samples">?</span></span>
+            <input id="segmentLength" type="number" min="2" step="1" value="256" inputmode="numeric">
+            <small>Samples · 50% overlap</small>
+          </label>
+          <label class="control-field">
+            <span>Window</span>
+            <select id="window">
+              <option value="hann">Periodic Hann</option>
+              <option value="hamming">Periodic Hamming</option>
+              <option value="blackman">Periodic Blackman</option>
+              <option value="boxcar">Boxcar</option>
+            </select>
+            <small>Applied to every complete segment</small>
+          </label>
+          <label class="control-field checkbox-field">
+            <span>DC removal</span>
+            <span class="checkbox-control"><input id="removeDC" type="checkbox" checked><span>Subtract each segment mean</span></span>
+            <small>Before windowing; DC bin remains measurable</small>
+          </label>
+          <label class="control-field">
+            <span>Averaging</span>
+            <select id="average">
+              <option value="mean">Mean</option>
+              <option value="median">Median</option>
+            </select>
+            <small>Median is uncorrected; cross components separately</small>
+          </label>
+          <label class="control-field">
+            <span>Normalization</span>
+            <select id="normalization">
+              <option value="density">Density · value²/Hz</option>
+              <option value="spectrum">Spectrum · value²</option>
+            </select>
+            <small>One-sided power and cross spectrum</small>
+          </label>
+          <label class="control-field">
+            <span>NaN policy</span>
+            <select id="nanPolicy">
+              <option value="raise">Reject NaN values</option>
+              <option value="omit">Omit NaN-containing segments</option>
+            </select>
+            <small>CSV value may be NaN; time and infinities rejected</small>
+          </label>
+          <label class="control-field">
+            <span>Unequal lengths</span>
+            <select id="lengthPolicy">
+              <option value="raise">Reject unequal lengths</option>
+              <option value="truncate">Truncate to common prefix</option>
+            </select>
+            <small>Cadence and aligned starts still required</small>
+          </label>
+           <div class="convention-callout">
+             <span class="callout-icon" aria-hidden="true">∿</span>
+             <div><strong>Welch · <span id="windowHint">periodic Hann</span></strong><br><span><span id="normalizationHint">One-sided density</span> · FFT bin spacing is <span id="binSpacingHint">—</span> · plots show <span id="bandHint">the selected band</span></span></div>
+           </div>
+        </div>
+      </section>
+
+      <div class="status-banner" id="statusBanner" role="status" aria-live="polite">
+        <span class="status-symbol" aria-hidden="true">✓</span><span id="statusText">Deterministic demo loaded. Ready to review.</span>
+      </div>
+
+      <section class="stats-section" aria-labelledby="stats-heading">
+        <div class="section-heading stats-heading">
+           <div>
+             <p class="eyebrow">03 · Read the room</p>
+             <h2 id="stats-heading">Review summary</h2>
+           </div>
+           <div class="stats-actions"><div class="cursor-readout" id="cursorReadout">Hover a plot to link the cursor</div><button class="button button-quiet" id="exportJson" type="button" disabled>Export JSON</button></div>
+        </div>
+        <div class="stats-grid" id="statsGrid">
+          <article class="stat-card"><span class="stat-label">Sampling rate</span><strong class="stat-value" id="statRate">—</strong><span class="stat-detail" id="statSamples">—</span></article>
+          <article class="stat-card"><span class="stat-label">Time span</span><strong class="stat-value" id="statDuration">—</strong><span class="stat-detail" id="statGrid">—</span></article>
+          <article class="stat-card"><span class="stat-label">Strongest feature</span><strong class="stat-value accent-value" id="statPeak">—</strong><span class="stat-detail" id="statPeakDetail">—</span></article>
+          <article class="stat-card"><span class="stat-label">At peak · phase / coherence</span><strong class="stat-value" id="statTiming">—</strong><span class="stat-detail" id="statTimingDetail">—</span></article>
+        </div>
+       </section>
+
+       <section class="comparison-section" aria-labelledby="comparison-heading">
+         <div class="section-heading comparison-heading">
+           <div>
+             <p class="eyebrow">04 · Compare the result</p>
+             <h2 id="comparison-heading">Peak and band comparison</h2>
+           </div>
+           <p class="section-help">Values use only the selected frequency band.</p>
+         </div>
+         <div class="table-wrap">
+           <table class="comparison-table">
+             <thead><tr><th scope="col">Metric</th><th scope="col">Signal A</th><th scope="col">Signal B</th><th scope="col">Timing / band</th><th scope="col">Notes</th></tr></thead>
+             <tbody id="comparisonBody"><tr><td colspan="5" class="empty-table">Run an analysis to populate the comparison.</td></tr></tbody>
+           </table>
+         </div>
+           <p class="uncertainty-note" id="uncertaintyNote">Coherence confidence is limited/heuristic. Phase uncertainty is not estimated unless supported; this browser review provides descriptive estimates only.</p>
+       </section>
+
+       <section class="plots-section" aria-labelledby="plots-heading">
+         <div class="section-heading plots-heading">
+           <div>
+             <p class="eyebrow">05 · Inspect the relationship</p>
+            <h2 id="plots-heading">Linked views</h2>
+          </div>
+          <div class="legend" aria-label="Plot legend"><span><i class="legend-line legend-a"></i>Signal A</span><span><i class="legend-line legend-b"></i>Signal B</span></div>
+         </div>
+         <div class="plot-display-controls">
+           <label for="plotLogFrequency"><input id="plotLogFrequency" type="checkbox" aria-describedby="plotFrequencyNote"> Log frequency display</label>
+           <button class="button button-quiet" id="plotClearCursor" type="button">Clear inspection</button>
+           <span class="plot-display-note">Display only · estimates and exported arrays stay unchanged</span>
+         </div>
+         <p class="plot-axis-note" id="plotFrequencyNote">Linear frequency display includes DC (0 Hz) when selected.</p>
+         <p class="plot-axis-note" id="plotInstructions">Hover to inspect the nearest sample/bin. Click to pin. Focus any plot and use Left/Right (Home/End for endpoints); Escape clears. Frequency views share one axis and cursor.</p>
+         <div class="plot-inspection" id="plotInspection">Hover a plot to inspect its samples.</div>
+         <div class="plot-sr-only" id="plotInspectionLive" role="status" aria-live="polite" aria-atomic="true"></div>
+         <div class="plot-grid">
+          <article class="plot-card plot-wide">
+            <div class="plot-card-header"><div><h3>Time series</h3><p>Shared sampling grid</p></div><span class="plot-badge">TIME</span></div>
+             <div class="canvas-wrap"><canvas id="timePlot" data-plot="time" tabindex="0" aria-label="Time series, Signal A and Signal B; time in seconds" aria-describedby="plotInstructions timePlotUnits plotInspection">Inspect time samples with Left and Right arrow keys.</canvas></div>
+             <p class="plot-units" id="timePlotUnits">A and B value units</p>
+          </article>
+          <article class="plot-card">
+            <div class="plot-card-header"><div><h3>Power spectra</h3><p id="powerPlotSubtitle">Welch density · log scale</p></div><span class="plot-badge">POWER</span></div>
+             <div class="canvas-wrap"><canvas id="powerPlot" data-plot="frequency" tabindex="0" aria-label="Power spectra, Signal A and Signal B; logarithmic power and frequency in hertz" aria-describedby="plotInstructions plotFrequencyNote powerPlotUnits plotInspection">Inspect frequency bins with Left and Right arrow keys.</canvas></div>
+             <p class="plot-units" id="powerPlotUnits">A and B power units</p>
+          </article>
+          <article class="plot-card">
+            <div class="plot-card-header"><div><h3>Phase lag</h3><p>Second minus first · positive = B leads</p></div><span class="plot-badge">PHASE</span></div>
+             <div class="canvas-wrap"><canvas id="phasePlot" data-plot="frequency" tabindex="0" aria-label="Phase lag, B minus A, in radians; frequency in hertz" aria-describedby="plotInstructions plotFrequencyNote plotInspection">Inspect phase at frequency bins with Left and Right arrow keys.</canvas></div>
+             <p class="plot-units">Phase: rad · undefined zero-cross-power bins omitted</p>
+          </article>
+          <article class="plot-card">
+            <div class="plot-card-header"><div><h3>Coherence</h3><p>Magnitude-squared · 0 to 1</p></div><span class="plot-badge">COH</span></div>
+             <div class="canvas-wrap"><canvas id="coherencePlot" data-plot="frequency" tabindex="0" aria-label="Magnitude-squared coherence, dimensionless from zero to one; frequency in hertz" aria-describedby="plotInstructions plotFrequencyNote plotInspection">Inspect coherence at frequency bins with Left and Right arrow keys.</canvas></div>
+             <p class="plot-units">Coherence: dimensionless · undefined zero-power bins omitted</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="validation-panel" id="validationPanel" aria-labelledby="validation-heading">
+        <div class="validation-header"><div><p class="eyebrow">Validation</p><h2 id="validation-heading">Input health</h2></div><span class="validation-state" id="validationState">PASS</span></div>
+        <div class="validation-content" id="validationContent"></div>
+      </section>
+
+      <section class="workbench-card session-report" id="assumptionsReport" aria-labelledby="assumptions-heading">
+        <div class="section-heading">
+          <div><p class="eyebrow">06 · Record the assumptions</p><h2 id="assumptions-heading">Analysis assumptions report</h2></div>
+          <p class="section-help">Describes the stored result, including bins outside the display band.</p>
+        </div>
+        <div id="assumptionsContent" class="assumptions-content"><p>Run or restore a valid analysis to view its assumptions.</p></div>
+        <p class="session-reference">Independent workbench; not a replacement for Stingray.jl or a production X-ray timing pipeline. Reference: <a href="https://summerofcode.withgoogle.com/programs/2026/projects/0VhXusPh" target="_blank" rel="noopener noreferrer">Spectral Timing in Julia: Extending Stingray.jl for X-ray Astronomy (OpenAstronomy)</a>. No numerical equivalence or endorsement is implied.</p>
+      </section>
+
+      <section class="method-note">
+        <div class="method-icon" aria-hidden="true">i</div>
+        <div><strong>Conventions used in this workbench</strong><p>Signals must be uniformly sampled on the same time grid. Defaults are a periodic Hann window, per-segment mean subtraction, mean averaging, and one-sided density normalization by <code>sample rate × sum(window²)</code>. Spectrum normalization divides by <code>sum(window)²</code>. Complete segments use 50% overlap; incomplete tails are discarded. NaN omission drops a segment from both channels without removing samples or interpolating. Rejection includes NaNs in the incomplete tail of the analyzed prefix. Truncation uses the aligned common prefix while validating both full time grids. Median averaging is uncorrected and uses separate real/imaginary cross medians. Cross spectrum is <code>conj(FFT(A)) × FFT(B)</code>; phase is wrapped to <code>[−π, π]</code>.</p></div>
+      </section>
+    </main>
+    <footer><span>Spectral timing lab · local review surface</span><span>Independent workbench · built without external dependencies</span></footer>
+  </div>
+  <script src="session.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

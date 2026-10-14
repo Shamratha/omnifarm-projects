@@ -1,0 +1,8 @@
+node_modules/
+dist/
+server/data/*.sqlite
+server/data/*.sqlite-shm
+server/data/*.sqlite-wal
+.DS_Store
+test-results/
+playwright-report/

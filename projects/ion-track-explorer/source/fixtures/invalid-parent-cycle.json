@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "name": "Invalid cycle fixture",
+    "description": "Expected to fail cascade validation.",
+    "source": "Repository test fixture",
+    "ion": "Ar",
+    "material": "Si",
+    "incidentEnergyKeV": 1,
+    "targetSizeNm": [10, 10, 160]
+  },
+  "tracks": [
+    {
+      "ionId": 1,
+      "parentId": 2,
+      "species": "Si",
+      "kind": "recoil",
+      "events": [{"timeFs": 0, "positionNm": [0, 0, 0], "depositedEnergyEv": 1}]
+    },
+    {
+      "ionId": 2,
+      "parentId": 1,
+      "species": "Si",
+      "kind": "recoil",
+      "events": [{"timeFs": 0, "positionNm": [0, 0, 20], "depositedEnergyEv": 1}]
+    }
+  ]
+}

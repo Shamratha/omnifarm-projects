@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0c111c" />
+    <title>MD Progress Monitor</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
+            <p class="eyebrow">MOLECULAR DYNAMICS / STREAM 01</p>
+            <h1>Progress monitor</h1>
+          </div>
+        </div>
+        <div class="connection-wrap" aria-label="Connection status">
+          <span id="connection-dot" class="connection-dot offline" aria-hidden="true"></span>
+          <span id="connection-label" role="status" aria-live="polite" aria-atomic="true">Connecting</span>
+          <span class="connection-separator">·</span>
+          <span id="endpoint-label">ws://127.0.0.1:8765/ws</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="run-heading">
+          <div>
+            <div class="run-title-line">
+              <h2 id="trajectory-name">Waiting for trajectory</h2>
+              <span id="run-state" class="state-pill state-idle">OFFLINE</span>
+            </div>
+            <p id="trajectory-source" class="muted">Local producer has not connected yet.</p>
+          </div>
+          <div class="run-progress">
+            <div class="progress-meta">
+              <span id="progress-title">PLAYBACK PROGRESS</span>
+              <strong id="progress-label">0 / 0 frames</strong>
+            </div>
+            <div id="progress-track" class="progress-track" role="progressbar" aria-labelledby="progress-title" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <div id="progress-bar" class="progress-bar"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="metric-grid" aria-label="Current received frame metrics">
+          <article class="metric-card accent-cyan">
+            <div class="metric-label"><span class="metric-icon">↗</span> TRAJECTORY STEP</div>
+            <div id="step-value" class="metric-value">—</div>
+            <div id="time-value" class="metric-foot">0 fs in trajectory</div>
+          </article>
+          <article class="metric-card accent-orange">
+            <div class="metric-label"><span class="metric-icon">°</span> RECEIVED TEMPERATURE</div>
+            <div id="temperature-value" class="metric-value">— <small>K</small></div>
+            <div id="temperature-range" class="metric-foot">Waiting for data</div>
+          </article>
+          <article class="metric-card accent-violet">
+            <div class="metric-label"><span class="metric-icon">∿</span> RECEIVED ENERGY</div>
+            <div id="energy-value" class="metric-value">— <small>kJ/mol</small></div>
+            <div id="energy-range" class="metric-foot">Waiting for data</div>
+          </article>
+          <article class="metric-card accent-green">
+            <div class="metric-label"><span class="metric-icon">◷</span> STREAM TIME</div>
+            <div id="timestamp-value" class="metric-value timestamp">—</div>
+            <div id="frame-age" class="metric-foot">No frame received</div>
+          </article>
+          <article class="metric-card accent-pink">
+            <div class="metric-label"><span class="metric-icon">⌁</span> RMSD VS. FIRST FRAME</div>
+            <div id="rmsd-value" class="metric-value">— <small>Å</small></div>
+            <div id="rmsd-foot" class="metric-foot">Waiting for reference</div>
+          </article>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="panel molecule-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">LIVE GEOMETRY</p>
+                <h3 id="molecule-title">Molecular view</h3>
+              </div>
+              <div class="view-state"><span class="live-dot"></span><span id="view-state-label">LIVE</span></div>
+            </div>
+            <div class="canvas-wrap molecule-canvas-wrap">
+              <canvas id="molecule-canvas" aria-label="Molecular geometry visualization"></canvas>
+              <div id="molecule-empty" class="canvas-empty">Waiting for particle coordinates…</div>
+              <div class="axis-label axis-x">x / Å</div>
+              <div class="axis-label axis-y">y / Å</div>
+            </div>
+            <div class="molecule-footer">
+              <div id="atom-count">— particles</div>
+              <div class="legend"><span class="legend-item"><i class="legend-dot atom-carbon"></i>C</span><span class="legend-item"><i class="legend-dot atom-oxygen"></i>O</span><span class="legend-item"><i class="legend-dot atom-hydrogen"></i>H</span></div>
+              <button id="return-live" class="text-button" aria-label="Return to live frame" aria-keyshortcuts="L" hidden>Return to live frame ↗</button>
+            </div>
+          </article>
+
+          <article class="panel chart-panel">
+            <div class="panel-heading chart-heading">
+              <div>
+                <p class="section-kicker">STREAM TELEMETRY</p>
+                <h3>Received-frame profiles</h3>
+              </div>
+              <div class="chart-actions">
+                <label class="plot-setting">WINDOW
+                  <select id="plot-window" aria-label="Chart window">
+                    <option value="0">All retained</option>
+                    <option value="8">Last 8</option>
+                    <option value="16">Last 16</option>
+                    <option value="28">Last 28</option>
+                  </select>
+                </label>
+                <label class="plot-setting">DISPLAY
+                  <select id="plot-points" aria-label="Chart display points">
+                    <option value="4">4 pts</option>
+                    <option value="8">8 pts</option>
+                    <option value="16">16 pts</option>
+                    <option value="200" selected>200 pts</option>
+                  </select>
+                </label>
+                <button id="export-csv" class="export-button" aria-label="Export retained frames as CSV" aria-keyshortcuts="E" disabled>↓ CSV</button>
+              </div>
+            </div>
+            <div class="chart-legend"><span><i class="line-swatch temperature-line"></i>Temperature</span><span><i class="line-swatch energy-line"></i>Potential energy</span><span><i class="line-swatch rmsd-line"></i>RMSD</span></div>
+            <div class="canvas-wrap chart-canvas-wrap">
+              <canvas id="metrics-canvas" aria-label="Temperature, potential energy and unaligned RMSD plots against simulation step, each with its own unit axis"></canvas>
+              <div id="chart-empty" class="canvas-empty">Metrics will draw as frames arrive…</div>
+            </div>
+            <div class="chart-footer"><span id="chart-window">Recent frame window · 0 points</span><span id="chart-display">0 displayed · downsampled for display only</span></div>
+          </article>
+
+          <aside class="panel controls-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">PRODUCER CONTROL</p>
+                <h3>Playback</h3>
+              </div>
+              <span id="producer-status" class="producer-status" role="status" aria-label="Playback status" aria-live="polite" aria-atomic="true">IDLE</span>
+            </div>
+            <div class="control-buttons">
+              <button id="pause-button" class="control-button primary" aria-label="Pause stream" aria-keyshortcuts="Space" disabled><span aria-hidden="true">Ⅱ</span> Pause stream</button>
+              <button id="resume-button" class="control-button" aria-label="Resume stream" aria-keyshortcuts="Space" disabled><span aria-hidden="true">▶</span> Resume stream</button>
+              <button id="restart-button" class="control-button subtle" aria-label="Replay trajectory" aria-keyshortcuts="R" disabled><span aria-hidden="true">↻</span> Replay trajectory</button>
+            </div>
+            <p class="keyboard-help" id="keyboard-help"><span><strong>Keyboard</strong> <kbd>Space</kbd> pause/resume · <kbd>R</kbd> replay · <kbd>L</kbd> live · <kbd>E</kbd> export CSV<br />Shortcuts apply outside text entry and controls. Tab to a control, then use its normal keys.</span></p>
+            <div class="control-note"><span class="note-icon">i</span><p>Trajectory playback only—not a simulation engine. Temperature and energy are recorded inputs, not calculated forces. Selecting a frame changes inspection, not the stream.</p></div>
+            <details class="analysis-assumptions"><summary>RMSD + display assumptions</summary><p>Equal-weight 3D RMSD against frame 0 in Å; atom order must stay fixed. No centering, rotation fitting, atom matching, or periodic unwrapping. Rigid motion counts even though the molecule view recenters automatically. Window summaries use every retained frame in the selected window, not just plotted points. Sampling may hide short spikes.</p></details>
+          </aside>
+
+          <article class="panel frames-panel">
+            <div class="panel-heading frames-heading">
+              <div>
+                <p class="section-kicker">RECENT FRAME BUFFER</p>
+                <h3 id="frames-title">Frame inspection</h3>
+              </div>
+              <span id="buffer-count" class="buffer-count">0 / 28</span>
+            </div>
+            <div id="frames-scroll" class="table-wrap" role="region" aria-labelledby="frames-title" aria-describedby="frames-help" tabindex="0">
+              <table aria-label="Recent frame inspection" aria-describedby="frames-help">
+                <thead><tr><th scope="col">FRAME</th><th scope="col">STEP</th><th scope="col">TEMP.</th><th scope="col">ENERGY</th><th scope="col">TIME</th></tr></thead>
+                <tbody id="frames-body"><tr class="empty-row"><td colspan="5">Waiting for frames…</td></tr></tbody>
+              </table>
+            </div>
+            <div class="frames-footer"><span id="frames-help">Click or tab to a row, then press Enter or Space to inspect. Scroll for all columns.</span><span id="buffer-note">Bounded to 28 frames</span></div>
+          </article>
+
+          <article class="panel summary-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="section-kicker">ROLLING SUMMARY</p>
+                <h3 id="summary-title">Selected metric window</h3>
+              </div>
+              <span id="summary-count" class="buffer-count">0 frames</span>
+            </div>
+            <div class="summary-grid">
+              <div class="summary-metric"><span class="summary-name">TEMPERATURE / K</span><strong id="summary-temperature">—</strong><span id="summary-temperature-detail">mean · min — max —</span></div>
+              <div class="summary-metric"><span class="summary-name">ENERGY / kJ·mol⁻¹</span><strong id="summary-energy">—</strong><span id="summary-energy-detail">mean · min — max —</span></div>
+              <div class="summary-metric"><span class="summary-name">RMSD / Å</span><strong id="summary-rmsd">—</strong><span id="summary-rmsd-detail">mean · min — max —</span></div>
+            </div>
+            <div class="summary-footer">Population statistics over retained, received frames · standard deviation shown</div>
+          </article>
+
+          <article class="panel diagnostics-panel" aria-labelledby="diagnostics-title">
+            <div class="panel-heading diagnostics-heading">
+              <div>
+                <p class="section-kicker">PROTOCOL / CLIENT DIAGNOSTICS</p>
+                <h3 id="diagnostics-title">Stream continuity</h3>
+              </div>
+              <span id="diagnostics-status" class="diagnostics-status" role="status" aria-live="polite" aria-atomic="true">Connecting</span>
+            </div>
+            <div class="diagnostics-grid">
+              <div class="diagnostic-card"><span class="diagnostic-label">OBSERVED SEQUENCE GAPS</span><strong id="diagnostics-gap-count">0</strong><span id="diagnostics-gap-detail">0 missing sequence(s) across accepted jumps</span></div>
+              <div class="diagnostic-card"><span class="diagnostic-label">OBSERVED IDENTICAL DUPLICATES</span><strong id="diagnostics-duplicate-count">0</strong><span id="diagnostics-duplicate-detail">No identical replay frames observed</span></div>
+              <div class="diagnostic-card"><span class="diagnostic-label">OBSERVED RECONNECT RESETS</span><strong id="diagnostics-reset-count">0</strong><span id="diagnostics-reset-detail">No reconnect reset snapshots observed</span></div>
+              <div class="diagnostic-card"><span class="diagnostic-label">OBSERVED CURSOR EXPIRATIONS</span><strong id="diagnostics-expired-count">0</strong><span id="diagnostics-expired-detail">No expired cursor reset observed</span></div>
+              <div class="diagnostic-card"><span class="diagnostic-label">FRAMES CURRENTLY RETAINED</span><strong id="diagnostics-retained-count">0</strong><span id="diagnostics-retained-detail">No frames currently retained by client</span></div>
+              <div class="diagnostic-card"><span class="diagnostic-label">BUFFER USAGE / CAPACITY</span><strong id="diagnostics-buffer-count">0 / —</strong><span id="diagnostics-buffer-detail">Waiting for buffer metadata</span></div>
+              <div class="diagnostic-card diagnostic-card-wide"><span class="diagnostic-label">ESTIMATED BOUNDED-BUFFER DROPS</span><strong id="diagnostics-dropped-count">0</strong><span id="diagnostics-dropped-detail">Inferred from sequence span and buffer bounds</span></div>
+            </div>
+            <div class="diagnostics-footer">Observed protocol events and inferred bounded-buffer retention only. Estimated drops may overlap gaps and do not measure server-side network packet loss.</div>
+          </article>
+        </section>
+      </main>
+
+      <footer class="footer"><span>LOCAL PLAYBACK · NOT A SIMULATION ENGINE</span><span id="footer-source">MDAnalysis-inspired streaming interface</span></footer>
+    </div>
+    <div id="status-announcer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

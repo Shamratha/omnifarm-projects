@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec5c4c09dffeuQZCemWJbgvpFl/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "typescript-api-docs",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec5c4c09dffeuQZCemWJbgvpFl",
+  "source_package": "manual-984c29ff",
+  "source_policy": "final workspace source published"
+}

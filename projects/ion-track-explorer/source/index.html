@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b151f" />
+    <title>Ion Track Explorer — Silicon Cascade</title>
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
+            <p class="eyebrow">ION TRACK EXPLORER <span>/</span> PRERECORDED VIEW</p>
+            <h1>Silicon cascade</h1>
+          </div>
+        </div>
+        <div class="topbar-summary">
+          <div class="dataset-status"><span class="status-dot"></span><span id="load-status">LOADING DATA</span></div>
+          <p id="data-note" class="header-note">Recorded event data · no simulation</p>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="sidebar" aria-label="Explorer controls">
+          <section class="panel intro-panel">
+            <p class="section-kicker">DATASET</p>
+            <h2 id="dataset-name">Loading…</h2>
+            <p id="dataset-description" class="muted-copy">Reading the supplied track archive.</p>
+            <p id="dataset-source" class="source-label">Source: —</p>
+            <div class="data-actions">
+              <button id="import-data" class="secondary-button" type="button">Import trajectory</button>
+              <input id="trajectory-file" class="sr-only" type="file" aria-label="Choose a JSON or CSV trajectory" accept=".json,.csv,application/json,text/csv" />
+            </div>
+            <p id="import-status" class="control-caption" aria-live="polite">Bundled JSON is loaded by default. Imported data is not retained across reloads.</p>
+            <dl class="metadata-grid">
+              <div><dt>ION</dt><dd id="meta-ion">—</dd></div>
+              <div><dt>TARGET</dt><dd id="meta-material">—</dd></div>
+              <div><dt>INCIDENT ENERGY</dt><dd id="meta-energy">—</dd></div>
+              <div><dt>VOLUME</dt><dd id="meta-volume">—</dd></div>
+            </dl>
+          </section>
+
+          <section class="panel controls-panel">
+            <div class="panel-heading">
+              <div><p class="section-kicker">VISIBILITY</p><h2>Track layers</h2></div>
+              <span id="visible-count" class="count-badge">—</span>
+            </div>
+            <div class="toggle-stack">
+              <button id="toggle-primary" class="layer-toggle primary-toggle" type="button" aria-pressed="true">
+                <span class="toggle-swatch"></span><span class="toggle-label"><strong>Beam tracks</strong><small id="primary-count">— primaries</small></span><span class="toggle-check">✓</span>
+              </button>
+              <button id="toggle-recoil" class="layer-toggle recoil-toggle" type="button" aria-pressed="true">
+                <span class="toggle-swatch"></span><span class="toggle-label"><strong>Recoil tracks</strong><small id="recoil-count">— recoils</small></span><span class="toggle-check">✓</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="panel filter-panel">
+            <div class="panel-heading"><div><p class="section-kicker">ELIGIBILITY</p><h2>Event filters</h2></div><span id="filter-count" class="count-badge">—</span></div>
+            <div id="event-type-filters" class="filter-toggles" aria-label="Event type filters"></div>
+            <div class="energy-filter-grid">
+              <label><span>Min energy (eV)</span><input id="min-energy" type="number" min="0" step="any" placeholder="Any" /></label>
+              <label><span>Max energy (eV)</span><input id="max-energy" type="number" min="0" step="any" placeholder="Any" /></label>
+            </div>
+            <p id="filter-status" class="control-caption" aria-live="polite">Filters affect the table, profile, highlights, and bounded 3D rendering.</p>
+          </section>
+
+          <section class="panel session-panel">
+            <div class="panel-heading"><div><p class="section-kicker">SESSION</p><h2>Save view state</h2></div></div>
+            <div class="session-actions">
+              <button id="save-session" class="secondary-button" type="button">Download session</button>
+              <button id="load-session" class="secondary-button" type="button">Load session</button>
+              <button id="restore-local-session" class="secondary-button" type="button">Restore local session</button>
+              <input id="session-file" class="sr-only" type="file" aria-label="Choose a session JSON file" accept="application/json,.json" />
+            </div>
+            <div class="session-actions export-actions">
+              <button id="export-figure" class="secondary-button" type="button">Export PNG figure</button>
+              <button id="export-profile-csv" class="secondary-button" type="button" disabled>Export profile CSV</button>
+            </div>
+            <p id="session-status" class="control-caption" aria-live="polite">Sessions store view state and dataset identity, never trajectory data.</p>
+          </section>
+
+          <section class="panel timeline-panel">
+            <div class="panel-heading">
+              <div><p class="section-kicker">TEMPORAL SLICE</p><h2>Event time</h2></div>
+              <output id="time-readout" class="time-readout" for="time-slider">— fs</output>
+            </div>
+            <label class="sr-only" for="time-slider">Current event time in femtoseconds</label>
+            <input id="time-slider" type="range" min="0" max="240" value="240" step="1" />
+            <div class="range-labels"><span>0 fs</span><span id="max-time-label">240 fs</span></div>
+            <div class="transport-row">
+              <button id="step-back" class="icon-button" type="button" aria-label="Step backward 12 femtoseconds">−12</button>
+              <button id="play-toggle" class="play-button" type="button" aria-label="Play timeline"><span class="play-icon">▶</span><span id="play-label">Play sequence</span></button>
+              <button id="step-forward" class="icon-button" type="button" aria-label="Step forward 12 femtoseconds">+12</button>
+            </div>
+            <p class="control-caption">Tracks are drawn only through the current event time.</p>
+          </section>
+
+          <section class="panel selected-panel">
+            <div class="panel-heading"><div><p class="section-kicker">INSPECTOR</p><h2>Selected track</h2></div><span id="selected-marker" class="selected-marker"></span></div>
+            <div id="selected-detail" class="selected-detail empty-detail">Select a beam or recoil path to inspect it.</div>
+            <p class="control-caption">Follow parent and child buttons through the cascade. Navigation reveals the track’s layer and keeps the current time.</p>
+          </section>
+
+            <section class="panel legend-panel">
+            <p class="section-kicker">ACTIVE LEGEND</p>
+            <div class="legend-row"><span class="legend-line beam-line"></span><span>Beam / primary</span></div>
+            <div class="legend-row"><span class="legend-line recoil-line"></span><span>Recoil / secondary</span></div>
+            <div class="legend-row"><span class="legend-line selected-line"></span><span>Selected track</span></div>
+            <div class="legend-row"><span class="legend-node event-node"></span><span>Event marker</span></div>
+            <div class="legend-row"><span class="legend-node selected-node"></span><span>Selected event / bin highlight</span></div>
+            <div class="legend-row"><span class="legend-sample profile-bar-sample"></span><span>Profile bar = total energy</span></div>
+            <div class="legend-row"><span class="legend-sample mean-line-sample"></span><span>Profile line = mean / event</span></div>
+            <p class="legend-note">Filters define eligibility; they are not additional colors.</p>
+          </section>
+
+          <p class="sidebar-footnote"><strong>Event viewer · no simulation.</strong> The bundled demonstration is synthetic. Imported records and their provenance come from the supplied file.</p>
+        </aside>
+
+        <section class="content-column">
+          <section class="panel scene-panel">
+            <div class="scene-toolbar">
+              <div>
+                <p class="section-kicker">3D TARGET VOLUME</p>
+                 <h2>Recorded ion paths <span class="inline-separator">•</span> <span id="scene-time-label">240 fs</span></h2>
+              </div>
+              <button id="reset-view" class="secondary-button" type="button"><span aria-hidden="true">↺</span> Reset view</button>
+            </div>
+               <div id="scene-viewport" class="scene-viewport" aria-label="Interactive three-dimensional ion track view">
+              <div class="scene-loading" id="scene-loading"><span class="loading-orbit"></span><span>Preparing target volume…</span></div>
+              <div class="scene-hud hud-top-left"><span class="hud-label">TARGET BOX</span><span id="box-size">100 × 100 × 160 nm</span></div>
+              <div class="scene-hud hud-bottom-left"><span class="axis-chip axis-x">X</span><span class="axis-chip axis-y">Y</span><span class="axis-chip axis-z">Z</span><span>Drag to orbit · scroll to zoom</span></div>
+               </div>
+              <div class="scene-mobile-controls" aria-label="Camera controls">
+                <span class="mobile-control-label">CAMERA</span>
+                <button id="camera-left" class="icon-button" type="button" aria-label="Orbit camera left">←</button>
+                <button id="camera-right" class="icon-button" type="button" aria-label="Orbit camera right">→</button>
+                <button id="camera-up" class="icon-button" type="button" aria-label="Orbit camera up">↑</button>
+                <button id="camera-down" class="icon-button" type="button" aria-label="Orbit camera down">↓</button>
+                <button id="camera-zoom-in" class="icon-button" type="button" aria-label="Zoom camera in">+</button>
+                <button id="camera-zoom-out" class="icon-button" type="button" aria-label="Zoom camera out">−</button>
+                <button id="camera-reset" class="icon-button" type="button" aria-label="Reset camera view">Reset</button>
+              </div>
+              <div id="render-counts" class="render-counts" aria-live="polite"></div>
+             <p id="render-budget-note" class="control-caption render-budget-note"></p>
+          </section>
+
+          <div class="analysis-grid">
+            <section class="panel profile-panel">
+              <div class="panel-heading profile-heading">
+                <div><p class="section-kicker">SELECTED TRACK ANALYSIS</p><h2>Depth-energy profile</h2></div>
+                <div class="profile-metrics"><div><span id="profile-total">—</span><small>Total deposited</small></div><div><span id="profile-mean">—</span><small>Mean / event</small></div></div>
+              </div>
+              <div id="profile-chart" class="profile-chart" role="group" aria-label="Interactive depth-energy profile"><div class="chart-empty">Select a visible track to calculate its profile.</div></div>
+              <p class="chart-caption"><span>Depth along Z axis (nm)</span><span>Bar = total eV · line = mean eV</span></p>
+               <p class="control-caption">Profile includes all eligible selected-track events. Click a bin to highlight its eligible events in the table and its rendered subset in 3D. Bins use [edge, next edge); exact max depth and out-of-range depths clamp to the first/last bin.</p>
+            </section>
+
+            <section class="panel track-list-panel">
+              <div class="panel-heading"><div><p class="section-kicker">CATALOG</p><h2>Track list</h2></div><span class="list-hint">Click to focus</span></div>
+              <div id="track-list" class="track-list" aria-label="Ion track list"><div class="list-empty">Tracks will appear here.</div></div>
+            </section>
+          </div>
+          <section class="panel events-panel" aria-labelledby="events-heading">
+            <div class="panel-heading"><div><p class="section-kicker">LINKED EVENT INSPECTOR</p><h2 id="events-heading">Selected track events</h2></div><span id="event-summary" class="count-badge">0 visible events</span></div>
+            <p id="selection-summary" class="selection-summary" aria-live="polite">Select an event or depth bin</p>
+            <div class="event-table-scroll">
+              <table class="event-table">
+               <thead><tr><th scope="col">Event</th><th scope="col">Time (fs)</th><th scope="col">X, Y, Z (nm)</th><th scope="col">Energy (eV)</th><th scope="col">Type</th><th scope="col">Bin</th></tr></thead>
+                <tbody id="event-table-body"><tr><td colspan="6" class="list-empty">Select a track to inspect its events.</td></tr></tbody>
+              </table>
+            </div>
+            <div class="table-controls"><button id="table-previous" class="secondary-button" type="button">Previous</button><span id="table-page">Page 1 of 1</span><button id="table-next" class="secondary-button" type="button">Next</button></div>
+            <p id="table-notice" class="control-caption"></p>
+             <p class="control-caption">Table and profile use type/energy filters, current time, and the selected track’s layer. Click a row or 3D marker to select its original archive event number. Amber highlights only budgeted 3D events. Filtering out a selected event, scrubbing before it, or hiding its layer clears event/bin selection. Bin membership follows time and filters.</p>
+          </section>
+        </section>
+      </main>
+      <footer class="app-footer"><span>Visual analytics for event tracks</span><span>Coordinates nm · time fs · energy eV</span><a href="https://summerofcode.withgoogle.com/programs/2026/projects/lVrYry5l" target="_blank" rel="noreferrer">Project reference ↗</a></footer>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

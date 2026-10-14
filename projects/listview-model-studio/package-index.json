@@ -1,0 +1,14 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec5c30c0affexcOFHSItq8GGGZ/verify/level.json",
+    "qc/task-qc.json"
+  ],
+  "project": "listview-model-studio",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec5c30c0affexcOFHSItq8GGGZ",
+  "source_package": "manual-c7c92b06",
+  "source_policy": "final workspace source published"
+}
