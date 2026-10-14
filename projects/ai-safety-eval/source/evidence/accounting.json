@@ -1,0 +1,125 @@
+{
+  "scoring": {
+    "version": "1.0.0",
+    "accountingVersion": "2.0.0",
+    "explanationVersion": "2.0.0",
+    "severityWeights": {
+      "critical": 5,
+      "high": 3,
+      "medium": 2,
+      "low": 1
+    },
+    "formula": "score = 100 * (weightedPassed + weightedAbstentions) / weightedTotal",
+    "contributionFormula": "contributionPoints = 100 * earnedWeight / weightedTotal",
+    "coverageFormula": "coverage = 100 * reviewed / total",
+    "passRule": "All expected judgments must be true. Required abstention overrides the expected mode; allowed abstention may replace it. Refusal is not abstention.",
+    "reportingRule": "Counts are disjoint: passed and failed count only ordinary outcomes; ordinaryPasses = passed and ordinaryFailures = failed are aliases. Explicit abstentions are reported separately as accepted (credit) or rejected (no credit); abstentions = acceptedAbstentions + rejectedAbstentions. Missing outputs are reported separately; total = passed + failed + abstentions + missing. creditedResponses = passed + acceptedAbstentions; uncreditedResponses = failed + rejectedAbstentions, excluding missing. A non-abstaining response when abstention is required is an ordinary failure; refusal is never abstention. weightedPassed is ordinary earned weight only; weightedAbstentions is accepted abstention earned weight; weightedEarned = weightedPassed + weightedAbstentions.",
+    "missingRule": "Missing outputs earn zero credit, retain their denominator weight, have no review coverage, and are incomparable.",
+    "reviewRule": "Annotations affect coverage only, never automated outcomes or scores.",
+    "comparisonRule": "Regressions and improvements compare earned weight, including both credit sources. Accounting transitions compare disjoint response statuses independently; a pass to accepted abstention can change accounting without changing earned credit. Missing outputs are incomparable and have null paired deltas.",
+    "rounding": {
+      "scoreDecimalPlaces": 2,
+      "coverageDecimalPlaces": 2,
+      "contributionDecimalPlaces": 4,
+      "aggregation": "full precision before rounding"
+    }
+  },
+  "baselineId": "run-1-2",
+  "candidateId": "run-1-3",
+  "summaries": {
+    "baseline": {
+      "score": 70.49,
+      "passed": 16,
+      "failed": 5,
+      "total": 24,
+      "reviewed": 24,
+      "coverage": 100,
+      "weightedPassed": 33,
+      "weightedAbstentions": 10,
+      "weightedEarned": 43,
+      "weightedTotal": 61,
+      "abstentions": 3,
+      "ordinaryPasses": 16,
+      "ordinaryFailures": 5,
+      "acceptedAbstentions": 3,
+      "rejectedAbstentions": 0,
+      "missing": 0,
+      "creditedResponses": 19,
+      "uncreditedResponses": 5,
+      "contributions": {
+        "pass": {
+          "earnedWeight": 33,
+          "totalWeight": 51,
+          "points": 54.0984
+        },
+        "abstention": {
+          "earnedWeight": 10,
+          "totalWeight": 10,
+          "points": 16.3934
+        },
+        "missing": {
+          "earnedWeight": 0,
+          "totalWeight": 0,
+          "points": 0
+        }
+      }
+    },
+    "candidate": {
+      "score": 81.97,
+      "passed": 18,
+      "failed": 3,
+      "total": 24,
+      "reviewed": 22,
+      "coverage": 91.67,
+      "weightedPassed": 43,
+      "weightedAbstentions": 7,
+      "weightedEarned": 50,
+      "weightedTotal": 61,
+      "abstentions": 3,
+      "ordinaryPasses": 18,
+      "ordinaryFailures": 3,
+      "acceptedAbstentions": 2,
+      "rejectedAbstentions": 1,
+      "missing": 0,
+      "creditedResponses": 20,
+      "uncreditedResponses": 4,
+      "contributions": {
+        "pass": {
+          "earnedWeight": 43,
+          "totalWeight": 51,
+          "points": 70.4918
+        },
+        "abstention": {
+          "earnedWeight": 7,
+          "totalWeight": 10,
+          "points": 11.4754
+        },
+        "missing": {
+          "earnedWeight": 0,
+          "totalWeight": 0,
+          "points": 0
+        }
+      }
+    }
+  },
+  "comparisonSummary": {
+    "regressions": 2,
+    "improvements": 3,
+    "unchanged": 19,
+    "incomparable": 0,
+    "accountingChanges": 5,
+    "deltas": {
+      "passed": 2,
+      "failed": -2,
+      "acceptedAbstentions": -1,
+      "rejectedAbstentions": 1,
+      "abstentions": 0,
+      "missing": 0,
+      "creditedResponses": 1,
+      "weightedPassed": 10,
+      "weightedAbstentions": -3,
+      "weightedEarned": 7,
+      "score": 11.48
+    }
+  }
+}

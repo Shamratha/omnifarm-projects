@@ -1,0 +1,14 @@
+{
+  "project": "ai-safety-eval",
+  "session_id": "ses_ec427a541ffe6YXJp2OJgdH5gt",
+  "source_package": "second-batch-ai",
+  "raw_trace_policy": "not published",
+  "source_policy": "final workspace source published",
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec427a541ffe6YXJp2OJgdH5gt/verify/level.json",
+    "qc/task-qc.json"
+  ]
+}

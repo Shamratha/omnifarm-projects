@@ -2458,6 +2458,42 @@
       "session_trace_qc": {
         "all_pass": false
       }
+    },
+    {
+      "project": "ai-safety-eval",
+      "session_id": "ses_ec427a541ffe6YXJp2OJgdH5gt",
+      "source_package": "second-batch-ai",
+      "status": "shipped",
+      "funnel": {
+        "shipped": 1,
+        "review": 0,
+        "platform_locked": 0,
+        "rejected": 0,
+        "error": 0
+      },
+      "replay_quality": {
+        "level": "S",
+        "fails_here": 5,
+        "grades": {
+          "n/a": 30,
+          "match": 84,
+          "diff": 28
+        },
+        "env_failures": {
+          "missing-file": 3
+        },
+        "agreeing_replays": 2,
+        "why_not_R": [
+          "5 calls passed for the user and fail here, e.g. turn-02 diverge: passed for the user, fails here; turn-02 diverge: file not in the package; turn-02 diverge: file not in the package"
+        ]
+      },
+      "verification": {
+        "verifier_version": "1.5.0",
+        "errors": 0
+      },
+      "session_trace_qc": {
+        "all_pass": false
+      }
     }
   ],
   "publication_policy": {

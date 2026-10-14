@@ -1,6 +1,6 @@
 # Omnifarm project publication
 
-This repository is a clean review index for 40 completed Omnifarm sessions. Each entry contains a final project source snapshot, a derived summary, and a package index tied to the controlled remote build package. The ten entries added on 2026-10-14 are standalone local prototypes inspired by GSoC-style project ideas. They are not claims of completing or replacing upstream GSoC projects.
+This repository is a clean review index for 41 completed Omnifarm sessions. Each entry contains a final project source snapshot, a derived summary, and a package index tied to the controlled remote build package. The ten entries added on 2026-10-14 are standalone local prototypes inspired by GSoC-style project ideas. They are not claims of completing or replacing upstream GSoC projects.
 
 The public repository intentionally excludes raw conversation archives, debug logs, temporary Docker workspaces, credentials, tokens, private keys, and full server snapshots. Those remain in the controlled build environment and are referenced by package name only.
 
@@ -51,6 +51,8 @@ The public repository intentionally excludes raw conversation archives, debug lo
 
 | [evidence-desk](projects/evidence-desk/summary.json) | `ses_ec4274de5ffeGO8hGybFjYaVFm` | 1 | S | 0.5 | 0 |
 | [edge-energy-lab](projects/edge-energy-lab/summary.json) | `ses_ec4280d77ffeeudgrJhtfV1XmF` | 1 | S | 0.5 | 0 |
+
+| [ai-safety-eval](projects/ai-safety-eval/summary.json) | `ses_ec427a541ffe6YXJp2OJgdH5gt` | 1 | S | 0.667 | 0 |
 
 ## Reading an entry
 
