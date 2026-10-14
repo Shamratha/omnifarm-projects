@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edge-AI Sensor Energy Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">⌁</div>
+    <div>
+      <p class="eyebrow">LOCAL EDGE COMPUTING LAB</p>
+      <h1>Edge-AI Sensor Energy Lab</h1>
+    </div>
+    <div class="header-meta">
+      <span class="badge badge-green"><span class="dot"></span> Local deterministic fixture</span>
+      <span class="mono">NO NETWORK · SIMULATED RESULTS</span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero panel">
+      <div>
+        <p class="eyebrow accent">FIELD NOTE 04 / SENSOR INFERENCE</p>
+        <h2>Make every millijoule<br><em>count.</em></h2>
+        <p class="lede">Compare two tiny anomaly detectors against the same deterministic sensor windows. Tune the alert threshold, inspect every mistake, and ship a reproducible deployment card.</p>
+      </div>
+      <div class="fixture-stamp">
+        <div class="stamp-label">FIXTURE ID</div>
+        <div class="stamp-value mono">edge-lab-fixture-v1</div>
+        <div class="stamp-grid"><span>SEED <b class="mono">0xED6E2025</b></span><span>WINDOWS <b>256</b></span><span>POSITIVE <b>32 / 12.5%</b></span><span>SAMPLE RATE <b>1 Hz</b></span></div>
+        <div class="signal-chart" id="signal-chart" aria-label="Local vibration signal"></div>
+      </div>
+    </section>
+
+    <div class="fixture-controls"><div><label class="eyebrow" for="scenario-select">LOCAL FIXTURE</label> <select id="scenario-select"><option value="field-noise">Field noise · benign motor starts</option><option value="baseline">Clean baseline</option><option value="dropouts">Missing samples · channel dropouts</option></select></div><span id="quality-strip" class="quality-strip"></span></div>
+
+    <section class="section-heading"><div><p class="eyebrow">01 / BENCHMARK</p><h2>Model comparison</h2></div><p class="section-note">All results are simulated estimates from the local fixture.<br>Not measurements from physical hardware.</p></section>
+    <section id="model-cards" class="model-grid"></section>
+    <section id="profile-tradeoff" class="tradeoff-panel panel" aria-labelledby="tradeoff-title"></section>
+    <section class="frontier-panel panel"><div><p class="eyebrow">ACCURACY × LATENCY</p><h3>Find your efficient edge.</h3><p class="frontier-note">A profile is Pareto-efficient if no other profile is both at least as accurate and at least as fast, with one strict improvement.</p><div id="frontier-legend" class="frontier-legend"></div></div><div id="frontier-chart" class="frontier-chart"></div></section>
+
+    <section class="workbench panel">
+      <div class="section-heading compact"><div><p class="eyebrow">02 / DECISION SURFACE</p><h2>Threshold workbench</h2></div><div class="segmented" role="tablist" aria-label="Selected model"><button class="tab active" data-model="micro-threshold-v1">MICRO THRESHOLD</button><button class="tab" data-model="tiny-linear-v1">TINY LINEAR</button></div></div>
+      <div class="threshold-layout">
+        <div class="tuner">
+          <div class="tuner-header"><span class="eyebrow">ALERT THRESHOLD</span><strong id="threshold-value" class="threshold-value">0.50</strong></div>
+          <input id="threshold-slider" type="range" min="0" max="1" step="0.01" value="0.08" aria-label="Alert threshold">
+          <div class="range-labels"><span>0.00 / SENSITIVE</span><span>1.00 / PRECISE</span></div>
+          <div class="tuner-actions"><button id="reset-threshold" class="button secondary">Reset to default</button><button id="apply-recommended" class="button recommend-button">Use best F1</button></div><p id="recommendation" class="recommendation"></p>
+          <div id="threshold-summary" class="summary-strip"></div>
+        </div>
+        <div class="sweep-wrap"><div class="chart-title"><span>THRESHOLD SWEEP</span><span class="legend"><i class="legend-f1"></i> F1 <i class="legend-recall"></i> Recall</span></div><div id="sweep-chart" class="sweep-chart" aria-label="Threshold sweep chart"></div><div id="sweep-table" class="sweep-table"></div></div>
+      </div>
+    </section>
+
+    <section class="section-heading"><div><p class="eyebrow">03 / ERROR ANALYSIS</p><h2>Inspect the edge cases</h2></div><p class="section-note">Select any row to see the exact feature contributions<br>that drove the simulated decision.</p></section>
+    <section class="inspector panel">
+      <div class="inspector-toolbar"><div class="filter-tabs"><button class="filter active" data-filter="falsePositives">FALSE ALARMS <span id="fp-count">0</span></button><button class="filter" data-filter="falseNegatives">MISSED EVENTS <span id="fn-count">0</span></button><button class="filter" data-filter="predicted">ALL ALERTS <span id="alert-count">0</span></button><button class="filter" data-filter="all">ALL WINDOWS <span id="window-count">256</span></button><button class="filter" data-filter="missing">MISSING GAPS <span id="missing-count">0</span></button></div><div class="inspector-label">MODEL <strong id="inspector-model">Micro Threshold</strong></div></div>
+      <div class="window-overview">
+        <p id="inspector-context" class="inspector-context"></p>
+        <div class="window-legend"><span class="correct-reject">Normal</span><span class="correct-alert">Correct alert</span><span class="false-alarm">False alarm</span><span class="missed-event">Missed event</span><span class="skipped">Missing gap</span></div>
+        <p class="window-help">Each tile is a stable one-second window. Select a tile to inspect both simulated profiles. Striped gaps retain their IDs and timestamps; no score is imputed.</p>
+        <div id="window-timeline" class="window-timeline" role="group" aria-label="Deterministic sensor windows in chronological order"></div>
+      </div>
+      <div class="inspector-grid"><div class="table-wrap"><table aria-label="Filtered sensor windows"><thead><tr><th scope="col">WINDOW ID</th><th scope="col">TIME</th><th scope="col">SCORE / THRESHOLD</th><th scope="col">DECISION</th><th scope="col">OTHER PROFILE</th><th scope="col">VIBRATION</th></tr></thead><tbody id="error-table"></tbody></table><div id="empty-errors" class="empty-state" hidden>No windows in this view at the current threshold. The chronological overview remains selectable.</div></div><aside id="detail-panel" class="detail-panel" aria-label="Selected sensor window"></aside></div>
+    </section>
+
+    <section class="section-heading"><div><p class="eyebrow">04 / DEPLOYMENT</p><h2>Reproducible deployment card</h2></div><p class="section-note">A portable JSON record of this exact decision surface.<br>Same inputs produce byte-for-byte identical output.</p></section>
+    <section class="deployment panel"><div id="deployment-card" class="deployment-card"></div><div class="deployment-actions"><button id="copy-json" class="button primary">Copy JSON</button><button id="download-json" class="button secondary">Download JSON ↓</button><span id="copy-status" class="copy-status" role="status"></span></div><pre id="json-preview" class="json-preview"></pre></section>
+    <details class="method-note"><summary>What’s inside this simulation?</summary><p>256 local, seeded synthetic windows contain temperature, vibration, and current. Exactly 32 are labeled anomalies. The field-noise fixture adds known benign motor-start bursts; the dropout fixture also removes 9 vibration readings. Missing windows are excluded from every metric denominator, never silently filled.</p><p>Both profiles use fixed formulas, not trained or hardware-benchmarked models. Latency = 0.05 + 0.003 × operations (ms). Energy = 18 + 0.06 × operations + 0.002 × memory bytes (µJ). Battery assumes 4.44 Wh and includes sensor acquisition and inference only — not radio, idle power, peripherals, or battery losses. Threshold recommendations are fitted to this fixture, not independent validation.</p><p>Deployment cards record the scenario, seed, threshold, parameters, fixture fingerprint, cost formulas, and coverage. The displayed FNV-1a fingerprint covers the compact JSON body, before its checksum is added. It is a repeatability check, not a cryptographic signature.</p></details>
+
+    <footer><span>EDGE-AI SENSOR ENERGY LAB / v1.0</span><span>BUILT FOR LOCAL, REPEATABLE EXPERIMENTS</span></footer>
+  </main>
+  <script src="lab-core.js"></script><script src="app.js"></script>
+</body>
+</html>

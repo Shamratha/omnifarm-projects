@@ -1,0 +1,14 @@
+{
+  "project": "evidence-desk",
+  "session_id": "ses_ec4274de5ffeGO8hGybFjYaVFm",
+  "source_package": "second-batch-ready",
+  "raw_trace_policy": "not published",
+  "source_policy": "final workspace source published",
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec4274de5ffeGO8hGybFjYaVFm/verify/level.json",
+    "qc/task-qc.json"
+  ]
+}

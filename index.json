@@ -2384,6 +2384,80 @@
       "session_trace_qc": {
         "all_pass": true
       }
+    },
+    {
+      "project": "evidence-desk",
+      "session_id": "ses_ec4274de5ffeGO8hGybFjYaVFm",
+      "source_package": "second-batch-ready",
+      "status": "shipped",
+      "funnel": {
+        "shipped": 1,
+        "review": 0,
+        "platform_locked": 0,
+        "rejected": 0,
+        "error": 0
+      },
+      "replay_quality": {
+        "level": "S",
+        "fails_here": 2,
+        "grades": {
+          "n/a": 45,
+          "match": 228,
+          "diff": 40
+        },
+        "env_failures": {
+          "missing-file": 2
+        },
+        "agreeing_replays": 2,
+        "why_not_R": [
+          "2 calls passed for the user and fail here, e.g. turn-03 diverge: file not in the package; turn-05 diverge: file not in the package"
+        ],
+        "why_not_S": null
+      },
+      "verification": {
+        "verifier_version": "1.5.0",
+        "errors": 0
+      },
+      "session_trace_qc": {
+        "all_pass": true
+      }
+    },
+    {
+      "project": "edge-energy-lab",
+      "session_id": "ses_ec4280d77ffeeudgrJhtfV1XmF",
+      "source_package": "second-batch-ready",
+      "status": "shipped",
+      "funnel": {
+        "shipped": 1,
+        "review": 0,
+        "platform_locked": 0,
+        "rejected": 0,
+        "error": 0
+      },
+      "replay_quality": {
+        "level": "S",
+        "fails_here": 14,
+        "grades": {
+          "n/a": 82,
+          "match": 305,
+          "diff": 80
+        },
+        "env_failures": {
+          "missing-file": 2
+        },
+        "agreeing_replays": 2,
+        "why_not_R": [
+          "14 calls passed for the user and fail here, e.g. turn-01 diverge: passed for the user, fails here; turn-02 diverge: passed for the user, fails here; turn-02 diverge: passed for the user, fails here"
+        ],
+        "why_not_S": null
+      },
+      "verification": {
+        "verifier_version": "1.5.0",
+        "errors": 0
+      },
+      "session_trace_qc": {
+        "all_pass": false
+      }
     }
   ],
   "publication_policy": {

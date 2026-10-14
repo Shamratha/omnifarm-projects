@@ -1,0 +1,8 @@
+{
+  "fixture": "synthetic",
+  "evidenceId": "EV-1050",
+  "custody": [
+    { "sequence": 1, "action": "collected", "to": "M. Ortiz" },
+    { "sequence": 3, "action": "received", "from": "M. Ortiz", "to": "A. Chen" }
+  ]
+}

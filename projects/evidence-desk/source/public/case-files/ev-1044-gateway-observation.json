@@ -1,0 +1,7 @@
+{
+  "fixture": "synthetic",
+  "evidenceId": "EV-1044",
+  "source": "gateway-02",
+  "observedAt": "2026-10-12T08:45:00Z",
+  "status": "offline"
+}

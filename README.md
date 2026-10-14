@@ -1,6 +1,6 @@
 # Omnifarm project publication
 
-This repository is a clean review index for 38 completed Omnifarm sessions. Each entry contains a final project source snapshot, a derived summary, and a package index tied to the controlled remote build package. The ten entries added on 2026-10-14 are standalone local prototypes inspired by GSoC-style project ideas. They are not claims of completing or replacing upstream GSoC projects.
+This repository is a clean review index for 40 completed Omnifarm sessions. Each entry contains a final project source snapshot, a derived summary, and a package index tied to the controlled remote build package. The ten entries added on 2026-10-14 are standalone local prototypes inspired by GSoC-style project ideas. They are not claims of completing or replacing upstream GSoC projects.
 
 The public repository intentionally excludes raw conversation archives, debug logs, temporary Docker workspaces, credentials, tokens, private keys, and full server snapshots. Those remain in the controlled build environment and are referenced by package name only.
 
@@ -48,6 +48,9 @@ The public repository intentionally excludes raw conversation archives, debug lo
 | [climate-resource-allocator](projects/climate-resource-allocator/summary.json) | `ses_ec425da66ffeaB6si57F6E0TNy` | 1 | S | 0.5 | 0 |
 | [creative-ai-production-board](projects/creative-ai-production-board/summary.json) | `ses_ec426d6a2ffePEdZod853xWKpY` | 1 | S | 0.5 | 0 |
 | [model-card-auditor](projects/model-card-auditor/summary.json) | `ses_ec42657c9ffePtdJqozXbfz5u8` | 1 | none | 0.5 | 0 |
+
+| [evidence-desk](projects/evidence-desk/summary.json) | `ses_ec4274de5ffeGO8hGybFjYaVFm` | 1 | S | 0.5 | 0 |
+| [edge-energy-lab](projects/edge-energy-lab/summary.json) | `ses_ec4280d77ffeeudgrJhtfV1XmF` | 1 | S | 0.5 | 0 |
 
 ## Reading an entry
 

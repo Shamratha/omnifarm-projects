@@ -1,0 +1,14 @@
+{
+  "project": "edge-energy-lab",
+  "session_id": "ses_ec4280d77ffeeudgrJhtfV1XmF",
+  "source_package": "second-batch-ready",
+  "raw_trace_policy": "not published",
+  "source_policy": "final workspace source published",
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/02-ses_ec4280d77ffeeudgrJhtfV1XmF/verify/level.json",
+    "qc/task-qc.json"
+  ]
+}

@@ -1,0 +1,3 @@
+SYNTHETIC SENSOR NOTE
+Evidence EV-1048 observed relay active at 2026-10-12T09:20:00Z.
+Received by the synthetic desk at 2026-10-12T09:10:00Z.

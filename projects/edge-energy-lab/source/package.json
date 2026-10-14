@@ -1,0 +1,12 @@
+{
+  "name": "edge-energy-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dependency-free local sensor energy lab with deterministic simulated model profiles",
+  "scripts": {
+    "start": "python3 -m http.server 4173 --bind 0.0.0.0",
+    "build": "node scripts/build-static.cjs",
+    "test": "node --test tests/*.test.js",
+    "check": "node --check lab-core.js && node --check app.js && node --check tests/lab-core.test.js && node --check tests/window-inspection.test.js && node --check tests/final-boundaries.test.js && node --check tests/app-smoke.test.js && node --check scripts/build-static.cjs && node --check scripts/smoke-ui.cjs"
+  }
+}
