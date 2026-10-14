@@ -1,0 +1,14 @@
+{
+  "project": "climate-resource-allocator",
+  "session_id": "ses_ec425da66ffeaB6si57F6E0TNy",
+  "source_package": "second-batch-final",
+  "raw_trace_policy": "not published",
+  "source_policy": "final workspace source published",
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/02-ses_ec425da66ffeaB6si57F6E0TNy/verify/level.json",
+    "qc/task-qc.json"
+  ]
+}

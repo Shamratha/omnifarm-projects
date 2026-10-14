@@ -1,0 +1,14 @@
+{
+  "name": "civic-case-router",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "node scripts/build.mjs",
+    "check": "node --check server.js && node --check src/app.js && node --check src/data.js && node --check src/engine.js",
+    "test": "node --test",
+    "test:browser": "node scripts/browser-smoke.mjs"
+  }
+}

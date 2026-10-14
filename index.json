@@ -2233,6 +2233,157 @@
         "verifier_version": "1.5.0",
         "errors": 0
       }
+    },
+    {
+      "project": "civic-case-router",
+      "session_id": "ses_ec4265a76ffe1fsbLCpxvcXcHa",
+      "source_package": "second-batch-final",
+      "status": "shipped",
+      "funnel": {
+        "shipped": 1,
+        "review": 0,
+        "platform_locked": 0,
+        "rejected": 0,
+        "error": 0
+      },
+      "replay_quality": {
+        "level": "none",
+        "fails_here": 33,
+        "grades": {
+          "n/a": 26,
+          "diff": 47,
+          "match": 171
+        },
+        "env_failures": {
+          "missing-file": 4,
+          "missing-module": 16
+        },
+        "agreeing_replays": 2,
+        "why_not_R": null,
+        "why_not_S": [
+          "final: task hook app failed"
+        ]
+      },
+      "verification": {
+        "verifier_version": "1.5.0",
+        "errors": 0
+      },
+      "session_trace_qc": {
+        "all_pass": false
+      }
+    },
+    {
+      "project": "climate-resource-allocator",
+      "session_id": "ses_ec425da66ffeaB6si57F6E0TNy",
+      "source_package": "second-batch-final",
+      "status": "shipped",
+      "funnel": {
+        "shipped": 1,
+        "review": 0,
+        "platform_locked": 0,
+        "rejected": 0,
+        "error": 0
+      },
+      "replay_quality": {
+        "level": "S",
+        "fails_here": 5,
+        "grades": {
+          "match": 426,
+          "n/a": 86,
+          "diff": 85,
+          "harness-error": 1
+        },
+        "env_failures": {
+          "missing-file": 4
+        },
+        "agreeing_replays": 1,
+        "why_not_R": [
+          "1 calls where the replay broke (harness error or the turn's time limit)",
+          "5 calls passed for the user and fail here, e.g. turn-02 diverge: file not in the package; turn-02 diverge: file not in the package; turn-02 diverge: passed for the user, fails here"
+        ],
+        "why_not_S": null
+      },
+      "verification": {
+        "verifier_version": "1.5.0",
+        "errors": 0
+      },
+      "session_trace_qc": {
+        "all_pass": true
+      }
+    },
+    {
+      "project": "creative-ai-production-board",
+      "session_id": "ses_ec426d6a2ffePEdZod853xWKpY",
+      "source_package": "second-batch-final",
+      "status": "shipped",
+      "funnel": {
+        "shipped": 1,
+        "review": 0,
+        "platform_locked": 0,
+        "rejected": 0,
+        "error": 0
+      },
+      "replay_quality": {
+        "level": "S",
+        "fails_here": 7,
+        "grades": {
+          "n/a": 53,
+          "match": 271,
+          "diff": 35
+        },
+        "env_failures": {
+          "missing-file": 7
+        },
+        "agreeing_replays": 2,
+        "why_not_R": [
+          "7 calls passed for the user and fail here, e.g. turn-03 diverge: file not in the package; turn-03 diverge: file not in the package; turn-05 diverge: file not in the package"
+        ],
+        "why_not_S": null
+      },
+      "verification": {
+        "verifier_version": "1.5.0",
+        "errors": 0
+      },
+      "session_trace_qc": {
+        "all_pass": false
+      }
+    },
+    {
+      "project": "model-card-auditor",
+      "session_id": "ses_ec42657c9ffePtdJqozXbfz5u8",
+      "source_package": "second-batch-model",
+      "status": "shipped",
+      "funnel": {
+        "shipped": 1,
+        "review": 0,
+        "platform_locked": 0,
+        "rejected": 0,
+        "error": 0
+      },
+      "replay_quality": {
+        "level": "none",
+        "fails_here": 22,
+        "grades": {
+          "n/a": 82,
+          "match": 473,
+          "diff": 99
+        },
+        "env_failures": {
+          "missing-file": 8
+        },
+        "agreeing_replays": 2,
+        "why_not_R": null,
+        "why_not_S": [
+          "final: task hook app failed"
+        ]
+      },
+      "verification": {
+        "verifier_version": "1.5.0",
+        "errors": 0
+      },
+      "session_trace_qc": {
+        "all_pass": true
+      }
     }
   ],
   "publication_policy": {

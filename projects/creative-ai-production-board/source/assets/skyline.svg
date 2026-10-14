@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">The last signal — violet dusk skyline</title>
+  <desc id="desc">A layered city skyline fading into indigo mist, with one warm lit window under a thin sunset glow.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#0d112d"/>
+      <stop offset="0.48" stop-color="#24204f"/>
+      <stop offset="0.78" stop-color="#49315e"/>
+      <stop offset="1" stop-color="#b06368"/>
+    </linearGradient>
+    <linearGradient id="horizon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6c496c" stop-opacity="0"/>
+      <stop offset="0.42" stop-color="#e3a274" stop-opacity=".6"/>
+      <stop offset="0.63" stop-color="#f8cf91" stop-opacity=".78"/>
+      <stop offset="1" stop-color="#8d5b76" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="farBuildings" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#292647"/>
+      <stop offset="1" stop-color="#161935"/>
+    </linearGradient>
+    <linearGradient id="midBuildings" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#161a37"/>
+      <stop offset="1" stop-color="#090e23"/>
+    </linearGradient>
+    <linearGradient id="nearBuildings" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#111329"/>
+      <stop offset="1" stop-color="#050917"/>
+    </linearGradient>
+    <radialGradient id="sunset" cx="60%" cy="58%" r="48%">
+      <stop stop-color="#efb47e" stop-opacity=".34"/>
+      <stop offset=".45" stop-color="#a56678" stop-opacity=".1"/>
+      <stop offset="1" stop-color="#37234f" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="windowGlow">
+      <stop stop-color="#ffdca1" stop-opacity=".95"/>
+      <stop offset=".22" stop-color="#ffbd70" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#e98752" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+    <filter id="mistBlur" x="-10%" y="-80%" width="120%" height="260%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <filter id="grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" seed="17"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .055"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#sky)"/>
+  <rect width="800" height="450" fill="url(#sunset)"/>
+  <path d="M0 272 C136 267 239 275 355 268 C502 259 640 271 800 264" fill="none" stroke="url(#horizon)" stroke-width="5" opacity=".74" filter="url(#mistBlur)"/>
+  <path d="M0 294 C176 287 268 298 411 287 C567 275 670 294 800 283" fill="none" stroke="#ce8a86" stroke-width="1.2" opacity=".32"/>
+
+  <!-- distant, almost lost towers -->
+  <g fill="url(#farBuildings)" opacity=".72">
+    <path d="M0 255h39v-28h17v28h20v-44h23v44h14v-19h24v19h17v-65h22v65h18v-34h27v34h12v-51h31v51h14v-29h21v29h17v-76h25v76h21v-33h28v33h17v-45h25v45h13v-26h28v26h20v-58h19v58h17v-38h31v38h14v-67h23v67h19v-32h29v32h14v-50h23v50h22v-31h21v31h17v-47h28v47h20v-65h18v65h25v-39h28v39h18v-56h22v56h13v-35h28v35H0z"/>
+    <path d="M55 265v-82h10v-19h5v19h10v82M421 267v-92h8l4-18 4 18h8v92M701 268v-70h7l3-13 3 13h7v70" fill="#303052"/>
+  </g>
+  <g fill="#c18b89" opacity=".17">
+    <rect x="92" y="216" width="3" height="31"/><rect x="165" y="203" width="3" height="42"/><rect x="260" y="194" width="3" height="47"/>
+    <rect x="355" y="218" width="3" height="30"/><rect x="516" y="207" width="3" height="37"/><rect x="621" y="196" width="3" height="48"/><rect x="744" y="211" width="3" height="35"/>
+  </g>
+
+  <!-- middle tier, with architectural rhythm -->
+  <g fill="url(#midBuildings)">
+    <path d="M0 320V236h44v13h13v-25h12v96z"/>
+    <path d="M50 320V201h53v22h8v-45h24v142z"/>
+    <path d="M129 320V232h37v-34h12v-19h13v19h12v34h35v88z"/>
+    <path d="M225 320V164h12v-15h17v15h13v156z"/>
+    <path d="M248 320V218h34v-43h9v-25h9v25h11v43h42v102z"/>
+    <path d="M349 320V203h23v-28h11v-15h9v15h13v28h25v117z"/>
+    <path d="M414 320V184h32v-26h8v-21h10v21h9v26h36v136z"/>
+    <path d="M507 320V226h25v-47h10v-16h10v16h10v47h35v94z"/>
+    <path d="M586 320V193h19v-17h9v-24h8v24h11v17h24v127z"/>
+    <path d="M665 320V209h45v-31h9v-22h10v22h9v31h62v111z"/>
+  </g>
+  <g fill="#d09b96" opacity=".2">
+    <g>
+      <rect x="59" y="232" width="5" height="26"/><rect x="72" y="232" width="5" height="26"/><rect x="87" y="232" width="5" height="26"/>
+      <rect x="59" y="275" width="5" height="22"/><rect x="72" y="275" width="5" height="22"/><rect x="87" y="275" width="5" height="22"/>
+    </g>
+    <g fill="#8f7cad">
+      <rect x="139" y="247" width="4" height="29"/><rect x="151" y="247" width="4" height="29"/><rect x="139" y="287" width="4" height="17"/><rect x="151" y="287" width="4" height="17"/>
+      <rect x="365" y="218" width="4" height="29"/><rect x="379" y="218" width="4" height="29"/><rect x="365" y="263" width="4" height="30"/><rect x="379" y="263" width="4" height="30"/>
+      <rect x="525" y="244" width="4" height="30"/><rect x="538" y="244" width="4" height="30"/><rect x="525" y="286" width="4" height="17"/><rect x="538" y="286" width="4" height="17"/>
+      <rect x="683" y="226" width="4" height="27"/><rect x="696" y="226" width="4" height="27"/><rect x="683" y="269" width="4" height="30"/><rect x="696" y="269" width="4" height="30"/>
+    </g>
+  </g>
+
+  <!-- solitary signal in the near plane -->
+  <circle cx="313" cy="285" r="66" fill="url(#windowGlow)" opacity=".22" filter="url(#softBlur)"/>
+  <path d="M280 338V116h68v222z" fill="url(#nearBuildings)"/>
+  <path d="M276 117h76l-7-10h-62zM310 107V86h5v21M317 99l12-13 3 3-12 14" fill="#070b1b"/>
+  <path d="M291 139h46M291 178h46M291 217h46M291 256h46M291 295h46" stroke="#252641" stroke-width="3"/>
+  <path d="M292 122v207M314 122v207M336 122v207" stroke="#252641" stroke-width="2"/>
+  <rect x="315" y="221" width="18" height="29" rx="1" fill="#ffd79b"/>
+  <rect x="317" y="223" width="14" height="25" fill="#e99355" opacity=".52"/>
+  <path d="M318 225h12M318 231h12M318 237h12M318 243h12" stroke="#ffe4af" stroke-width="1" opacity=".75"/>
+  <rect x="306" y="213" width="37" height="45" fill="url(#windowGlow)" opacity=".3" filter="url(#softBlur)"/>
+
+  <!-- foreground block and street seam -->
+  <path d="M0 338h86v-49h53v43h73v-25h52v51h68v-32h42v29h67v-58h43v63h59v-34h49v29h76v-45h32v46h60v114H0z" fill="url(#nearBuildings)"/>
+  <g stroke="#252642" stroke-width="2" opacity=".8">
+    <path d="M99 302v48M113 302v48M127 302v48M227 328v53M242 328v53M257 328v53M524 335v49M541 335v49M558 335v49M699 333v54M715 333v54"/>
+  </g>
+  <path d="M0 397 C177 384 316 401 467 390 C600 380 707 394 800 386V450H0Z" fill="#060a18" opacity=".8"/>
+  <path d="M0 397 C190 383 330 401 475 390 C608 380 714 394 800 386" fill="none" stroke="#42324e" stroke-width="2" opacity=".65"/>
+  <g fill="#c18b8a" opacity=".23">
+    <rect x="16" y="357" width="5" height="17"/><rect x="30" y="357" width="5" height="17"/><rect x="44" y="357" width="5" height="17"/>
+    <rect x="381" y="351" width="5" height="16"/><rect x="395" y="351" width="5" height="16"/><rect x="409" y="351" width="5" height="16"/>
+    <rect x="628" y="357" width="5" height="16"/><rect x="642" y="357" width="5" height="16"/>
+  </g>
+
+  <!-- soft bands make the air feel deep and damp -->
+  <g fill="#b98b9e" opacity=".08" filter="url(#mistBlur)">
+    <path d="M-30 312C142 294 218 322 375 306s297 3 455-13v25c-160 15-300 11-456 27S139 317-30 337z"/>
+    <path d="M-20 358c155-18 264 9 405-6 153-17 274 5 435-13v18c-169 21-281 2-435 17-144 14-248-13-405 7z"/>
+  </g>
+  <rect width="800" height="450" filter="url(#grain)" opacity=".6"/>
+</svg>

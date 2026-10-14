@@ -1,0 +1,63 @@
+/* Single color source. Foregrounds also work on the light surface variants below. */
+:root {
+  --ink: #092c2d;
+  --ink-2: #285354;
+  --muted: #4f6864;
+  --paper: #f7faf8;
+  --white: #ffffff;
+  --teal: #08766f;
+  --teal-dark: #075f5b;
+  --line: #dce8e5;
+  --line-soft: #edf3f1;
+  --surface-subtle: #f3f8f5;
+  --surface-stripe: #fbfdfb;
+  --surface-hover: #e2f1e9;
+  --track: #e5efec;
+  --transparent: transparent;
+  --current-color: currentColor;
+
+  --status-good-fg: #236451;
+  --status-good-bg: #e8f5ed;
+  --status-warn-fg: #913b30;
+  --status-warn-bg: #fff0e9;
+  --status-info-fg: #365c61;
+  --status-info-bg: #eff4f3;
+  --status-caution-fg: #795019;
+  --status-caution-bg: #fff5e7;
+  --priority-critical-fg: var(--status-warn-fg);
+  --priority-critical-bg: var(--status-warn-bg);
+  --priority-high-fg: var(--status-caution-fg);
+  --priority-high-bg: var(--status-caution-bg);
+  --priority-moderate-fg: var(--status-info-fg);
+  --priority-moderate-bg: var(--status-info-bg);
+  --mint: var(--status-good-bg);
+  --orange: var(--status-caution-fg);
+  --red: var(--status-warn-fg);
+  --yellow: var(--status-caution-fg);
+
+  --sidebar-bg: var(--ink);
+  --sidebar-fg: #e4f4ef;
+  --sidebar-muted: #a4c7bf;
+  --sidebar-active-bg: #164748;
+  --sidebar-active-fg: #effffc;
+  --sidebar-badge-bg: #1b5e5e;
+  --sidebar-accent: #a4e7d9;
+  --sidebar-line: #2d7371;
+  --sidebar-live: #35c4a9;
+  --live: var(--teal);
+  --live-halo: rgba(53, 196, 169, .14);
+  --shadow: 0 10px 35px rgba(21, 67, 64, .07);
+
+  --map-bg: #f1f8f5;
+  --map-label: var(--ink);
+  --map-junction: var(--muted);
+  --road-open: #536c68;
+  --road-allocated: var(--teal);
+  --road-saturated: #855514;
+  --road-noCapacity: #754b87;
+  --road-closed: #a43d36;
+  --depot: var(--ink);
+  --shelter-full: var(--status-good-fg);
+  --shelter-partial: var(--status-caution-fg);
+  --shelter-none: var(--status-warn-fg);
+}

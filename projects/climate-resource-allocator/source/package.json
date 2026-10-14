@@ -1,0 +1,25 @@
+{
+  "name": "climate-resource-allocator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/*.test.js",
+    "check:sample": "node scripts/sample-scenario.js",
+    "check:report": "node scripts/report-readability.js",
+    "check:commands": "node scripts/command-smoke.js",
+    "test:smoke": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "vite": "^6.1.0"
+  },
+  "dependencies": {
+    "@fontsource/dm-mono": "^5.3.0",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0"
+  }
+}

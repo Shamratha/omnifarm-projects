@@ -1,0 +1,14 @@
+{
+  "project": "creative-ai-production-board",
+  "session_id": "ses_ec426d6a2ffePEdZod853xWKpY",
+  "source_package": "second-batch-final",
+  "raw_trace_policy": "not published",
+  "source_policy": "final workspace source published",
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/03-ses_ec426d6a2ffePEdZod853xWKpY/verify/level.json",
+    "qc/task-qc.json"
+  ]
+}

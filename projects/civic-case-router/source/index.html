@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A local, synthetic public-service case routing workbench." />
+    <title>CivicFlow — Case routing workbench</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e2d3c'/%3E%3Cpath d='M8 24V14m8 10V8m8 16V11' stroke='%23a9cad3' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to workspace</a>
+    <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+      <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+      <symbol id="icon-inbox" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 14h5l2 3h2l2-3h5M12 4v7m-3-3 3 3 3-3"/></symbol>
+      <symbol id="icon-bars" viewBox="0 0 24 24"><path d="M4 20V9m8 11V4m8 16v-7M2 20h20"/></symbol>
+      <symbol id="icon-list" viewBox="0 0 24 24"><path d="M9 5h11M9 12h11M9 19h11M4 5h.01M4 12h.01M4 19h.01"/></symbol>
+      <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
+      <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 8a8 8 0 0 0-14-3L3 8m0-5v5h5M4 16a8 8 0 0 0 14 3l3-3m0 5v-5h-5"/></symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+      <symbol id="icon-filter" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18M8 3v6m8 0v6m-6 0v6"/></symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/></symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+      <symbol id="icon-document" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8zM14 3v5h5M9 13h6M9 17h6"/></symbol>
+      <symbol id="icon-language" viewBox="0 0 24 24"><path d="M3 5h11M8 3v2M5 5c1 5 4 7 8 9M12 5c-1 5-4 7-9 10m11 6 4-10 4 10m-6-4h4"/></symbol>
+      <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8"/></symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="icon-alert" viewBox="0 0 24 24"><path d="m12 3 10 18H2zM12 9v5m0 3h.01"/></symbol>
+      <symbol id="icon-access" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="m4 9 8 2 8-2m-8 2v5m0 0-4 6m4-6 4 6"/></symbol>
+    </defs></svg>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Primary navigation">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
+            <p class="brand-name">CivicFlow</p>
+            <p class="brand-caption">routing workbench</p>
+          </div>
+        </div>
+
+        <div class="environment-chip"><span class="status-dot"></span> LOCAL / SYNTHETIC DATA</div>
+
+        <nav class="nav-groups">
+          <p class="nav-label">Workspace</p>
+          <button class="nav-item active" data-view="overview" type="button">
+            <svg class="nav-icon icon"><use href="#icon-grid"/></svg><span>Overview</span><span class="nav-count">06</span>
+          </button>
+          <button class="nav-item" data-view="queue" type="button">
+            <svg class="nav-icon icon"><use href="#icon-inbox"/></svg><span>Incoming queue</span><span class="nav-count warm">06</span>
+          </button>
+          <button class="nav-item" data-view="workload" type="button">
+            <svg class="nav-icon icon"><use href="#icon-bars"/></svg><span>Workload</span>
+          </button>
+          <button class="nav-item" data-view="audit" type="button">
+            <svg class="nav-icon icon"><use href="#icon-list"/></svg><span>Audit trail</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="policy-status">
+            <div class="policy-status-top"><span class="pulse-ring"></span><span>Policy engine</span><span class="live-label">READY</span></div>
+            <p>Deterministic rules are active. No external APIs or citizen data connected.</p>
+            <div class="policy-rule-row"><span>6 policies loaded</span><span>v1.0.0</span></div>
+          </div>
+          <div class="user-chip">
+            <div class="avatar">OP</div>
+            <div><strong>Operations desk</strong><span>Local reviewer</span></div>
+            <span class="more-dots">···</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content" id="main-content">
+        <header class="topbar">
+          <div class="breadcrumb"><span>Operations</span><span class="breadcrumb-slash">/</span><strong id="breadcrumb-current">Overview</strong></div>
+          <div class="topbar-actions">
+            <span class="last-sync"><span class="status-dot"></span> Last evaluated 10:00 UTC</span>
+            <button class="icon-button" id="notifications-button" type="button" aria-label="View cases requiring attention"><span class="notification-dot"></span><svg class="icon"><use href="#icon-bell"/></svg></button>
+            <button class="outline-button" id="rerun-button" type="button"><svg class="icon"><use href="#icon-refresh"/></svg> Re-run routing</button>
+          </div>
+        </header>
+
+        <div class="page-content">
+          <section class="page-heading">
+            <div>
+              <div class="eyebrow">WEDNESDAY · 14 OCT 2026 <span class="eyebrow-divider"></span> SHIFT A</div>
+              <h1>Good decisions, <em>traceable</em>.</h1>
+              <p class="page-subtitle">A clear view of what came in, what it needs, and why it went there.</p>
+            </div>
+            <div class="heading-note"><svg class="lock-icon icon"><use href="#icon-shield"/></svg><span>Every decision is explainable<br /><strong>and safe to share.</strong></span></div>
+          </section>
+
+          <section class="metric-grid" aria-label="Queue summary">
+            <article class="metric-card accent-blue">
+              <div class="metric-top"><span>ACTIVE QUEUE</span><svg class="metric-glyph icon"><use href="#icon-inbox"/></svg></div>
+              <div class="metric-value" id="metric-active">06</div>
+              <div class="metric-foot"><span class="trend up">6 services</span> in this demo batch</div>
+            </article>
+            <article class="metric-card accent-coral">
+              <div class="metric-top"><span>NEEDS ATTENTION</span><svg class="metric-glyph icon"><use href="#icon-alert"/></svg></div>
+              <div class="metric-value" id="metric-attention">03</div>
+              <div class="metric-foot"><span class="trend alert">urgent or awaiting documents</span></div>
+            </article>
+            <article class="metric-card accent-lilac">
+              <div class="metric-top"><span>RULES EVALUATED</span><svg class="metric-glyph icon"><use href="#icon-list"/></svg></div>
+              <div class="metric-value">06<span class="metric-unit">/case</span></div>
+              <div class="metric-foot"><span class="trend neutral">deterministic · not a black box</span></div>
+            </article>
+            <article class="metric-card accent-lime">
+              <div class="metric-top"><span>TEAM CAPACITY</span><svg class="metric-glyph icon"><use href="#icon-bars"/></svg></div>
+              <div class="metric-value" id="metric-capacity">64<span class="metric-unit">%</span></div>
+              <div class="metric-foot"><span class="trend up">healthy</span> across 6 teams</div>
+            </article>
+          </section>
+
+          <section class="workspace-grid" id="overview-view">
+            <div class="queue-panel panel">
+              <div class="panel-header queue-header">
+                <div><div class="section-kicker">INTAKE BATCH</div><h2>Incoming queue <span class="header-count" id="queue-count">06</span></h2></div>
+                <div class="queue-tools"><label class="search-box"><svg class="icon"><use href="#icon-search"/></svg><input id="search-input" type="search" placeholder="Search cases" aria-label="Search cases" /></label><button class="filter-button" id="filter-button" type="button" aria-expanded="false" aria-controls="filter-bar">Filter <svg class="icon"><use href="#icon-filter"/></svg></button></div>
+              </div>
+              <div class="filter-bar" id="filter-bar" hidden>
+                <button class="filter-chip active" data-filter="all" type="button">All cases</button>
+                <button class="filter-chip" data-filter="urgent" type="button">Urgent</button>
+                <button class="filter-chip" data-filter="documents" type="button">Missing docs</button>
+                <button class="filter-chip" data-filter="access" type="button">Language / access</button>
+              </div>
+              <p class="table-scroll-hint" id="queue-scroll-hint">Swipe the table, or focus it and use arrow keys, to see deadlines and flags.</p>
+              <div class="queue-table-wrap" role="region" aria-label="Incoming cases table" aria-describedby="queue-scroll-hint" tabindex="0">
+                <table class="queue-table" aria-label="Incoming cases">
+                  <thead><tr><th scope="col">CASE</th><th scope="col">REQUEST</th><th scope="col">PRIORITY</th><th scope="col">ROUTED TO</th><th scope="col">DUE</th><th scope="col">FLAGS</th></tr></thead>
+                  <tbody id="queue-body"></tbody>
+                </table>
+                <div class="empty-state" id="empty-state" hidden><span>⌁</span><strong>No cases match</strong><p>Try a different search or filter.</p></div>
+              </div>
+              <div class="queue-footer"><span><strong id="visible-count">06</strong> of 06 cases visible</span><button id="view-all-button" type="button">View all cases <span>→</span></button></div>
+            </div>
+
+            <aside class="pulse-panel panel">
+              <div class="panel-header compact"><div><div class="section-kicker">ATTENTION MAP</div><h2>Priority pulse</h2></div><span class="live-pill"><span class="status-dot"></span> DEMO</span></div>
+              <div class="pulse-chart" aria-label="Priority scores in this synthetic intake batch"><div class="chart-y-labels"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div><div class="chart-area"><div class="chart-grid-lines"><i></i><i></i><i></i><i></i><i></i></div><svg id="priority-chart" viewBox="0 0 360 146" preserveAspectRatio="none" role="img" aria-label="Calculated priority scores for the six synthetic cases"><defs><linearGradient id="pulseGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ea785f" stop-opacity=".26"/><stop offset="100%" stop-color="#ea785f" stop-opacity="0"/></linearGradient></defs><path class="pulse-area"/><path class="pulse-line"/><g id="chart-points"></g></svg><div class="chart-x-labels" id="chart-x-labels"></div></div></div>
+              <div class="pulse-callout"><span class="callout-marker"></span><div><strong>2 deadlines inside 24 hours</strong><p>One urgent case is awaiting a document; another high-priority case is incomplete. Intake stays accepted.</p></div></div>
+              <div class="pulse-legend"><span><i class="legend-dot urgent-dot"></i>Urgent <strong id="urgent-count">02</strong></span><span><i class="legend-dot high-dot"></i>High <strong id="high-count">02</strong></span><span><i class="legend-dot normal-dot"></i>Normal <strong id="normal-count">02</strong></span></div>
+            </aside>
+          </section>
+
+          <section class="detail-workload-grid" id="detail-area">
+            <article class="case-detail panel" id="case-detail"></article>
+            <aside class="workload-panel panel" id="workload-panel">
+              <div class="panel-header compact"><div><div class="section-kicker">CAPACITY BOARD</div><h2>Team workload</h2></div><button class="text-button" data-view="workload" type="button">Full view →</button></div>
+              <div id="workload-list" class="workload-list"></div>
+              <div class="workload-note"><span class="info-icon">i</span><span>Urgent cases may exceed capacity, but always create a supervisor review flag.</span></div>
+            </aside>
+          </section>
+
+          <section class="full-view panel" id="queue-view" hidden></section>
+          <section class="full-view panel" id="workload-view" hidden></section>
+          <section class="full-view panel" id="audit-view" hidden></section>
+        </div>
+      </main>
+    </div>
+    <dialog id="case-dialog" class="case-dialog" aria-labelledby="dialog-title"><div id="dialog-content"></div></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="sr-only" id="case-announcement" role="status" aria-live="polite" aria-atomic="true"></div>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">The last signal — green rooftop in electric weather</title>
+  <desc id="desc">A sage-green urban rooftop, antenna arrays and vents sit below hazy electric clouds, with one small amber practical light.</desc>
+  <defs>
+    <linearGradient id="stormSky" x1="0" y1="0" x2=".8" y2="1">
+      <stop stop-color="#08191c"/>
+      <stop offset=".38" stop-color="#17342f"/>
+      <stop offset=".72" stop-color="#3c5a4a"/>
+      <stop offset="1" stop-color="#7f8d67"/>
+    </linearGradient>
+    <linearGradient id="cloudMass" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#6e9a8a" stop-opacity=".38"/>
+      <stop offset=".55" stop-color="#537665" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#2a4a42" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#355548"/>
+      <stop offset=".55" stop-color="#1b352f"/>
+      <stop offset="1" stop-color="#0b1a1b"/>
+    </linearGradient>
+    <linearGradient id="roofEdge" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#5d8068"/>
+      <stop offset=".5" stop-color="#263f39"/>
+      <stop offset="1" stop-color="#101f20"/>
+    </linearGradient>
+    <radialGradient id="practicalGlow">
+      <stop stop-color="#ffd492" stop-opacity=".95"/>
+      <stop offset=".2" stop-color="#e9a35e" stop-opacity=".65"/>
+      <stop offset="1" stop-color="#b66143" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="lightning" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#c9f0cf" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#bbf0c7" stop-opacity=".76"/>
+      <stop offset="1" stop-color="#93cbaa" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="cloudBlur" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="17"/></filter>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" seed="81"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 .065"/></feComponentTransfer>
+    </filter>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#stormSky)"/>
+  <!-- stratified clouds, not just a flat backdrop -->
+  <g filter="url(#cloudBlur)">
+    <path d="M-30 108c83-41 130-12 198-31 74-21 96-65 186-51 56 9 72 47 130 48 69 1 92-47 177-27 67 16 86 55 169 53v92H-30z" fill="url(#cloudMass)"/>
+    <path d="M-50 176c116-29 171 11 248-16 86-31 117-19 178 5 70 28 118-11 185-24 74-15 144 12 255-19v125H-50z" fill="#8fa98c" opacity=".16"/>
+    <path d="M-40 246c132-41 199 10 303-16 116-29 158 4 239 10 99 7 154-26 330-4v89H-40z" fill="#162f2d" opacity=".36"/>
+  </g>
+  <path d="M32 139c136-47 222 7 323-18 113-28 170 7 273-8 55-8 97-26 153-17" fill="none" stroke="#a1bea2" stroke-width="2" opacity=".3"/>
+  <path d="M0 226c133-39 219 3 320-14 133-22 195 20 289 11 74-7 123-25 191-12" fill="none" stroke="#c1d09d" stroke-width="1.5" opacity=".2"/>
+  <path d="M558 31l-16 55 23-5-30 75 48-75-23 3 20-53z" fill="url(#lightning)" opacity=".23" filter="url(#glow)"/>
+  <path d="M558 31l-16 55 23-5-30 75 48-75-23 3 20-53z" fill="none" stroke="#b7e8ba" stroke-width="1.1" opacity=".28"/>
+
+  <!-- distant block silhouettes -->
+  <g fill="#0c2020" opacity=".7">
+    <path d="M0 302h58v-52h28v52h26v-75h44v75h35v-48h31v48h34v-91h48v91h32v-56h44v56h31v-86h53v86h25v-55h44v55h38v-75h36v75h24v-46h53v46h27v-79h44v79h34v-56h26v56h54v148H0z"/>
+  </g>
+
+  <!-- rooftop plane and parapet -->
+  <path d="M0 335l187-21 613 38v98H0z" fill="url(#roof)"/>
+  <path d="M0 329l188-22 612 37v21l-613-35L0 351z" fill="url(#roofEdge)"/>
+  <path d="M0 350l187-21 613 36" fill="none" stroke="#8ba27a" stroke-width="2" opacity=".3"/>
+  <path d="M0 408l191-28 609 34v36H0z" fill="#0b181a" opacity=".8"/>
+  <g stroke="#659077" stroke-width="1" opacity=".21">
+    <path d="M86 337l67 109M170 329l63 121M263 323l55 127M365 327l42 123M474 330l34 120M592 335l21 115M704 341l7 109"/>
+    <path d="M22 373l723 39M5 393l795 38"/>
+  </g>
+
+  <!-- left machinery housing with louver details -->
+  <path d="M62 321l121-13 3 99-124 17z" fill="#132824"/>
+  <path d="M64 321l118-12 1 12-119 14z" fill="#577860" opacity=".5"/>
+  <g stroke="#7b9b75" stroke-width="2" opacity=".36">
+    <path d="M81 335l86-9M81 347l86-9M82 359l86-9M83 371l86-9M84 383l86-9"/>
+  </g>
+  <path d="M105 317v-33h35v29" fill="none" stroke="#152c29" stroke-width="8"/>
+  <path d="M101 284h43" stroke="#7a9474" stroke-width="2" opacity=".5"/>
+
+  <!-- central vent / water tank -->
+  <path d="M319 326v-83l15-16h78l18 18v86z" fill="#19352f"/>
+  <path d="M334 227h77l-17-23h-43z" fill="#26483c"/>
+  <path d="M344 217h55" stroke="#88a77d" stroke-width="2" opacity=".5"/>
+  <g stroke="#709676" stroke-width="2" opacity=".38">
+    <path d="M331 251h87M331 264h87M331 277h87M331 290h87M331 303h87"/>
+  </g>
+  <path d="M356 201v-45M394 203v-60" stroke="#122521" stroke-width="7"/>
+  <path d="M350 157h12M388 143h12" stroke="#769578" stroke-width="2" opacity=".6"/>
+
+  <!-- delicate antenna forest -->
+  <g fill="none" stroke="#789c81" stroke-linecap="round">
+    <path d="M497 341V108M497 177l-47-27M497 206l44-36M497 237l-58-27M497 265l51-33" stroke-width="3" opacity=".72"/>
+    <path d="M497 108l-7 20h14zM497 108l14-12M497 108l-13-16" stroke-width="2" opacity=".7"/>
+    <path d="M581 347V183M581 226l-36-24M581 257l39-31M581 286l-45-17" stroke-width="3" opacity=".56"/>
+    <path d="M581 183l-7 18h14zM581 183l12-13M581 183l-12-14" stroke-width="2" opacity=".6"/>
+    <path d="M673 350V243M673 274l-28-19M673 294l32-25" stroke-width="2.5" opacity=".48"/>
+  </g>
+  <g fill="#789c81" opacity=".55">
+    <circle cx="497" cy="108" r="4"/><circle cx="581" cy="183" r="4"/><circle cx="673" cy="243" r="3"/>
+  </g>
+
+  <!-- small warm practical light, the only human trace -->
+  <circle cx="233" cy="347" r="52" fill="url(#practicalGlow)" opacity=".5" filter="url(#glow)"/>
+  <path d="M218 357h31v32h-31z" fill="#0b1919"/>
+  <path d="M214 357h39v-7h-39z" fill="#263d31"/>
+  <rect x="222" y="363" width="23" height="18" rx="2" fill="#f7c878"/>
+  <rect x="226" y="367" width="15" height="10" fill="#fff0b0" opacity=".82"/>
+  <path d="M221 387h25" stroke="#8ba278" stroke-width="2" opacity=".5"/>
+
+  <!-- foreground cable, bolts, and wet light -->
+  <path d="M0 428c112-37 188-23 274-12 86 11 133 8 200-8 91-22 187-10 326-1" fill="none" stroke="#0a1416" stroke-width="10"/>
+  <path d="M0 424c112-37 188-23 274-12 86 11 133 8 200-8 91-22 187-10 326-1" fill="none" stroke="#668375" stroke-width="2" opacity=".42"/>
+  <g fill="#93ac80" opacity=".48"><circle cx="109" cy="398" r="3"/><circle cx="290" cy="408" r="3"/><circle cx="447" cy="397" r="3"/><circle cx="721" cy="402" r="3"/></g>
+  <g fill="#a6c19a" opacity=".23">
+    <ellipse cx="48" cy="389" rx="3" ry="11" transform="rotate(72 48 389)"/><ellipse cx="154" cy="378" rx="3" ry="9" transform="rotate(72 154 378)"/>
+    <ellipse cx="543" cy="391" rx="3" ry="12" transform="rotate(72 543 391)"/><ellipse cx="763" cy="413" rx="3" ry="11" transform="rotate(72 763 413)"/>
+  </g>
+  <rect width="800" height="450" filter="url(#grain)" opacity=".65"/>
+</svg>

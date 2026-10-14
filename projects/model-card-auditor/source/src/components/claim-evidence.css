@@ -1,0 +1,37 @@
+.claim-evidence {
+  min-width: 0;
+  margin-top: 27px;
+  color: var(--ink, #282335);
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.claim-evidence__heading { margin: 0; scroll-margin-top: 24px; font: 600 16px 'Space Grotesk', sans-serif; letter-spacing: -.2px; }
+.claim-evidence__notice { margin: 12px 0; padding: 12px 14px; color: #635576; background: #f5f1ff; border: 1px solid #e6defa; border-radius: 8px; }
+.claim-evidence__filter { max-width: 280px; }
+.claim-evidence__filter label { display: block; margin-bottom: 5px; font-size: 11px; font-weight: 600; }
+.claim-evidence__filter select { width: 100%; min-height: 40px; padding: 8px 10px; color: var(--ink, #282335); background: #fff; border: 1px solid #dcd9e5; border-radius: 6px; font: inherit; }
+.claim-evidence__counts { margin: 12px 0; color: #686073; }
+.claim-evidence__claims { display: grid; gap: 10px; min-width: 0; }
+.claim-evidence__claim { min-width: 0; background: #fff; border: 1px solid var(--line, #e9e7ef); border-radius: 8px; }
+.claim-evidence__claim > summary { min-height: 44px; padding: 12px 14px; cursor: pointer; border-radius: 8px; }
+.claim-evidence__claim > summary::marker { color: var(--purple-dark, #5632c9); }
+.claim-evidence__claim > summary:hover { background: #faf8ff; }
+.claim-evidence__id { margin-right: 8px; font: 500 12px 'DM Mono', monospace; }
+.claim-evidence__badge { display: inline-block; padding: 2px 7px; color: #8a4c17; background: #fff1df; border-radius: 4px; font-size: 10px; font-weight: 600; }
+.claim-evidence__badge--complete { color: #635576; background: #f0ebff; }
+.claim-evidence__body { padding: 0 14px 14px; border-top: 1px solid var(--line, #e9e7ef); }
+.claim-evidence__body p { margin: 8px 0; white-space: pre-wrap; }
+.claim-evidence__body h4 { margin: 16px 0 6px; font-size: 12px; }
+.claim-evidence__body .claim-evidence__text { margin-top: 14px; }
+.claim-evidence__path { color: #686073; font-size: 11px; }
+.claim-evidence code { font-family: 'DM Mono', monospace; font-size: 11px; overflow-wrap: anywhere; }
+.claim-evidence__reasons { margin: 6px 0; padding-left: 20px; }
+.claim-evidence__references { display: grid; gap: 8px; margin: 8px 0 0; padding: 0; list-style: none; }
+.claim-evidence__reference { min-width: 0; padding: 10px 12px; background: #fbf7f1; border: 1px solid #eadfce; border-radius: 6px; }
+.claim-evidence__reference--resolved { background: #f8f6fc; border-color: #e9e3f2; }
+.claim-evidence__reference .claim-evidence__reference-heading { margin-top: 0; }
+.claim-evidence__reference > p:last-child { margin-bottom: 0; }
+.claim-evidence__empty { margin: 0; padding: 14px; color: #686073; background: #fff; border: 1px dashed #dcd6e7; border-radius: 8px; }
+.claim-evidence :is(select, summary, [tabindex]):focus-visible { outline: 3px solid #aa91f5; outline-offset: 3px; }

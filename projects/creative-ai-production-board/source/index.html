@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1116" />
+    <title>Frame / 01 — The Last Signal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="grain" aria-hidden="true"></div>
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
+            <div class="brand-name">frame <span>/ 01</span></div>
+            <div class="brand-caption">local production board</div>
+          </div>
+        </div>
+        <nav class="top-nav" aria-label="Project sections">
+          <button class="nav-item active" data-view="board">Board <span>01</span></button>
+          <button class="nav-item" data-view="compare">Compare <span>02</span></button>
+          <button class="nav-item" data-view="rights">Rights &amp; cues <span>03</span></button>
+        </nav>
+        <div class="top-actions">
+          <div class="local-badge"><i></i> local assets only</div>
+          <button class="icon-button" id="help-button" aria-label="About this board" title="About this board">?</button>
+          <button class="avatar" aria-label="Producer profile">RB</button>
+        </div>
+      </header>
+
+      <main>
+        <section class="project-header">
+          <div class="header-copy">
+            <div class="eyebrow"><span class="eyebrow-line"></span> creative media hackathon / room 04</div>
+            <h1>The last <em>signal</em></h1>
+            <p class="project-deck">A short-form audio visual poem about the last light in a city that forgot how to listen.</p>
+          </div>
+          <div class="header-meta">
+            <div class="meta-block"><span>owner</span><strong>Rae Biko</strong></div>
+            <div class="meta-block"><span>lock target</span><strong>22:00 <small>UTC</small></strong></div>
+            <div class="meta-block"><span>last saved</span><strong id="saved-time">just now</strong></div>
+          </div>
+        </section>
+
+        <section class="toolbar">
+          <div class="cut-switcher" role="group" aria-label="Choose a cut">
+            <span class="toolbar-label">active cut</span>
+            <button class="cut-option active" data-cut="quiet"><b>A</b> Quiet Signal <span>03:18</span></button>
+            <button class="cut-option" data-cut="pulse"><b>B</b> Pulse Edit <span>02:42</span></button>
+          </div>
+          <div class="toolbar-actions">
+            <button class="text-button" id="run-checks"><span class="button-icon">✦</span> run checks</button>
+            <button class="primary-button" id="export-button"><span>↗</span> export manifest</button>
+          </div>
+        </section>
+
+        <div class="workspace">
+          <aside class="left-rail">
+            <section class="rail-section project-status">
+              <div class="section-label"><span>project health</span><span class="status-dot good"></span></div>
+              <div class="health-score"><strong id="health-score">92</strong><span>/ 100</span><small>ready for review</small></div>
+              <div class="health-bar"><i id="health-bar-fill"></i></div>
+              <button class="rail-link" id="view-issues">View 0 blocking issues <span>→</span></button>
+            </section>
+
+            <section class="rail-section">
+              <div class="section-label"><span>production brief</span><span class="mono">v1.4</span></div>
+              <div class="brief-card">
+                <div class="brief-icon">◌</div>
+                <div><strong>Listen before you look.</strong><span>5 scenes · 3:18 · stereo</span></div>
+              </div>
+              <div class="brief-tags"><span>short film</span><span>generative edit</span><span>16:9</span></div>
+            </section>
+
+            <section class="rail-section asset-rail">
+              <div class="section-label"><span>bundled assets</span><span class="mono">06</span></div>
+              <div id="asset-list" class="asset-list"></div>
+            </section>
+
+            <section class="rail-section rail-note">
+              <div class="note-mark">i</div>
+              <p>This board never calls a live model. Every frame, cue, and credit is bundled for a reproducible handoff.</p>
+            </section>
+          </aside>
+
+          <section class="main-canvas">
+            <div id="board-view" class="view-panel active-view"></div>
+            <div id="compare-view" class="view-panel"></div>
+            <div id="rights-view" class="view-panel"></div>
+          </section>
+
+          <aside class="inspector" id="inspector"></aside>
+        </div>
+      </main>
+
+      <footer class="statusbar">
+        <div><span class="pulse"></span><strong>offline workspace</strong><span class="separator">/</span> autosave on</div>
+        <div class="status-shortcuts"><span><kbd>⌘</kbd><kbd>K</kbd> command</span><span><kbd>?</kbd> help</span><span class="mono">build 014</span></div>
+      </footer>
+    </div>
+
+    <div id="modal-root"></div>
+    <div id="toast-root" class="toast-root" aria-live="polite"></div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

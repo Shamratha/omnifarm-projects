@@ -1,0 +1,14 @@
+{
+  "project": "model-card-auditor",
+  "session_id": "ses_ec42657c9ffePtdJqozXbfz5u8",
+  "source_package": "second-batch-model",
+  "raw_trace_policy": "not published",
+  "source_policy": "final workspace source published",
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec42657c9ffePtdJqozXbfz5u8/verify/level.json",
+    "qc/task-qc.json"
+  ]
+}

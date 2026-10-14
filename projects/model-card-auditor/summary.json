@@ -1,0 +1,76 @@
+{
+  "funnel": {
+    "error": 0,
+    "platform_locked": 0,
+    "rejected": 0,
+    "review": 0,
+    "shipped": 1
+  },
+  "project": "model-card-auditor",
+  "qc_static_preflight": {
+    "checks_complete": false,
+    "qc_passed": 1,
+    "tasks": 1,
+    "note": "Task-delivery preflight completed without findings."
+  },
+  "session_trace_qc": {
+    "all_pass": true,
+    "note": "Local trace QC passed. The verifier recorded a task-hook app failure, so this is reviewable but not an acceptance claim."
+  },
+  "replay_quality": {
+    "package": "01-ses_ec42657c9ffePtdJqozXbfz5u8",
+    "session": "ses_ec42657c9ffePtdJqozXbfz5u8",
+    "no_cache": true,
+    "level": "none",
+    "why_not_strict": null,
+    "why_not_R": null,
+    "why_not_S": [
+      "final: task hook app failed"
+    ],
+    "grades": {
+      "n/a": 82,
+      "match": 473,
+      "diff": 99
+    },
+    "fails_here": 22,
+    "env_failures": {
+      "missing-file": 8
+    },
+    "agreeing_replays": 2,
+    "definitions": "docs/shared-definitions.md v1",
+    "verifier": "1.5.0",
+    "verify_json": "verify.json"
+  },
+  "review_notes": "Local trace QC passed. The verifier recorded a task-hook app failure, so this is reviewable but not an acceptance claim. Raw conversation archives, debug logs, temporary Docker workspaces, credentials, and private traces are omitted from GitHub.",
+  "schema_version": 1,
+  "session_id": "ses_ec42657c9ffePtdJqozXbfz5u8",
+  "source_package": "second-batch-model",
+  "status": "shipped",
+  "verification": {
+    "verifier_version": "1.5.0",
+    "environments": 6,
+    "errors": 0,
+    "builds": {
+      "ok": 6,
+      "failed": 0,
+      "refused": 0,
+      "harness_error": 0
+    },
+    "output_varies": 62,
+    "coverage_rate": 0.894,
+    "replay_pass_rate": 0.0,
+    "replay_verdicts": {
+      "VERIFIED": 0,
+      "VERIFIED_WITH_SOFT_DIFFS": 0,
+      "VERIFIED_TOOLS_RAN": 1,
+      "DIFFERS": 4,
+      "UNVERIFIED": 0
+    }
+  },
+  "work": {
+    "turns": 5,
+    "reproducible_turns": 5,
+    "shipped_turns": 5,
+    "real_edits_in_reproducible_turns": 61
+  }
+}

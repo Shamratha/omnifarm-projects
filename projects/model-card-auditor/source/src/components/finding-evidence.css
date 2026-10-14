@@ -1,0 +1,19 @@
+.finding-evidence { min-width: 0; margin-top: 13px; padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 9px; overflow-wrap: anywhere; }
+.finding-evidence__header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.finding-evidence__header h3 { margin: 0; font-size: 15px; line-height: 1.4; }
+.finding-evidence__header .severity-badge { flex-shrink: 0; }
+.finding-evidence p { color: #625a70; font-size: 12px; line-height: 1.6; }
+.finding-evidence p.finding-evidence__category { color: #756881; font-size: 11px; }
+.finding-evidence__rationale { padding: 12px; background: #f8f6fc; border-left: 3px solid var(--purple); border-radius: 4px; }
+.finding-evidence__rationale > strong { font-size: 12px; }
+.finding-evidence__rationale p { margin: 5px 0 0; white-space: pre-wrap; }
+.finding-evidence__sources { margin-top: 16px; }
+.finding-evidence__sources h4 { margin: 0; font-size: 12px; }
+.finding-evidence__sources ul { display: grid; gap: 8px; margin: 10px 0 0; padding: 0; list-style: none; }
+.finding-evidence__sources li { padding: 10px 12px; background: #fcfbfd; border: 1px solid var(--line); border-radius: 6px; }
+.finding-evidence__sources li strong { display: block; font-size: 12px; }
+.finding-evidence__sources code { display: block; margin-top: 4px; color: #635095; font-size: 11px; }
+.finding-evidence__sources li p { margin: 5px 0 0; white-space: pre-wrap; }
+.finding-evidence p.finding-evidence__caveat { margin: 4px 0 0; font-size: 11px; }
+.finding-evidence p.finding-evidence__action { margin-bottom: 0; padding-top: 12px; border-top: 1px solid var(--line); }
+@media (max-width: 700px) { .finding-evidence__header { flex-wrap: wrap; } }
