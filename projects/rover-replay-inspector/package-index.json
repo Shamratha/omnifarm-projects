@@ -1,0 +1,14 @@
+{
+  "project": "rover-replay-inspector",
+  "session_id": "ses_ec424b975ffeIfIBKut9eQXOFC",
+  "source_package": "second-batch-initial",
+  "raw_trace_policy": "not published",
+  "source_policy": "final workspace source published",
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/02-ses_ec424b975ffeIfIBKut9eQXOFC/verify/level.json",
+    "qc/task-qc.json"
+  ]
+}

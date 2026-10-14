@@ -1,0 +1,14 @@
+{
+  "project": "budget-commitment-monitor",
+  "session_id": "ses_ec425ea7affe97J8Gk08B93JDe",
+  "source_package": "second-batch-initial",
+  "raw_trace_policy": "not published",
+  "source_policy": "final workspace source published",
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/01-ses_ec425ea7affe97J8Gk08B93JDe/verify/level.json",
+    "qc/task-qc.json"
+  ]
+}

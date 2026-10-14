@@ -1,0 +1,16 @@
+{
+  "name": "budget-commitment-monitor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "test": "node --test tests/*.test.js",
+    "check": "npm test",
+    "test:browser": "node tests/browser-smoke.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.64.1"
+  }
+}

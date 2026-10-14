@@ -1,0 +1,14 @@
+{
+  "project": "satellite-comparison-studio",
+  "session_id": "ses_ec4274c99ffemGWEzuEAbTDZAs",
+  "source_package": "second-batch-initial",
+  "raw_trace_policy": "not published",
+  "source_policy": "final workspace source published",
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "out/03-ses_ec4274c99ffemGWEzuEAbTDZAs/verify/level.json",
+    "qc/task-qc.json"
+  ]
+}

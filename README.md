@@ -1,6 +1,6 @@
 # Omnifarm project publication
 
-This repository is a clean review index for 31 completed Omnifarm sessions. Each entry contains a final project source snapshot, a derived summary, and a package index tied to the controlled remote build package. The ten entries added on 2026-10-14 are standalone local prototypes inspired by GSoC-style project ideas. They are not claims of completing or replacing upstream GSoC projects.
+This repository is a clean review index for 34 completed Omnifarm sessions. Each entry contains a final project source snapshot, a derived summary, and a package index tied to the controlled remote build package. The ten entries added on 2026-10-14 are standalone local prototypes inspired by GSoC-style project ideas. They are not claims of completing or replacing upstream GSoC projects.
 
 The public repository intentionally excludes raw conversation archives, debug logs, temporary Docker workspaces, credentials, tokens, private keys, and full server snapshots. Those remain in the controlled build environment and are referenced by package name only.
 
@@ -39,6 +39,10 @@ The public repository intentionally excludes raw conversation archives, debug lo
 | [timing-closure-explorer](projects/timing-closure-explorer/summary.json) | ses_ec4430435ffelx5IIF5ipSm2qM | 1 | R | 1.0 | 0 |
 | [tour-storyboard](projects/tour-storyboard/summary.json) | ses_ec5c512e6ffeGBOo4WABf91U0Z | 1 | S | 0.5 | 0 |
 | [typescript-api-docs](projects/typescript-api-docs/summary.json) | ses_ec5c4c09dffeuQZCemWJbgvpFl | 1 | S | 0.8 | 0 |
+
+| [budget-commitment-monitor](projects/budget-commitment-monitor/summary.json) | `ses_ec425ea7affe97J8Gk08B93JDe` | 1 | S | 0.2 | 0 |
+| [rover-replay-inspector](projects/rover-replay-inspector/summary.json) | `ses_ec424b975ffeIfIBKut9eQXOFC` | 1 | S | 0.2 | 0 |
+| [satellite-comparison-studio](projects/satellite-comparison-studio/summary.json) | `ses_ec4274c99ffemGWEzuEAbTDZAs` | 1 | S | 0.2 | 0 |
 
 ## Reading an entry
 

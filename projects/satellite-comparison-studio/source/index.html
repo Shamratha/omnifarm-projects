@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f1eb" />
+    <title>Fieldnote · Satellite comparison studio</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Fieldnote home">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>FIELDNOTE</span>
+        </a>
+        <div class="topbar-center"><span class="eyebrow">LOCAL ANALYSIS LAB</span><span class="topbar-line"></span><span>NO EXTERNAL IMAGERY</span></div>
+        <div class="topbar-actions"><span class="local-pill"><i></i> Running locally</span><button class="icon-button" id="helpButton" aria-label="About this studio">?</button></div>
+      </header>
+
+      <main>
+        <section class="intro section-wrap">
+          <div class="intro-copy">
+            <div class="eyebrow accent">COMPUTER VISION / 01</div>
+            <h1>See what<br /><em>shifted.</em></h1>
+            <p class="lede">A quiet workspace for comparing two moments in the same place. Start with bundled synthetic tiles, then inspect the signal behind every reported change.</p>
+          </div>
+          <div class="intro-note">
+            <div class="note-number">01</div>
+            <p>Every pixel in this demo is generated and stored in your browser bundle. No satellite service, upload, or vision API is involved.</p>
+            <span class="rule-label">READ THE SIGNAL <span>↘</span></span>
+          </div>
+        </section>
+
+        <section class="studio section-wrap" aria-labelledby="studio-heading">
+          <div class="section-heading">
+            <div><span class="section-index">01 /</span><h2 id="studio-heading">Comparison desk</h2></div>
+            <div class="fixture-selector"><label for="fixtureSelect">FIXTURE</label><select id="fixtureSelect"></select></div>
+          </div>
+
+          <div class="workspace-grid">
+            <aside class="control-rail">
+              <div class="rail-label">CONTROL ROOM</div>
+              <div class="control-group">
+                <span class="control-label">Signal</span>
+                <div class="segmented" id="bandSelect" role="group" aria-label="Signal band">
+                  <button class="segment is-active" data-band="infrared">Infrared</button>
+                  <button class="segment" data-band="visible">Visible</button>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="control-label-row"><label class="control-label" for="thresholdInput">Change threshold</label><output id="thresholdValue">0.20</output></div>
+                <input id="thresholdInput" type="range" min="0" max="0.5" step="0.01" value="0.20" />
+                <div class="range-notes"><span>quiet</span><span>strong</span></div>
+              </div>
+              <div class="control-group">
+                <div class="control-label-row"><span class="control-label">Age policy</span><span class="policy-value">14 days</span></div>
+                <p class="control-help">Tiles older than the policy window are flagged, never silently discarded.</p>
+              </div>
+              <div class="rail-divider"></div>
+              <div class="control-group geometry-group">
+                <div class="control-label">Tile geometry</div>
+                <div class="geometry-row"><span>GRID</span><strong id="geometryGrid">96 × 96 px</strong></div>
+                <div class="geometry-row"><span>CRS</span><strong id="geometryCrs">LOCAL-SYNTHETIC</strong></div>
+                <div class="geometry-row"><span>PIXEL SIZE</span><strong id="geometryPixel">10 m</strong></div>
+              </div>
+              <button class="report-button" id="exportButton"><span>Export report</span><span>↓</span></button>
+              <p class="export-note" id="exportNote">JSON · includes masks, dates &amp; decisions</p>
+            </aside>
+
+            <div class="comparison-stage">
+              <div class="stage-toolbar">
+                <div class="view-tabs" role="tablist" aria-label="Comparison view">
+                  <button class="view-tab is-active" data-view="side-by-side" role="tab" aria-selected="true">Side by side</button>
+                  <button class="view-tab" data-view="difference" role="tab" aria-selected="false">Difference</button>
+                  <button class="view-tab" data-view="masks" role="tab" aria-selected="false">Masks</button>
+                  <button class="view-tab" data-view="confidence" role="tab" aria-selected="false">Confidence</button>
+                </div>
+                <div class="stage-meta"><span class="live-dot"></span><span id="analysisClock">ANALYSIS CLOCK · 18 JUN 2025</span></div>
+              </div>
+
+              <div class="freshness-banners" id="freshnessBanners" aria-label="Image freshness status">
+                <p class="freshness-notice" id="freshnessNotice">Analysis clock · 18 JUN 2025 · Freshness policy: 14 days.</p>
+                <div class="freshness-cards">
+                  <div class="freshness-card" id="beforeFreshness" aria-label="Before image freshness"></div>
+                  <div class="freshness-card" id="afterFreshness" aria-label="After image freshness"></div>
+                </div>
+              </div>
+
+              <div class="comparison-legend" id="comparisonLegend" aria-label="Shared comparison legend">
+                <div class="legend-intro"><span class="legend-kicker">SHARED LEGEND</span><span class="legend-copy">Cloud tint / nodata paper border · excluded if present at either timestamp.</span></div>
+                <div class="legend-items"><span class="mask-badge cloud"><i aria-hidden="true"></i><span>Cloud</span></span><span class="mask-badge nodata"><i aria-hidden="true"></i><span>Nodata</span></span></div>
+              </div>
+              <div class="view-legend" id="viewLegend"><strong>Infrared signal</strong><span>False-color band values · local synthetic signal</span></div>
+              <p class="visually-hidden" id="inspectionHelp">Canvas maps are keyboard accessible. Focus a map and use the arrow keys to inspect pixel values, mask status, confidence, and change classification.</p>
+
+              <div class="tile-pair" id="tilePair"></div>
+              <div class="difference-canvas-wrap is-hidden" id="differenceWrap"><canvas id="differenceCanvas" aria-label="Difference map"></canvas><div class="canvas-caption"><span>NO CHANGE</span><span>Δ 1.00</span></div><p class="map-note">Absolute band difference · muted pixels are below threshold.</p></div>
+              <div class="mask-canvas-wrap is-hidden" id="maskWrap"><canvas id="maskCanvas" aria-label="Cloud, nodata, and confidence mask"></canvas></div>
+              <div class="difference-canvas-wrap is-hidden" id="confidenceWrap"><canvas id="confidenceCanvas" aria-label="Per-pixel confidence map"></canvas><div class="canvas-caption"><span>0 · LOW</span><span>1 · HIGH</span></div><p class="map-note">Minimum confidence across the two timestamps.</p></div>
+
+              <div class="stage-footer"><span><strong id="stageCoordinates">00° 00′ N / 00° 00′ E</strong> · synthetic study tile</span><span class="footer-status"><i></i><span id="alignmentStatus">Aligned</span></span></div>
+              <div id="pixelInfo" class="pixel-info" aria-live="polite">Hover a tile to inspect its value, masks, and confidence.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="readout section-wrap" aria-labelledby="readout-heading">
+          <div class="section-heading compact"><div><span class="section-index">02 /</span><h2 id="readout-heading">Signal readout</h2></div><span class="section-side-note">A decision you can audit</span></div>
+          <div class="readout-grid">
+            <article class="metric-card feature-metric"><span class="metric-label">CHANGED PIXELS</span><div class="metric-value"><strong id="changedPixels">—</strong><span id="changedPercent">—</span></div><div class="metric-bar"><span id="changedBar"></span></div><p id="changeSummary">Calculating difference signal…</p></article>
+            <article class="metric-card"><span class="metric-label">VALID COVERAGE</span><strong class="metric-big" id="validCoverage">—</strong><p id="coverageDetail">pixels survived both masks</p></article>
+            <article class="metric-card"><span class="metric-label">MEAN CONFIDENCE</span><strong class="metric-big" id="meanConfidence">—</strong><p>across valid pixels</p></article>
+            <article class="metric-card"><span class="metric-label">IMAGE FRESHNESS</span><strong class="metric-big status-text" id="freshnessStatus">—</strong><p id="freshnessDetail">—</p></article>
+          </div>
+          <p class="comparison-interpretation" id="changeInterpretation"></p>
+        </section>
+
+        <section class="explain section-wrap" aria-labelledby="explain-heading">
+          <div class="section-heading compact"><div><span class="section-index">03 /</span><h2 id="explain-heading">Read the masks</h2></div><span class="section-side-note">Interpretation before action</span></div>
+          <div class="explain-grid">
+            <div class="explain-copy"><div class="mask-diagram" aria-hidden="true"><span class="diagram-pixel a"></span><span class="diagram-pixel b"></span><span class="diagram-pixel c"></span><span class="diagram-pixel d"></span><span class="diagram-pixel e"></span><span class="diagram-pixel f"></span><span class="diagram-pixel g"></span><span class="diagram-pixel h"></span><span class="diagram-pixel i"></span></div><div><span class="eyebrow accent">MASK LOGIC</span><h3>Not every dark pixel is a change.</h3><p>Cloud and missing-data masks remove pixels from the comparison before the threshold is applied. Low confidence stays visible in the report so you can decide what to trust.</p></div></div>
+            <div class="mask-list" id="maskList"></div>
+          </div>
+        </section>
+
+        <section class="method section-wrap"><div class="method-card"><div><span class="eyebrow">FIELDNOTE METHOD / 2025</span><h2>Small tiles.<br />Clear decisions.</h2></div><div class="method-points"><p><span>01</span> Align both grids before comparing.</p><p><span>02</span> Exclude cloud and nodata borders.</p><p><span>03</span> Apply an inclusive threshold.</p><p><span>04</span> Keep stale imagery in view.</p></div><div class="method-stamp">LOCAL<br /><strong>ONLY</strong></div></div></section>
+      </main>
+      <footer class="site-footer section-wrap"><span>FIELDNOTE / SATELLITE COMPARISON STUDIO</span><span>BUILT FOR CAREFUL PIXELS</span><span>v1.0 · SYNTHETIC FIXTURES</span></footer>
+    </div>
+    <dialog id="helpDialog"><button class="dialog-close" id="closeHelp" aria-label="Close">×</button><span class="eyebrow accent">ABOUT THIS DEMO</span><h2>A local-first comparison lab.</h2><p>Fieldnote uses tiny, hand-authored infrared and visible-light arrays. The canvas view is rendered in your browser, while the report is assembled from the same deterministic data. There are no network calls or external vision models.</p><p class="dialog-footnote">Tip: switch to the “Archive haze” fixture to see stale imagery and a heavier cloud mask.</p></dialog>
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

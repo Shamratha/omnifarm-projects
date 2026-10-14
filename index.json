@@ -2129,6 +2129,110 @@
         "shipped_turns": 5,
         "turns": 8
       }
+    },
+    {
+      "project": "budget-commitment-monitor",
+      "session_id": "ses_ec425ea7affe97J8Gk08B93JDe",
+      "source_package": "second-batch-initial",
+      "status": "shipped",
+      "funnel": {
+        "shipped": 1,
+        "review": 0,
+        "platform_locked": 0,
+        "rejected": 0,
+        "error": 0
+      },
+      "replay_quality": {
+        "level": "S",
+        "fails_here": 6,
+        "grades": {
+          "n/a": 50,
+          "match": 190,
+          "diff": 43
+        },
+        "env_failures": {
+          "missing-file": 1,
+          "missing-module": 4
+        },
+        "agreeing_replays": 2,
+        "why_not_R": [
+          "6 calls passed for the user and fail here, e.g. turn-01 diverge: passed for the user, fails here; turn-01 diverge: passed for the user, fails here; turn-02 diverge: passed for the user, fails here"
+        ],
+        "why_not_strict": null
+      },
+      "verification": {
+        "verifier_version": "1.5.0",
+        "errors": 0
+      }
+    },
+    {
+      "project": "rover-replay-inspector",
+      "session_id": "ses_ec424b975ffeIfIBKut9eQXOFC",
+      "source_package": "second-batch-initial",
+      "status": "shipped",
+      "funnel": {
+        "shipped": 1,
+        "review": 0,
+        "platform_locked": 0,
+        "rejected": 0,
+        "error": 0
+      },
+      "replay_quality": {
+        "level": "S",
+        "fails_here": 6,
+        "grades": {
+          "match": 144,
+          "n/a": 35,
+          "diff": 39
+        },
+        "env_failures": {
+          "missing-file": 4
+        },
+        "agreeing_replays": 2,
+        "why_not_R": [
+          "6 calls passed for the user and fail here, e.g. turn-02 diverge: passed for the user, fails here; turn-02 diverge: file not in the package; turn-03 diverge: file not in the package"
+        ],
+        "why_not_strict": null
+      },
+      "verification": {
+        "verifier_version": "1.5.0",
+        "errors": 0
+      }
+    },
+    {
+      "project": "satellite-comparison-studio",
+      "session_id": "ses_ec4274c99ffemGWEzuEAbTDZAs",
+      "source_package": "second-batch-initial",
+      "status": "shipped",
+      "funnel": {
+        "shipped": 1,
+        "review": 0,
+        "platform_locked": 0,
+        "rejected": 0,
+        "error": 0
+      },
+      "replay_quality": {
+        "level": "S",
+        "fails_here": 20,
+        "grades": {
+          "match": 212,
+          "n/a": 45,
+          "diff": 61
+        },
+        "env_failures": {
+          "missing-module": 10,
+          "missing-file": 10
+        },
+        "agreeing_replays": 2,
+        "why_not_R": [
+          "20 calls passed for the user and fail here, e.g. turn-02 diverge: passed for the user, fails here; turn-02 diverge: passed for the user, fails here; turn-03 diverge: passed for the user, fails here"
+        ],
+        "why_not_strict": null
+      },
+      "verification": {
+        "verifier_version": "1.5.0",
+        "errors": 0
+      }
     }
   ],
   "publication_policy": {

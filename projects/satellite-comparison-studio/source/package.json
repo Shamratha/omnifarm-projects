@@ -1,0 +1,11 @@
+{
+  "name": "satellite-comparison-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A local, synthetic satellite-image comparison studio.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "start": "python3 -m http.server 4173"
+  }
+}

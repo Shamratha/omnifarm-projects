@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101923" />
+    <title>Budget Commitment Monitor · Civic Ledger</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="primary-sidebar" aria-label="Primary navigation">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div>
+            <p class="eyebrow">Civic Ledger</p>
+            <p class="brand-name">Budget commitment<br />monitor</p>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <p class="sidebar-label">Workspace</p>
+          <nav class="sidebar-nav">
+            <a class="nav-item is-active" href="#overview" aria-current="page">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" /></svg>
+              <span>Overview</span>
+            </a>
+            <a class="nav-item" href="#commitments">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm3 4h6M9 12h6M9 16h4" /></svg>
+              <span>Active commitments</span>
+              <span class="nav-count" id="active-count">14</span>
+            </a>
+            <a class="nav-item" href="#attention">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m12 4 9 16H3L12 4Zm0 5v5m0 3v.01" /></svg>
+              <span>Needs attention</span>
+              <span class="nav-count nav-count-alert" id="attention-count">0</span>
+            </a>
+          </nav>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="snapshot-card">
+            <div class="snapshot-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 3v4M17 3v4M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" /></svg>
+            </div>
+            <div>
+              <p class="snapshot-label">Snapshot date</p>
+              <p class="snapshot-date" id="sidebar-date">18 Sep 2026</p>
+            </div>
+          </div>
+          <p class="sidebar-note">Status counts reflect the current view.<br />Read-only current fiscal year snapshot.</p>
+        </div>
+      </aside>
+
+      <main class="main-content" id="overview">
+        <header class="topbar">
+          <div class="mobile-brand">
+            <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span>Civic Ledger</span>
+          </div>
+          <div class="topbar-actions">
+            <label class="search-box" for="record-search">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 4.5 4.5" /></svg>
+              <span class="sr-only">Search commitments</span>
+              <input id="record-search" type="search" placeholder="Search commitments" autocomplete="off" aria-describedby="view-scope-note" />
+              <kbd>/</kbd>
+            </label>
+            <div class="status-chip"><span class="status-dot"></span><span>Snapshot current</span></div>
+            <button class="icon-button mobile-menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-sidebar">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="content-wrap">
+          <section class="page-intro" aria-labelledby="page-title">
+            <div>
+              <p class="section-kicker">Finance operations / FY26</p>
+              <h1 id="page-title">Budget commitment monitor</h1>
+              <p class="page-subtitle" id="view-scope-note">Filters and search scope all dashboard metrics; historical spent and budget stay fixed.</p>
+            </div>
+            <div class="last-refresh"><span class="pulse-ring"></span>As of snapshot <strong id="header-date">18 Sep 2026</strong></div>
+          </section>
+
+          <section class="kpi-grid" aria-label="Budget summary for current view">
+            <article class="kpi-card kpi-featured">
+              <div class="kpi-topline"><span>Projected spend</span><span class="kpi-icon icon-teal" aria-hidden="true">↗</span></div>
+              <p class="kpi-value" id="projected-spend">$1.89M</p>
+              <small class="exact-total" id="projected-exact"></small>
+              <div class="kpi-meta"><span class="trend-up">76%</span><span id="budget-label">of $2.50M budget</span></div>
+            </article>
+            <article class="kpi-card">
+              <div class="kpi-topline"><span>Untracked commitments</span><span class="kpi-icon icon-amber" aria-hidden="true">!</span></div>
+              <p class="kpi-value" id="untracked-spend">$108K</p>
+              <small class="exact-total" id="untracked-exact"></small>
+              <div class="kpi-meta"><span class="metric-alert" id="untracked-count">3 records</span><span>need a commitment ID</span></div>
+            </article>
+            <article class="kpi-card">
+              <div class="kpi-topline"><span>Overdue approvals</span><span class="kpi-icon icon-coral" aria-hidden="true">◷</span></div>
+              <p class="kpi-value" id="overdue-count">1</p>
+              <div class="kpi-meta"><span class="metric-alert">In current view</span><span>as of snapshot</span></div>
+            </article>
+            <article class="kpi-card">
+              <div class="kpi-topline"><span>Policy exceptions</span><span class="kpi-icon icon-lilac" aria-hidden="true">⌁</span></div>
+              <p class="kpi-value" id="policy-count">3</p>
+              <div class="kpi-meta"><span class="metric-alert">Review queue</span><span>flagged records</span></div>
+            </article>
+          </section>
+
+          <section class="projection-card" aria-labelledby="projection-title">
+            <div class="projection-header">
+              <div>
+                <p class="section-kicker">Budget position</p>
+                <h2 id="projection-title">Budget position for current view</h2>
+              </div>
+              <div class="projection-total"><strong id="remaining-spend">$607.8K</strong><small class="exact-total" id="remaining-exact"></small><span>remaining</span></div>
+            </div>
+            <div class="progress-track" role="progressbar" aria-label="Current view projected spend against fixed budget" aria-valuemin="0" aria-valuemax="100" aria-valuenow="76">
+              <span class="progress-spent" id="progress-spent"></span><span class="progress-committed" id="progress-committed"></span>
+            </div>
+            <div class="progress-legend">
+              <span><i class="legend-dot legend-spent"></i>Historical spent <strong id="spent-label">$1.08M</strong></span>
+              <span><i class="legend-dot legend-committed"></i>View commitments <strong id="committed-label">$808K</strong></span>
+              <span><i class="legend-dot legend-remaining"></i>Available <strong id="available-label">$607.8K</strong></span>
+            </div>
+            <p class="projection-note">Fixed historical spent + outstanding balances owned by records in this view. Linked balances are assigned once across the full snapshot; duplicates and cancelled records add no spend.</p>
+          </section>
+
+          <section class="policy-rules-panel" aria-labelledby="policy-rules-title">
+            <h2 id="policy-rules-title">Approval thresholds &amp; exception rules</h2>
+            <p class="muted-copy">Synthetic FY26 demonstration policies, not legal guidance. Approval thresholds and exception scopes apply across the full snapshot. Record details show the cited rule and evidence; no flag is not proof of compliance.</p>
+            <div class="policy-rules-grid" id="policy-rules"></div>
+          </section>
+
+          <section class="records-section" id="commitments" aria-labelledby="records-title">
+            <div class="records-heading">
+              <div>
+                <div class="title-with-count"><h2 id="records-title">Commitment records</h2><span class="record-count" id="record-count">15</span></div>
+                <p class="muted-copy" id="filter-help">Toggle filters to require every selected flag. Search also applies. Counts reflect this view.</p>
+              </div>
+              <div class="table-context"><span class="table-pulse"></span><span id="table-context" role="status">15 records in current view</span></div>
+            </div>
+
+            <div class="filter-bar" aria-label="Commitment filters">
+              <div class="filter-tabs" role="group" aria-label="Toggle combined commitment filters" aria-describedby="filter-help">
+                <button class="filter-tab is-active" type="button" data-filter="all" aria-pressed="true" title="Clear flag filters; keep search">All <span>15</span></button>
+                <button class="filter-tab" type="button" data-filter="attention" aria-pressed="false">Needs attention <span>4</span></button>
+                <button class="filter-tab" type="button" data-filter="untracked" aria-pressed="false">Untracked <span>3</span></button>
+                <button class="filter-tab" type="button" data-filter="overdue" aria-pressed="false">Overdue <span>1</span></button>
+                <button class="filter-tab" type="button" data-filter="policy" aria-pressed="false">Policy <span>3</span></button>
+              </div>
+              <button class="sort-button" type="button" id="sort-button" aria-label="Sort records by title descending">Title <span aria-hidden="true">↑</span></button>
+            </div>
+
+            <div class="records-table-wrap">
+              <table class="records-table">
+                <thead>
+                  <tr><th scope="col">Record</th><th scope="col">Department</th><th scope="col">Vendor</th><th scope="col">Amount</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Open details</span></th></tr>
+                </thead>
+                <tbody id="records-body"></tbody>
+              </table>
+              <div class="empty-state" id="empty-state" hidden>
+                <div class="empty-icon" aria-hidden="true">⌕</div>
+                <h3>No records match this view</h3>
+                <p>Turn off a filter or clear the search to see more commitments.</p>
+                <button class="secondary-button" type="button" id="clear-filters">Clear filters and search</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+    <aside class="detail-drawer" id="detail-drawer" aria-labelledby="drawer-title" aria-modal="true" role="dialog" hidden>
+      <div class="drawer-header">
+        <div><p class="section-kicker">Record detail</p><span class="drawer-id" id="drawer-id">REQ-2026-001</span></div>
+        <button class="icon-button close-drawer" type="button" aria-label="Close record details">×</button>
+      </div>
+      <div class="drawer-body" id="drawer-body"></div>
+    </aside>
+
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>

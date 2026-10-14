@@ -1,0 +1,73 @@
+{
+  "funnel": {
+    "error": 0,
+    "platform_locked": 0,
+    "rejected": 0,
+    "review": 0,
+    "shipped": 1
+  },
+  "project": "satellite-comparison-studio",
+  "qc_static_preflight": {
+    "checks_complete": false,
+    "qc_passed": 1,
+    "tasks": 1,
+    "note": "Static task preflight passed for the shipped prototype package."
+  },
+  "replay_quality": {
+    "package": "03-ses_ec4274c99ffemGWEzuEAbTDZAs",
+    "session": "ses_ec4274c99ffemGWEzuEAbTDZAs",
+    "no_cache": true,
+    "level": "S",
+    "why_not_strict": null,
+    "why_not_R": [
+      "20 calls passed for the user and fail here, e.g. turn-02 diverge: passed for the user, fails here; turn-02 diverge: passed for the user, fails here; turn-03 diverge: passed for the user, fails here"
+    ],
+    "why_not_S": null,
+    "grades": {
+      "match": 212,
+      "n/a": 45,
+      "diff": 61
+    },
+    "fails_here": 20,
+    "env_failures": {
+      "missing-module": 10,
+      "missing-file": 10
+    },
+    "agreeing_replays": 2,
+    "definitions": "docs/shared-definitions.md v1",
+    "verifier": "1.5.0",
+    "verify_json": "verify.json"
+  },
+  "review_notes": "This public summary omits raw conversation archives, debug logs, temporary Docker workspaces, credentials, and private traces. The full package remains on the controlled build server.",
+  "schema_version": 1,
+  "session_id": "ses_ec4274c99ffemGWEzuEAbTDZAs",
+  "source_package": "second-batch-initial",
+  "status": "shipped",
+  "verification": {
+    "verifier_version": "1.5.0",
+    "environments": 18,
+    "errors": 0,
+    "builds": {
+      "ok": 18,
+      "failed": 0,
+      "refused": 0,
+      "harness_error": 0
+    },
+    "output_varies": 68,
+    "coverage_rate": 0.866,
+    "replay_pass_rate": 0.214,
+    "replay_verdicts": {
+      "VERIFIED": 0,
+      "VERIFIED_WITH_SOFT_DIFFS": 3,
+      "VERIFIED_TOOLS_RAN": 1,
+      "DIFFERS": 11,
+      "UNVERIFIED": 0
+    }
+  },
+  "work": {
+    "turns": 5,
+    "reproducible_turns": 5,
+    "shipped_turns": 5,
+    "real_edits_in_reproducible_turns": 30
+  }
+}
