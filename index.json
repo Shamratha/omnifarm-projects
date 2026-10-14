@@ -638,16 +638,17 @@
       "replay_quality": {
         "agreeing_replays": 2,
         "env_failures": {},
-        "fails_here": 0,
+        "fails_here": 1,
         "grades": {
-          "match": 22,
-          "n/a": 29
+          "diff": 3,
+          "match": 88,
+          "n/a": 122
         },
-        "level": "none",
-        "why_not_R": null,
-        "why_not_S": [
-          "not verified: final, turn-09, turn-10, turn-11, turn-12, turn-13, turn-14, turn-15, turn-16, turn-17, turn-18, turn-19, turn-20, turn-21, turn-22, turn-23, turn-24, turn-25, turn-26, turn-27, turn-28, turn-29, turn-30, turn-31, turn-32, turn-33, turn-34, turn-35, turn-36, turn-37, turn-38, turn-39, turn-40, turn-41, turn-42, turn-43, turn-44, turn-45, turn-46, turn-47, turn-48"
+        "level": "S",
+        "why_not_R": [
+          "1 calls passed for the user and fail here, e.g. turn-48 diverge: passed for the user, fails here"
         ],
+        "why_not_S": null,
         "why_not_strict": null
       },
       "review_notes": "This public summary omits raw conversation traces, debug logs, workspace snapshots, and credentials. The full package remains on the controlled build server under the source package name.",

@@ -17,7 +17,7 @@ The public repository intentionally excludes raw conversation archives, debug lo
 | [incident-timeline](projects/incident-timeline/summary.json) | session ses_eca1f6ba2ffeqcR5NQOgH0EB5k | shipped=1 | level S | 0.4 | 0 | passed (incomplete coverage) |
 | [snapshot-storage-dashboard](projects/snapshot-storage-dashboard/summary.json) | session ses_ec9bf019fffeqkS582CrxMvhjS | shipped=1 | level R | 1.0 | 0 | passed (incomplete coverage) |
 | [packet-trace-dashboard](projects/packet-trace-dashboard/summary.json) | session ses_ec9bd9beaffesMlj7TPZtfVH0O | shipped=1 | level R | 1.0 | 0 | passed (incomplete coverage) |
-| [binary-analysis-workbench](projects/binary-analysis-workbench/summary.json) | session ses_ec9c16e6fffemAfbORZNQUo8RM | shipped=1 | level none | 1.0 | 0 | passed (incomplete coverage) |
+| [binary-analysis-workbench](projects/binary-analysis-workbench/summary.json) | session ses_ec9c16e6fffemAfbORZNQUo8RM | shipped=1 | level S | 1.0 | 0 | passed (incomplete coverage) |
 | [kernel-rollout-dashboard](projects/kernel-rollout-dashboard/summary.json) | session ses_ec9bfe8f9ffeRCiy1ilNf5x6I8 | shipped=1 | level S | 0.667 | 0 | passed (incomplete coverage) |
 
 ## Reading an entry
