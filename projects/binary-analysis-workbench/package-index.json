@@ -1,0 +1,12 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "qc/task-qc.json"
+  ],
+  "project": "binary-analysis-workbench",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec9c16e6fffemAfbORZNQUo8RM",
+  "source_package": "auto-binary-analysis-workbench-20261013T170811-c8f80468"
+}

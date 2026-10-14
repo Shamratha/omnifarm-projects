@@ -1,0 +1,68 @@
+{
+  "funnel": {
+    "error": 0,
+    "platform_locked": 0,
+    "rejected": 0,
+    "review": 0,
+    "shipped": 1
+  },
+  "project": "snapshot-storage-dashboard",
+  "qc_static_preflight": {
+    "checks_complete": false,
+    "error_count": 8,
+    "findings": {},
+    "qc_passed": 1,
+    "runnable": false,
+    "task_valid": false,
+    "tasks": 1,
+    "warning_count": 1
+  },
+  "replay_quality": {
+    "agreeing_replays": 2,
+    "env_failures": {},
+    "fails_here": 0,
+    "grades": {
+      "diff": 23,
+      "match": 70,
+      "n/a": 29
+    },
+    "level": "R",
+    "why_not_R": [],
+    "why_not_S": null,
+    "why_not_strict": [
+      "23 calls diff"
+    ]
+  },
+  "review_notes": "This public summary omits raw conversation traces, debug logs, workspace snapshots, and credentials. The full package remains on the controlled build server under the source package name.",
+  "schema_version": 1,
+  "session_id": "ses_ec9bf019fffeqkS582CrxMvhjS",
+  "source_package": "retry-snapshot-storage-dashboard-20261013T170825-b40a69f2",
+  "status": "shipped",
+  "verification": {
+    "builds": {
+      "failed": 0,
+      "harness_error": 0,
+      "ok": 7,
+      "refused": 0
+    },
+    "coverage_rate": 0.811,
+    "environments": 7,
+    "errors": 0,
+    "output_varies": 15,
+    "replay_pass_rate": 1.0,
+    "replay_verdicts": {
+      "DIFFERS": 0,
+      "UNVERIFIED": 0,
+      "VERIFIED": 0,
+      "VERIFIED_TOOLS_RAN": 0,
+      "VERIFIED_WITH_SOFT_DIFFS": 6
+    },
+    "verifier_version": "1.5.0"
+  },
+  "work": {
+    "real_edits_in_reproducible_turns": 30,
+    "reproducible_turns": 6,
+    "shipped_turns": 6,
+    "turns": 6
+  }
+}

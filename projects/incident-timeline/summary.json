@@ -1,0 +1,68 @@
+{
+  "funnel": {
+    "error": 0,
+    "platform_locked": 0,
+    "rejected": 0,
+    "review": 0,
+    "shipped": 1
+  },
+  "project": "incident-timeline",
+  "qc_static_preflight": {
+    "checks_complete": false,
+    "error_count": 8,
+    "findings": {},
+    "qc_passed": 1,
+    "runnable": false,
+    "task_valid": false,
+    "tasks": 1,
+    "warning_count": 1
+  },
+  "replay_quality": {
+    "agreeing_replays": 2,
+    "env_failures": {},
+    "fails_here": 3,
+    "grades": {
+      "diff": 12,
+      "match": 61,
+      "n/a": 21
+    },
+    "level": "S",
+    "why_not_R": [
+      "3 calls passed for the user and fail here, e.g. turn-05 diverge: passed for the user, fails here; turn-06 diverge: passed for the user, fails here; turn-08 diverge: passed for the user, fails here"
+    ],
+    "why_not_S": null,
+    "why_not_strict": null
+  },
+  "review_notes": "This public summary omits raw conversation traces, debug logs, workspace snapshots, and credentials. The full package remains on the controlled build server under the source package name.",
+  "schema_version": 1,
+  "session_id": "ses_eca1f6ba2ffeqcR5NQOgH0EB5k",
+  "source_package": "manual-a51b301c",
+  "status": "shipped",
+  "verification": {
+    "builds": {
+      "failed": 0,
+      "harness_error": 0,
+      "ok": 7,
+      "refused": 0
+    },
+    "coverage_rate": 0.809,
+    "environments": 7,
+    "errors": 0,
+    "output_varies": 8,
+    "replay_pass_rate": 0.4,
+    "replay_verdicts": {
+      "DIFFERS": 3,
+      "UNVERIFIED": 1,
+      "VERIFIED": 0,
+      "VERIFIED_TOOLS_RAN": 0,
+      "VERIFIED_WITH_SOFT_DIFFS": 2
+    },
+    "verifier_version": "1.5.0"
+  },
+  "work": {
+    "real_edits_in_reproducible_turns": 27,
+    "reproducible_turns": 8,
+    "shipped_turns": 7,
+    "turns": 8
+  }
+}

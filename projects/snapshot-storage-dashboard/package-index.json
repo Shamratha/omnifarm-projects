@@ -1,0 +1,12 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "qc/task-qc.json"
+  ],
+  "project": "snapshot-storage-dashboard",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec9bf019fffeqkS582CrxMvhjS",
+  "source_package": "retry-snapshot-storage-dashboard-20261013T170825-b40a69f2"
+}

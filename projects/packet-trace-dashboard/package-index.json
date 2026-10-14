@@ -1,0 +1,12 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "qc/task-qc.json"
+  ],
+  "project": "packet-trace-dashboard",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec9bd9beaffesMlj7TPZtfVH0O",
+  "source_package": "retry-packet-trace-dashboard-20261013T170826-c4d1641e"
+}

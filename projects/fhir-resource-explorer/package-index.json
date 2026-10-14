@@ -1,0 +1,12 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "qc/task-qc.json"
+  ],
+  "project": "fhir-resource-explorer",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec9c1aad7ffeWmd3qQ2WkTMh7o",
+  "source_package": "auto-fhir-resource-explorer-20261013T170810-3fb6b099"
+}

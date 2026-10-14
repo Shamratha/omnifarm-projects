@@ -1,0 +1,12 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "qc/task-qc.json"
+  ],
+  "project": "pr-maintenance-dashboard",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec9b5fbd0ffeTnSUWESNk5n1Dd",
+  "source_package": "retry-pr-maintenance-dashboard-20261013T171032-99e7472c"
+}

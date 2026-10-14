@@ -1,0 +1,12 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "qc/task-qc.json"
+  ],
+  "project": "a11y-localization-dashboard",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec9bbcafdffeFHz73fZBnqEdq4",
+  "source_package": "retry-a11y-localization-dashboard-20261013T170832-08303c47"
+}

@@ -1,0 +1,12 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "qc/task-qc.json"
+  ],
+  "project": "expense-dashboard",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_ec9bf07f7ffeAha0aQwKdQGd0u",
+  "source_package": "auto-expense-dashboard-20261013T170812-2d62da3e"
+}

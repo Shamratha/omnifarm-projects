@@ -1,0 +1,12 @@
+{
+  "available_artifacts": [
+    "out/report.json",
+    "out/verify/verify.json",
+    "out/verify/verify.md",
+    "qc/task-qc.json"
+  ],
+  "project": "incident-timeline",
+  "raw_trace_policy": "not published",
+  "session_id": "ses_eca1f6ba2ffeqcR5NQOgH0EB5k",
+  "source_package": "manual-a51b301c"
+}
